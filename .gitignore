@@ -1,3 +1,5 @@
+resources/_gen
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

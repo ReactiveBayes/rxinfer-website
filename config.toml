@@ -1,3 +1,41 @@
+# theme = "loveit"
+theme = "up-business-theme"
 baseURL = 'http://rxinfer.ml/'
-languageCode = 'en-us'
+languageCode = 'en'
 title = 'RxInfer.jl'
+
+# Author config
+[author]
+  name = "BIASlab"
+  email = ""
+  link = "https://biaslab.github.io/"
+
+[menu]
+    [[menu.main]]
+    name = "Get Started"
+    weight = 1
+
+    [[menu.main]]
+    name = "Documentation"
+    weight = 2
+
+    [[menu.main]]
+    name = "Tutorials"
+    weight = 3
+
+    [[menu.main]]
+    name = "Team"
+    weight = 4
+
+    [[menu.main]]
+    name = "GitHub"
+    weight = 5
+
+[params]
+    # site default theme ["auto", "light", "dark"]
+    defaultTheme = "auto"
+    gitRepo = ""
+    fingerprint = ""
+    dateFormat = "2006-01-02"
+    title = "My cool site"
+    description = "This is my cool site"
