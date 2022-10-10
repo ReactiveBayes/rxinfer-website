@@ -1,0 +1,3 @@
+baseURL = 'http://rxinfer.ml/'
+languageCode = 'en-us'
+title = 'RxInfer.jl'
