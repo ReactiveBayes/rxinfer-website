@@ -1,6 +1,3 @@
-[submodule "themes/up-business-theme"]
-	path = themes/up-business-theme
-	url = https://gitlab.com/writeonlyhugo/up-business-theme.git
-[submodule "themes/loveit"]
-	path = themes/loveit
-	url = https://github.com/dillonzq/LoveIt
+[submodule "themes/bigspring-light"]
+	path = themes/bigspring-light
+	url = https://github.com/gethugothemes/bigspring-light.git
