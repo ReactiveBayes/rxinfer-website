@@ -3,36 +3,80 @@ baseURL = 'http://rxinfer.ml/'
 languageCode = "en"
 languageName = "English"
 title = 'RxInfer.jl'
+copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethugothemes](https://gethugothemes.com/)"
+
 
 [params]
     logo = "images/rxinfer.svg"
     logo_width = 100
     author = "BIASlab"
+    copyright = "© BIASlab, 2022"
 
-    
-# Author config
+    [[params.social]]
+        icon = "fab fa-youtube"
+        link = "//youtube.com/channel/UCd1ftkOXIQ8MstIHosEDdaw"
+
+
+    [[params.social]]
+        icon = "fab fa-github"
+        link = "//github.com/biaslab/rxinfer.jl"
+
+
+    [[params.social]]
+        icon = "fas fa-diagram-project"
+        link = "//biaslab.github.io/"
+
+
 [author]
   name = "BIASlab"
   email = ""
   link = "https://biaslab.github.io/"
 
 [menu]
+
+    [[menu.footer_right]]
+    name = "check"
+
     [[menu.main]]
     name = "Get Started"
+    pre = ""
     weight = 1
 
     [[menu.main]]
     name = "Documentation"
+    pre = ""
     weight = 2
 
     [[menu.main]]
     name = "Tutorials"
+    pre = ""
     weight = 3
 
     [[menu.main]]
     name = "Team"
+    pre = ""
     weight = 4
 
     [[menu.main]]
     name = "GitHub"
+    pre = "fab fa-github"
     weight = 5
+
+[markup]
+    [markup.highlight]
+    style = 'vs'
+
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/slick/slick.css"
+[[params.plugins.css]]
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+[[params.plugins.css]]
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
+[[params.plugins.css]]
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.min.css"
+[[params.plugins.css]]
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/regular.min.css"
