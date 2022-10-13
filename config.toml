@@ -11,6 +11,8 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     logo_width = 100
     author = "BIASlab"
     copyright = "© BIASlab, 2022"
+    footer_menu_right = "Ecosystem"
+    footer_content = "Follow Us"
 
     [[params.social]]
         icon = "fab fa-youtube"
@@ -26,41 +28,59 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
         icon = "fas fa-diagram-project"
         link = "//biaslab.github.io/"
 
-
 [author]
   name = "BIASlab"
   email = ""
   link = "https://biaslab.github.io/"
 
 [menu]
+    
+    [[menu.footer_right]]
+    name = "Rocket.jl"
+    weight = 1
 
     [[menu.footer_right]]
-    name = "check"
+    name = "GraphPPL.jl"
+    weight = 2
+
+    [[menu.footer_right]]
+    name = "ReactiveMP.jl"
+    weight = 3
+
 
     [[menu.main]]
     name = "Get Started"
-    pre = ""
+    url = "https://biaslab.github.io/ReactiveMP.jl/stable/man/getting-started/"
     weight = 1
 
     [[menu.main]]
     name = "Documentation"
     pre = ""
+    url = "https://biaslab.github.io/ReactiveMP.jl/stable/"
     weight = 2
 
     [[menu.main]]
-    name = "Tutorials"
+    name = "Papers"
     pre = ""
+    url = "https://biaslab.github.io/publication/"
+    weight = 4
+
+    [[menu.main]]
+    name = "Examples"
+    url = "https://biaslab.github.io/ReactiveMP.jl/stable/examples/overview/"
     weight = 3
 
     [[menu.main]]
     name = "Team"
     pre = ""
-    weight = 4
+    weight = 5
+    url = "/team"
 
     [[menu.main]]
     name = "GitHub"
     pre = "fab fa-github"
-    weight = 5
+    url = "https://github.com/biaslab/RxInfer.jl"
+    weight = 6
 
 [markup]
     [markup.highlight]
