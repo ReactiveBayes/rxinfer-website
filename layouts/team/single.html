@@ -4,35 +4,48 @@
 {{ with .Params.members }}
 {{ if .enable }}
 <section class="section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 text-center">
-        <h2 class="section-title">{{ .title | markdownify }}</h2>
-      </div>
-      {{ range .member_item }}
-      <div class="container" style="background-color: white">
-        <div class="row">
-          <div class="col-2"></div>  
-          <div class="col-8">
-              <div class="row">
-                <div class="col-4"><img style="width: 100%" src="{{ .photo }}" class="rounded-circle" alt="{{ .name }}"></div>
-                <div class="col-8">234</div>
-              </div>
-          </div>  
-          <div class="col-2"></div>  
-          <!-- <div class="feature-card text-center">
-            <i class="{{.icon}} mb-3"></i>
-            <h4 class="mb-2">{{ .name | title }}</h4>
-            <p>{{ .bio | markdownify }}</p>
-          </div> -->
-        </div> 
-      </div>
-      {{ end }}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h2 class="section-title">{{ .title | markdownify }}</h2>
+            </div>
+            {{ range .member_item }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-4"><img style="width: 100%" src="{{ .photo }}" class="rounded-circle"></div>
+                            <div class="col-4">
+                                <h5>{{.name | markdownify }}</h5>
+                                <p>{{.bio | markdownify }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2"></div>
+                </div>
+
+            </div>
+            {{ end }}
+        </div>
+        <div>
+            <p class="view-all text-right">
+                <a href="https://biaslab.github.io/team/">
+                    Full team
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </p>
+        </div>
     </div>
-  </div>
 </section>
 {{ end }}
 {{ end }}
 <!-- /feature -->
-
+<!-- {{ .Content }} -->
 {{ end }}
