@@ -13,10 +13,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-2"></div>
-                    <div class="col-8">
+                    <div class="col-lg-8 col-xs-4">
                         <div class="row">
                             <div class="col-4"><img style="width: 100%" src="{{ .photo }}" class="rounded-circle"></div>
-                            <div class="col-4">
+                            <div class="col-lg-5 text-md-left col-xs-2 text-center">
+                            </br></br></br>
                                 <h5>{{.name | markdownify }}</h5>
                                 <p>{{.bio | markdownify }}</p>
                             </div>
@@ -36,7 +37,7 @@
         </div>
         <div>
             <p class="view-all text-right">
-                <a href="https://biaslab.github.io/team/">
+                <a href="https://biaslab.github.io/team/" style="color:black;">
                     Full team
                     <i class="fa fa-angle-right"></i>
                 </a>

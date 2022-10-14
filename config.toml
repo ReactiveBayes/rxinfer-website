@@ -37,14 +37,17 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     
     [[menu.footer_right]]
     name = "Rocket.jl"
+    url = "https://biaslab.github.io/Rocket.jl/stable/"
     weight = 1
 
     [[menu.footer_right]]
     name = "GraphPPL.jl"
+    url = "https://biaslab.github.io/GraphPPL.jl/stable/"
     weight = 2
 
     [[menu.footer_right]]
     name = "ReactiveMP.jl"
+    url = "https://biaslab.github.io/ReactiveMP.jl/stable/"
     weight = 3
 
 

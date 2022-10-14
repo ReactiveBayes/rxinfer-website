@@ -2,7 +2,7 @@
 ####################### Banner #########################
 banner:
   title : "RxInfer.jl"
-  image : "images/ssm_model.svg"
+  image : "images/rxinfer_landing.png"
   content : "Julia package for automatic Bayesian inference on a factor graph with reactive message passing"
 
 ##################### Feature ##########################
@@ -72,7 +72,7 @@ service:
                 \n
                 \n
                 result = inference(\n
-                \tmodel = Model(rotate_ssm, length(y), x0, A, B, Q, P), \n
+                \tmodel = Model(SSM, length(y), x0, A, B, Q, P), \n
                 \tdata  = (y = y,)\n
                 );
              {{< /highlight>}}"
@@ -82,23 +82,23 @@ service:
         link : "//biaslab.github.io/ReactiveMP.jl/stable/examples/linear_gaussian_state_space_model/"
         
     # service item loop
-    - title : "Hybrid Message Passing"
+    - title : "Fast Bayesian Inference"
       images:
       - "images/lg-ssm.png"
       - "images/performance.png"
-      - "images/ssm_model.svg"
-      content : "RxInfer uses hybrid methods that combine factorization and form constraints, and formalize well-known algorithms in terms of message passing. RxInfer includes stochastic approximation engines such as Conjugate-Computation Variational Inference (CVI). CVI provides principled methods to integrate fast deterministic inference techniques with broadly applicable stochastic approximate inference."
+      - "images/ff.gif"
+      content : "RxInfer exploits the modularity of factor graphs to achieve fast inference. It uses hybrid methods that combine factorization and form constraints, and formalize well-known algorithms in terms of message passing. "
       button:
         enable : true
         label : "Check it out"
         link : "#"
         
     # service item loop
-    - title : "Inference results"
+    - title : "Stochastic Inference"
       images:
       - "images/lg-ssm.png"
       - "images/performance.png"
-      content : "The inference results are the posterior distribution over model parameters and Bethe free energy score that serves as a proxy for scoring the model and inference."
+      content : "RxInfer comes with stochastic approximation engines such as Conjugate-Computation Variational Inference (CVI). CVI provides principled methods to integrate fast deterministic inference techniques with broadly applicable stochastic approximate inference."
       button:
         enable : true
         label : "Check it out"
