@@ -86,7 +86,7 @@ service:
       images:
       - "images/lg-ssm.png"
       - "images/performance.png"
-      - "images/ff.gif"
+      - "images/tmp.gif"
       content : "RxInfer exploits the modularity of factor graphs to achieve fast inference. It uses hybrid methods that combine factorization and form constraints, and formalize well-known algorithms in terms of message passing. "
       button:
         enable : true
