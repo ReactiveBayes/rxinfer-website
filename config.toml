@@ -13,6 +13,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     copyright = "© BIASlab, 2022"
     footer_menu_right = "Ecosystem"
     footer_content = "Follow Us"
+    image = "missing/rxinfer.svg"
 
     [[params.social]]
         icon = "fab fa-youtube"
