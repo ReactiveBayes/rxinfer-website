@@ -17,7 +17,7 @@ feature:
     # feature item loop
     - name : "Reactive"
       icon : "fas fa-code-compare"
-      content : "Schedule-free message passing-based inference for streaming datasets"
+      content : "Schedule-free message passing-based inference for streaming datasets."
       
     # feature item loop
     - name : "Hybrid Inference"
