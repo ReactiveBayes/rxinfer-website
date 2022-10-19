@@ -3,7 +3,7 @@
 banner:
   title : "RxInfer.jl"
   image : "images/rxinfer_landing.png"
-  content : "Julia package for automatic Bayesian inference on a factor graph with reactive message passing"
+  content : "Automatic Bayesian inference through reactive message passing"
 
 ##################### Feature ##########################
 feature:
@@ -32,12 +32,12 @@ feature:
     # feature item loop
     - name : "Extensible"
       icon : "fa-solid fa-cubes"
-      content : "Easy to extend with custom nodes."
+      content : "Designed to be extended with custom operations."
 
     # feature item loop
     - name : "Differentiable"
       icon : "fa-solid fa-florin-sign"
-      content : "The entire inference procedure is differentiable."
+      content : "Supports automatic differentiation packages for parameter tuning."
       
 
 
@@ -46,10 +46,10 @@ service:
   enable : true
   service_item:
     # service item loop
-    - title : "Hello world in RxInfer.jl"
+    - title : "Hello RxInfer.jl!"
       images:
       - ""
-      content : "RxInfer is extremely fast when dealing with state-space models. Take a look how easy it is to specify an SSM and run inference!"
+      content : "RxInfer makes probabilistic modeling easy. Simply specify your model, grab a drink and we take care of the rest. Take a look how easy it is to specify a linear state space model and to run inference in it!"
       code: "{{< code >}}
                 \n@model function SSM(n, x0, A, B, Q, P) \n
                     \n
@@ -78,31 +78,29 @@ service:
                 {{< /code >}}"
       button:
         enable : true
-        label : "Check it out"
-        link : "//biaslab.github.io/ReactiveMP.jl/stable/examples/linear_gaussian_state_space_model/"
+        label : "Get started now"
+        link : "https://biaslab.github.io/ReactiveMP.jl/stable/man/getting-started/"
         
     # service item loop
-    - title : "Fast Bayesian Inference"
+    - title : "Speed is our trademark"
       images:
-      - "images/lg-ssm.png"
-      - "images/performance.png"
-      - "images/ff.gif"
-      content : "RxInfer exploits the modularity of factor graphs to achieve fast inference. It uses hybrid methods that combine factorization and form constraints, and formalize well-known algorithms in terms of message passing. "
+      - "images/lgssm_comparison.svg"
+      - "images/lgssm_scaling.svg"
+      content : "RxInfer exploits the modularity of factor graphs to perform fast probabilistic inference that scales linearly with the size of your model. We outperform state-of-the-art packages by several orders of magnitude. With support of streaming data, we enable real-time processing."
       button:
         enable : true
-        label : "Check it out"
-        link : "#"
+        label : "Check out our examples"
+        link : "https://biaslab.github.io/ReactiveMP.jl/stable/examples/overview/"
         
     # service item loop
-    - title : "Stochastic Inference"
+    - title : "Solve complex problems"
       images:
-      - "images/lg-ssm.png"
-      - "images/performance.png"
-      content : "RxInfer comes with stochastic approximation engines such as Conjugate-Computation Variational Inference (CVI). CVI provides principled methods to integrate fast deterministic inference techniques with broadly applicable stochastic approximate inference."
+      - "images/state_tracking.gif"
+      content : "RxInfer allows for a variety of approximate inference that allow for solving complex problems. RxInfer generates hybrid inference algorithms that simultaneously use (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
       button:
         enable : true
-        label : "Check it out"
-        link : "#"
+        label : "Research supported by RxInfer"
+        link : "https://biaslab.github.io/publication/"
         
 ################### Screenshot ########################
 screenshot:
