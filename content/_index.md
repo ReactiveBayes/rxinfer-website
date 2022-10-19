@@ -50,8 +50,8 @@ service:
       images:
       - ""
       content : "RxInfer is extremely fast when dealing with state-space models. Take a look how easy it is to specify an SSM and run inference!"
-      code: "{{< highlight julia>}} 
-                    @model function SSM(n, x0, A, B, Q, P) \n
+      code: "{{< code >}}
+                \n@model function SSM(n, x0, A, B, Q, P) \n
                     \n
                     \t # x is a sequence of hidden states \n
                     \t x = randomvar(n) \n
@@ -75,7 +75,7 @@ service:
                 \tmodel = Model(SSM, length(y), x0, A, B, Q, P), \n
                 \tdata  = (y = y,)\n
                 );
-             {{< /highlight>}}"
+                {{< /code >}}"
       button:
         enable : true
         label : "Check it out"

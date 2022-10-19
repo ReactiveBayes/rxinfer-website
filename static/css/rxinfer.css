@@ -2,8 +2,17 @@
     height: 100%;
   }
 
-  .code {
+.code {
     border-radius: 10px;
     padding: 1rem;
+    background-color: #edf6f5;
+    tab-size: 3;
     box-shadow: rgb(0 0 0 / 7%) 0px 1px 2px, rgb(0 0 0 / 7%) 0px 2px 4px, rgb(0 0 0 / 7%) 0px 4px 8px, rgb(0 0 0 / 7%) 0px 8px 16px, rgb(0 0 0 / 7%) 0px 16px 32px, rgb(0 0 0 / 7%) 0px 32px 64px;
 }
+
+.hljs-meta { color: rgb(5, 211, 211) }        /* macros */
+.hljs-keyword { color:#eb4416 }               /* keywords */
+.hljs-comment { color: rgb(23, 170, 23) }     /* comments */
+.hljs-built_in { color: #8432e9 }             /* functions and variables */
+.hljs-title { color: #8432e9 }                /* macro function */
+.hljs-type { color: #d1a812 }                 /* types */
