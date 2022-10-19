@@ -8,6 +8,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
 [params]
     logo = "images/rxinfer.svg"
+    favicon = "images/favicon.svg"
     logo_width = 100
     author = "BIASlab"
     copyright = "© BIASlab, 2022"
