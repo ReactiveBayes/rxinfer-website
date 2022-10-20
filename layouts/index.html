@@ -167,7 +167,7 @@
       </div>
       {{ range .ecosystem_item }}
       <a href="{{ .link }}" class="col-md-4 col-sm-6 mb-4">
-        <div class="ecosystem-card">
+        <div class="ecosystem-card" style="display: flex; flex-direction: column;">
           <div class="row">
               <div class="col-md-12 col-sm-12"><h4><i class="{{.icon}}"></i>&nbsp;&nbsp;&nbsp;{{ .name | title }}</h4></div>
           </div>
@@ -176,7 +176,7 @@
               <span>{{ .content | markdownify }}</span>              
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="margin-top: auto;">
             <div class="col-md-12 col-sm-12">
               <button class="btn btn-outline-primary"><i class="fab fa-github"></i>&nbsp;&nbsp;&nbsp;Open on github</button>
             </div>
