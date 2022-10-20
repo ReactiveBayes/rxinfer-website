@@ -7,6 +7,7 @@ banner:
 
 ##################### Feature ##########################
 feature:
+  title: "Features"
   enable : true
   feature_item:
     # feature item loop
@@ -49,32 +50,34 @@ service:
     - title : "Hello RxInfer.jl!"
       images:
       - ""
-      content : "RxInfer makes probabilistic modeling easy. Simply specify your model, grab a drink and we take care of the rest. Take a look how easy it is to specify a linear state space model and to run inference in it!"
+      content : "RxInfer makes probabilistic modeling easy. Simply specify your model, grab a drink and the package takes care of the rest. Take a look how easy it is to specify a linear state space model and to run inference in it!"
       code: "{{< code >}}
                 \n@model function SSM(n, x0, A, B, Q, P) \n
                     \n
                     \t # x is a sequence of hidden states \n
                     \t x = randomvar(n) \n
+                    \n
                     \t # y is a sequence of clamped observations \n
                     \t y = datavar(Vector{Float64}, n) \n
                     \n
-                    \t x_prior ~ MvNormal(μ=mean(x0), Σ=cov(x0)) \n 
+                    \t # `~` expression creates a probabilistic relationship\n
+                    \t # between random variables\n
+                    \t x_prior ~ MvNormal(μ = mean(x0), Σ = cov(x0)) \n 
                     \t x_prev = x_prior \n
                     \n
+                    \t # Build the state-space model \n
                     \t for i in 1:n \n
-                    \t\t   x[i] ~ MvNormal(μ=A*x_prev, Σ=Q) \n
-                    \t\t   y[i] ~ MvNormal(μ=B*x[i], Σ=P) \n
+                    \t\t   x[i] ~ MvNormal(μ = A * x_prev, Σ = Q) \n
+                    \t\t   y[i] ~ MvNormal(μ = B * x[i], Σ = P) \n
                     \t\t   x_prev = x[i] \n
                     \t end \n
-                    \n
-                    \t return x, y \n
                 end \n
                 \n
                 \n
                 result = inference(\n
-                \tmodel = Model(SSM, length(y), x0, A, B, Q, P), \n
+                \tmodel = SSM(length(y), x0, A, B, Q, P), \n
                 \tdata  = (y = y,)\n
-                );
+                )
                 {{< /code >}}"
       button:
         enable : true
@@ -120,4 +123,28 @@ call_to_action:
     enable : true
     label : "Contact Us"
     link : "contact/"
+
+##################### Ecosystem ##########################
+ecosystem:
+  title: "Ecosystem"
+  content: "The RxInfer ecosystem includes several Julia packages under one single framework for running efficient Bayesian inference"
+  enable : true
+  ecosystem_item:
+    # ecosystem item loop
+    - name : "Rocket.jl"
+      icon : "fas fa-rocket"
+      link: "https://github.com/biaslab/Rocket.jl"
+      content : "Top performance Julia package for reactive programming using Observables, to make it easier to work with asynchronous data."
+      
+    # ecosystem item loop
+    - name : "ReactiveMP.jl"
+      icon : "fas fa-envelope"
+      link: "https://github.com/biaslab/ReactiveMP.jl"
+      content : "Efficient, extendable and schedule-free reactive message passing-based inference engine package"
+      
+    # ecosystem item loop
+    - name : "GraphPPL.jl"
+      icon : "fas fa-diagram-project"
+      link: "https://github.com/biaslab/GraphPPL.jl"
+      content : "Powerful and user-friendly graph based model and constraints specification language package"
 ---
