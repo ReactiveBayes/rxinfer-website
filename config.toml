@@ -12,7 +12,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     logo_width = 100
     author = "BIASlab"
     copyright = "© BIASlab, 2022"
-    footer_menu_right = "Ecosystem"
+    footer_menu_left = "Ecosystem"
     footer_content = "Follow Us"
     image = "missing/rxinfer.svg"
     custom_js = ["js/julia.highlight.js"]
@@ -39,17 +39,17 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
 [menu]
     
-    [[menu.footer_right]]
+    [[menu.footer_left]]
     name = "Rocket.jl"
     url = "https://biaslab.github.io/Rocket.jl/stable/"
     weight = 1
 
-    [[menu.footer_right]]
+    [[menu.footer_left]]
     name = "GraphPPL.jl"
     url = "https://biaslab.github.io/GraphPPL.jl/stable/"
     weight = 2
 
-    [[menu.footer_right]]
+    [[menu.footer_left]]
     name = "ReactiveMP.jl"
     url = "https://biaslab.github.io/ReactiveMP.jl/stable/"
     weight = 3
