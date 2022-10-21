@@ -127,24 +127,24 @@ call_to_action:
 ##################### Ecosystem ##########################
 ecosystem:
   title: "Ecosystem"
-  content: "The RxInfer ecosystem includes several Julia packages under one single framework for running efficient Bayesian inference"
+  content: "The RxInfer ecosystem combines several Julia packages for running efficient Bayesian inference."
   enable : true
   ecosystem_item:
     # ecosystem item loop
     - name : "Rocket.jl"
       icon : "fas fa-rocket"
       link: "https://github.com/biaslab/Rocket.jl"
-      content : "Top performance Julia package for reactive programming using Observables, to make it easier to work with asynchronous data."
+      content : "Highly performant package that enables reactive programming in Julia for processing asynchronous data streams."
       
     # ecosystem item loop
     - name : "ReactiveMP.jl"
       icon : "fas fa-envelope"
       link: "https://github.com/biaslab/ReactiveMP.jl"
-      content : "Efficient, extendable and schedule-free reactive message passing-based inference engine package"
+      content : "Efficient, easily extensible and schedule-free reactive message passing-based inference engine package."
       
     # ecosystem item loop
     - name : "GraphPPL.jl"
       icon : "fas fa-diagram-project"
       link: "https://github.com/biaslab/GraphPPL.jl"
-      content : "Powerful and user-friendly graph based model and constraints specification language package"
+      content : "Powerful and user-friendly graph-based model and constraints specification language package"
 ---
