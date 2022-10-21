@@ -45,14 +45,14 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     weight = 1
 
     [[menu.footer_left]]
-    name = "GraphPPL.jl"
-    url = "https://biaslab.github.io/GraphPPL.jl/stable/"
-    weight = 2
-
-    [[menu.footer_left]]
     name = "ReactiveMP.jl"
     url = "https://biaslab.github.io/ReactiveMP.jl/stable/"
     weight = 3
+
+    [[menu.footer_left]]
+    name = "GraphPPL.jl"
+    url = "https://biaslab.github.io/GraphPPL.jl/stable/"
+    weight = 2
 
 
     [[menu.main]]
