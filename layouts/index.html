@@ -155,4 +155,41 @@
 {{ end }}
 <!-- /call to action -->
 
+<!-- ecosystem -->
+{{ with .Params.ecosystem }}
+{{ if .enable }}
+<section class="section bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h2 class="section-title">{{ .title | markdownify }}</h2>
+        <p>{{ .content }}</p>
+      </div>
+      {{ range .ecosystem_item }}
+      <a href="{{ .link }}" class="col-md-4 col-sm-6 mb-4">
+        <div class="ecosystem-card" style="display: flex; flex-direction: column;">
+          <div class="row">
+              <div class="col-md-12 col-sm-12"><h4><i class="{{.icon}}"></i>&nbsp;&nbsp;&nbsp;{{ .name | title }}</h4></div>
+          </div>
+          <div class="row" style="margin-top: 5px;">
+            <div class="col-md-12 col-sm-12">
+              <span>{{ .content | markdownify }}</span>              
+            </div>
+          </div>
+          <div class="row" style="margin-top: auto;">
+            <div class="col-md-12 col-sm-12">
+              <button class="btn btn-outline-primary"><i class="fab fa-github"></i>&nbsp;&nbsp;&nbsp;Open on GitHub</button>
+            </div>
+          </div>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}
+<!-- /ecosystem -->
+
 {{ end }}
