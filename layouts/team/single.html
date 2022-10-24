@@ -5,36 +5,22 @@
 {{ if .enable }}
 <section class="section">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 text-center">
+            <div class="row justify-content-center">
                 <h2 class="section-title">{{ .title | markdownify }}</h2>
             </div>
-            {{ range .member_item }}
-            <div class="container">
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-lg-8 col-xs-4">
-                        <div class="row">
-                            <div class="col-4"><img style="width: 100%" src="{{ .photo }}" class="rounded-circle"></div>
-                            <div class="col-lg-5 text-md-left col-xs-2 text-center">
-                            </br></br></br>
-                                <h5>{{.name | markdownify }}</h5>
-                                <p>{{.bio | markdownify }}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-2"></div>
+            
+            <div class="row justify-content-center">
+                {{ range .member_item }}
+                <div class="col-lg-6 col-sm-12 ">
+                    <div class="text-center">
+                        <img style="width: 50%" src="{{ .photo }}" class="rounded-circle">
+                      </div> 
+                    <h5 class="text-center">{{.name | markdownify }}</h5>
+                    <p class="text-center">{{.bio | markdownify }}</p>
                 </div>
+            {{ end }}
 
             </div>
-            {{ end }}
-        </div>
         <div>
             <p class="view-all text-right">
                 <a href="https://biaslab.github.io/team/" style="color:black;">
