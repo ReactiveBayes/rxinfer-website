@@ -81,10 +81,11 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     name = "Team"
     pre = ""
     weight = 5
-    url = "/team"
+    url = "https://biaslab.github.io/team/"
+    # url = "/team"
 
     [[menu.main]]
-    name = "Contact"
+    name = "Contact us"
     pre = ""
     weight = 6
     url = "/contact"
