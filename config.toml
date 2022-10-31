@@ -15,7 +15,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     footer_menu_left = "Ecosystem"
     footer_content = "Follow Us"
     image = "missing/rxinfer.svg"
-    custom_js = ["js/julia.highlight.js"]
+    custom_js = []
 
 
     [[params.social]]
