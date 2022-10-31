@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{ with .Params.contact }}
+{{ if .enable }}
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h2 class="section-title">{{ .title | markdownify }}</h2>
+        </div>
+    </div>
+</section>
+{{ end }}
+{{ end }}
+{{ end }}

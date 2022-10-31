@@ -84,10 +84,16 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     url = "/team"
 
     [[menu.main]]
+    name = "Contact"
+    pre = ""
+    weight = 6
+    url = "/contact"
+
+    [[menu.main]]
     name = "GitHub"
     pre = "fab fa-github"
     url = "https://github.com/biaslab/RxInfer.jl"
-    weight = 6
+    weight = 7
 
 [markup]
     [markup.highlight]
