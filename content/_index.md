@@ -1,9 +1,9 @@
 ---
 ####################### Banner #########################
 banner:
-  title : "RxInfer.jl"
+  title : "RxInfer"
   image : "images/rxinfer_landing.png"
-  content : "Automatic Bayesian inference through reactive message passing"
+  content : "Automatic Bayesian Inference through **Reactive Message Passing**"
 
 ##################### Feature ##########################
 feature:
@@ -21,12 +21,12 @@ feature:
       content : "Schedule-free message passing-based inference for streaming datasets."
       
     # feature item loop
-    - name : "Hybrid Inference"
+    - name : "Hybrid Models"
       icon : "fas fa-shapes"
       content : "Support for hybrid models combining discrete and continuous latent variables."
       
     # feature item loop
-    - name : "High Performance"
+    - name : "Scalable"
       icon : "fas fa-tachometer-alt"
       content : "Scalability for large models with millions of parameters and observations."
       
@@ -47,10 +47,10 @@ service:
   enable : true
   service_item:
     # service item loop
-    - title : "Hello RxInfer.jl!"
+    - title : "Hello RxInfer!"
       images:
       - ""
-      content : "RxInfer makes probabilistic modeling easy. Simply specify your model, grab a drink and the package takes care of the rest. Take a look how easy it is to specify a linear state space model and to run inference in it!"
+      content : "RxInfer.jl makes probabilistic modeling easy. Simply specify your model, grab a drink and the package takes care of the rest. Take a look how easy it is to specify a linear state space model and to run inference in it!"
       code: "{{< code >}}
                 \n@model function SSM(n, x0, A, B, Q, P) \n
                     \n
