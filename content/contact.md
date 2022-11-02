@@ -1,10 +1,10 @@
 ---
 type: contact
 draft: false
-title: "Contact us"
+title: "Have a question?"
 enable : true
 
-Information:
+contacts:
 
   social_item:
     - name : "Slack"
@@ -12,7 +12,7 @@ Information:
       url : ""
 
     - name : "Discourse"
-      logo : ""
+      logo : "fas fa-comments"
       url : ""
 
     - name : "GitHub"
@@ -22,6 +22,6 @@ Information:
 
 ---
 
-### Have a question?
+### Send us an email
 
-* **Mail: info@rxinfer.ml**
+<!-- * **Mail: info@rxinfer.ml** -->
