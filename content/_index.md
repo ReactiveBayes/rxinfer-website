@@ -16,9 +16,9 @@ feature:
       content : "Clean specification of probabilistic models and inference constraints."
       
     # feature item loop
-    - name : "Reactive"
+    - name : "Streaming datasets"
       icon : "fas fa-code-compare"
-      content : "Schedule-free message passing-based inference for streaming datasets."
+      content : "Reactive message passing-based inference for streaming datasets."
       
     # feature item loop
     - name : "Hybrid Models"
@@ -50,7 +50,7 @@ service:
     - title : "Hello RxInfer!"
       images:
       - ""
-      content : "RxInfer.jl makes probabilistic modeling easy. Simply specify your model, grab a drink and the package takes care of the rest. Take a look how easy it is to specify a linear state space model and to run inference in it!"
+      content : "RxInfer.jl is a Julia package that makes it easier to specify your probabilistic models. Specify your model, grab a drink and the package takes care of the rest. Take a look how simple it is to specify a linear state space model and to run inference in it!"
       code: "{{< code >}}
                 \n@model function SSM(n, x0, A, B, Q, P) \n
                     \n
@@ -73,10 +73,12 @@ service:
                     \t end \n
                 end \n
                 \n
+                observations = load_dataset()
+                \n
                 \n
                 result = inference(\n
-                \tmodel = SSM(length(y), x0, A, B, Q, P), \n
-                \tdata  = (y = y,)\n
+                \tmodel = SSM(length(observations), x0, A, B, Q, P), \n
+                \tdata  = (y = observations,)\n
                 )
                 {{< /code >}}"
       button:
@@ -85,24 +87,24 @@ service:
         link : "https://biaslab.github.io/ReactiveMP.jl/stable/man/getting-started/"
         
     # service item loop
-    - title : "Speed is our trademark"
+    - title : "RxInfer is fast"
       images:
       - "images/lgssm_comparison.svg"
       - "images/lgssm_scaling.svg"
-      content : "RxInfer exploits the modularity of factor graphs to perform fast probabilistic inference that scales linearly with the size of your model. We outperform state-of-the-art packages by several orders of magnitude. With support of streaming data, we enable real-time processing."
+      content : "RxInfer exploits the modularity of factor graphs to perform fast message passing-based probabilistic inference that scales linearly with the size of your model. We __generally__ outperform state-of-the-art __sampling-based__ packages by several orders of magnitude. RxInfer supports real-time processing of streaming data source."
       button:
         enable : true
-        label : "Check out our examples"
+        label : "Check out examples"
         link : "https://biaslab.github.io/ReactiveMP.jl/stable/examples/overview/"
         
     # service item loop
     - title : "Solve complex problems"
       images:
       - "images/state_tracking.gif"
-      content : "RxInfer allows for a variety of approximate inference that allow for solving complex problems. RxInfer generates hybrid inference algorithms that simultaneously use (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
+      content : "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
       button:
         enable : true
-        label : "Research supported by RxInfer"
+        label : "Research supporting RxInfer"
         link : "https://biaslab.github.io/publication/"
         
 ################### Screenshot ########################
@@ -127,24 +129,24 @@ call_to_action:
 ##################### Ecosystem ##########################
 ecosystem:
   title: "Ecosystem"
-  content: "The RxInfer ecosystem combines several Julia packages for running efficient Bayesian inference."
+  content: "The RxInfer ecosystem stacks several Julia packages for running efficient Bayesian inference."
   enable : true
   ecosystem_item:
     # ecosystem item loop
     - name : "Rocket.jl"
       icon : "fas fa-rocket"
       link: "https://github.com/biaslab/Rocket.jl"
-      content : "Highly performant package that enables reactive programming in Julia for processing asynchronous data streams."
+      content : "Enables reactive programming in Julia for processing asynchronous data streams."
       
     # ecosystem item loop
     - name : "ReactiveMP.jl"
       icon : "fas fa-envelope"
       link: "https://github.com/biaslab/ReactiveMP.jl"
-      content : "Efficient, easily extensible and schedule-free reactive message passing-based inference engine package."
+      content : "Efficient, easily extensible and schedule-free reactive message passing-based inference engine."
       
     # ecosystem item loop
     - name : "GraphPPL.jl"
       icon : "fas fa-diagram-project"
       link: "https://github.com/biaslab/GraphPPL.jl"
-      content : "Powerful and user-friendly graph-based model and constraints specification language package"
+      content : "Powerful and user friendly graph based specification of model and constraints."
 ---

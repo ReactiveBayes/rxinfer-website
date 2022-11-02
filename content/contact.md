@@ -22,7 +22,6 @@ Information:
 
 ---
 
-### Do you want to use RxInfer.jl in your business?
-RxInfer.jl
+### Have a question?
 
-* **Mail: info@lazydynamics.com**
+* **Mail: info@rxinfer.ml**
