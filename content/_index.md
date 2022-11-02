@@ -50,7 +50,7 @@ service:
     - title : "Hello RxInfer!"
       images:
       - ""
-      content : "RxInfer.jl is a Julia package that makes it easier to specify your probabilistic models. Specify your model, grab a drink and the package takes care of the rest. Take a look how simple it is to specify a linear state space model and to run inference in it!"
+      content : "RxInfer.jl is a Julia package that aims to automate inference in your probabilistic models. Specify your model, call the inference function, and the package takes care of the rest. Take a look how simple it is to specify a linear state space model and to run inference in it!"
       code: "{{< code >}}
                 \n@model function SSM(n, x0, A, B, Q, P) \n
                     \n
@@ -91,10 +91,10 @@ service:
       images:
       - "images/lgssm_comparison.svg"
       - "images/lgssm_scaling.svg"
-      content : "RxInfer exploits the modularity of factor graphs to perform fast message passing-based probabilistic inference that scales linearly with the size of your model. We __generally__ outperform state-of-the-art __sampling-based__ packages by several orders of magnitude. RxInfer supports real-time processing of streaming data source."
+      content : "RxInfer exploits the modularity of factor graphs to perform fast message passing-based probabilistic inference that scales linearly with the size of your model. We generally outperform state-of-the-art sampling-based packages by several orders of magnitude. RxInfer supports real-time processing of streaming data sources."
       button:
         enable : true
-        label : "Check out examples"
+        label : "Check out some examples"
         link : "https://biaslab.github.io/ReactiveMP.jl/stable/examples/overview/"
         
     # service item loop
@@ -136,7 +136,7 @@ ecosystem:
     - name : "Rocket.jl"
       icon : "fas fa-rocket"
       link: "https://github.com/biaslab/Rocket.jl"
-      content : "Enables reactive programming in Julia for processing asynchronous data streams."
+      content : "Enables reactive programming in Julia for processing of asynchronous data streams."
       
     # ecosystem item loop
     - name : "ReactiveMP.jl"
@@ -148,5 +148,5 @@ ecosystem:
     - name : "GraphPPL.jl"
       icon : "fas fa-diagram-project"
       link: "https://github.com/biaslab/GraphPPL.jl"
-      content : "Powerful and user friendly graph based specification of model and constraints."
+      content : "Powerful, user-friendly, graph-based specification of both model and inference constraints."
 ---
