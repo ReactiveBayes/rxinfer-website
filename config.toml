@@ -13,6 +13,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     author = "BIASlab"
     copyright = "© BIASlab, 2022"
     footer_menu_left = "Ecosystem"
+    footer_menu_middle = "Supported by"
     footer_content = "Follow Us"
     image = "missing/rxinfer.svg"
     custom_js = []
@@ -41,17 +42,29 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     
     [[menu.footer_left]]
     name = "Rocket.jl"
-    url = "https://biaslab.github.io/Rocket.jl/stable/"
+    url = "https://github.com/biaslab/Rocket.jl"
     weight = 1
 
     [[menu.footer_left]]
     name = "ReactiveMP.jl"
-    url = "https://biaslab.github.io/ReactiveMP.jl/stable/"
+    url = "https://github.com/biaslab/ReactiveMP.jl"
     weight = 2
 
     [[menu.footer_left]]
     name = "GraphPPL.jl"
-    url = "https://biaslab.github.io/GraphPPL.jl/stable/"
+    url = "https://github.com/biaslab/GraphPPL.jl"
+    weight = 1
+
+    [[menu.footer_middle]]
+    name = "NWO"
+    pre = "/images/NWO.png"
+    url = "https://www.nwo.nl/en"
+    weight = 2
+
+    [[menu.footer_middle]]
+    name = "GN Hearing"
+    pre = "/images/gn.png"
+    url = "https://www.resound.com/nl-nl/"
     weight = 3
 
 
@@ -85,7 +98,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     # url = "/team"
 
     [[menu.main]]
-    name = "Contact us"
+    name = "Contact"
     pre = ""
     weight = 6
     url = "/contact"
