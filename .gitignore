@@ -1,5 +1,7 @@
 resources/_gen
 
+.vscode/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
