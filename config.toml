@@ -71,7 +71,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
     [[menu.main]]
     name = "Get Started"
-    url = "https://biaslab.github.io/RxInfer.jl/stable/man/getting-started/"
+    url = "https://biaslab.github.io/RxInfer.jl/stable/manuals/getting-started/"
     weight = 1
 
     [[menu.main]]

@@ -5,7 +5,7 @@ title: "Have a question?"
 enable : true
 
 contacts:
-
+  
   social_item:
     - name : "Slack"
       logo : "fab fa-slack"
@@ -17,7 +17,10 @@ contacts:
 
     - name : "GitHub"
       logo : "fab fa-github"
-      url : ""
+      url : "https://github.com/biaslab/RxInfer.jl"
+
+emailform:
+  enable: false
     
 
 ---

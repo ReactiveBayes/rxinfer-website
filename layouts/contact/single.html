@@ -24,6 +24,7 @@
             {{end}}
         {{end}}
     </div>
+    {{ if .Params.emailform.enable }}
     <div class="row" style="padding-top: 50px">
         <div class="col-lg-5 content">
             {{ .Content }}
@@ -37,8 +38,8 @@
           <button type="submit" value="send" class="btn btn-primary">{{ i18n `sendnow` }}</button>
         </form>
       </div>
-      
     </div>
+    {{end}}
   </div>
 </section>
 
