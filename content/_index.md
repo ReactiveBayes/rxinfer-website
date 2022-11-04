@@ -100,7 +100,7 @@ service:
     # service item loop
     - title : "Solve complex problems"
       images:
-      - "images/state_tracking.gif"
+      - "images/state_tracking.webp"
       content : "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
       button:
         enable : true
