@@ -24,8 +24,8 @@
 <!-- Custom CSS -->
 <link rel="stylesheet" href="css/rxinfer.css">
 <!-- Code highlighter -->
-<script src="/js/julia.highlight.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script src="{{ site.Params.jlhighlight | absURL }}"></script>
+<script>hljs.highlightAll();</script>
 <!--Favicon-->
 <link rel="shortcut icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
 <link rel="icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">

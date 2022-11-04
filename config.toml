@@ -15,7 +15,8 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     footer_menu_left = "Ecosystem"
     footer_menu_middle = "Supported by"
     footer_content = "Follow Us"
-    image = "missing/rxinfer.svg"
+    image = "images/favicon.svg"
+    jlhighlight = "js/julia.highlight.js"
     custom_js = []
 
 
@@ -57,13 +58,13 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
     [[menu.footer_middle]]
     name = "NWO"
-    pre = "/images/NWO.png"
+    pre = "images/NWO.png"
     url = "https://www.nwo.nl/en"
     weight = 2
 
     [[menu.footer_middle]]
     name = "GN Hearing"
-    pre = "/images/gn.png"
+    pre = "images/gn.png"
     url = "https://www.resound.com/nl-nl/"
     weight = 3
 
