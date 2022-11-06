@@ -54,7 +54,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     [[menu.footer_left]]
     name = "GraphPPL.jl"
     url = "https://github.com/biaslab/GraphPPL.jl"
-    weight = 1
+    weight = 3
 
     [[menu.footer_middle]]
     name = "NWO"

@@ -84,7 +84,7 @@ service:
       button:
         enable : true
         label : "Get started now"
-        link : "https://biaslab.github.io/ReactiveMP.jl/stable/man/getting-started/"
+        link : "https://biaslab.github.io/RxInfer.jl/stable/manuals/getting-started/"
         
     # service item loop
     - title : "RxInfer is fast"
@@ -95,7 +95,7 @@ service:
       button:
         enable : true
         label : "Check out some examples"
-        link : "https://biaslab.github.io/ReactiveMP.jl/stable/examples/overview/"
+        link : "https://biaslab.github.io/RxInfer.jl/stable/examples/overview/"
         
     # service item loop
     - title : "Solve complex problems"
