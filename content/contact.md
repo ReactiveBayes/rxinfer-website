@@ -9,11 +9,11 @@ contacts:
   social_item:
     - name : "Slack"
       logo : "fab fa-slack"
-      url : ""
+      url : "https://julialang.org/slack/"
 
     - name : "Discourse"
       logo : "fas fa-comments"
-      url : ""
+      url : "https://discourse.julialang.org/"
 
     - name : "GitHub"
       logo : "fab fa-github"
