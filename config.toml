@@ -57,6 +57,12 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     weight = 3
 
     [[menu.footer_middle]]
+    name = "Technical University of Eindhoven"
+    pre = "images/TUe-logo-scarlet-S.png"
+    url = "https://www.tue.nl/en/"
+    weight = 1
+
+    [[menu.footer_middle]]
     name = "NWO"
     pre = "images/NWO.png"
     url = "https://www.nwo.nl/en"
