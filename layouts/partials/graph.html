@@ -29,6 +29,13 @@
         G6.registerNode(
             'invisible-node',
             {
+                options: {
+                    labelCfg: {
+                        style: {
+                            fill: '#0aa8a7' // I sometimes use invisible nodes to put labels around
+                        }
+                    }
+                },
                 drawShape: (cfg, group) => {
                     var size        = (cfg.size !== undefined) ? cfg.size : gsize;
                     var shape       = group.addShape('rect', {
@@ -57,6 +64,54 @@
                         [ 0.5, 0.0 ]
                     ]
                 },
+            },
+            'rect',
+        );
+    }
+
+    function registerShapeNode() {
+
+        // Not entirely Gaussian, but...(if someone really cares PR's are welcome)
+        function drawGaussianShape(start, wide, height, curve) {
+            const startoffsetx = 10 / wide;
+            const startx = start.x - wide;
+            const starty = start.y;
+            const left = `M ${startx - startoffsetx} ${starty} C ${startx+wide*(1 - 1/curve)} ${starty}, ${startx + wide - wide/curve} ${starty - height}, ${startx + wide} ${starty - height} L ${startx + wide} ${starty} L ${startx - startoffsetx} ${starty}`
+            const right = `M ${startx + wide} ${starty - height} C ${startx + wide + wide/curve} ${starty - height}, ${startx + 2*wide - wide*(1 - 1/curve)} ${starty}, ${startx + 2*wide + startoffsetx} ${starty} L ${startx + wide} ${starty} L ${startx + wide} ${starty - height}`
+            return `${left} ${right}`
+        }
+
+        G6.registerNode(
+            'shape-node',
+            {
+                drawShape: (cfg, group) => {
+                    const color = cfg.color ? cfg.color : '#0aa8a7';
+                    const baseCurve = 3;
+                    const baseWide = 20;
+                    const baseHeight = 20;
+                    const randomCurve = Math.random() * 5;
+                    const randomWide = Math.random() * 50;
+                    const randomHeight = Math.random() * 50;
+
+                    const path = group.addShape('path', {
+                        attrs: {
+                            fill: color,
+                            opacity: 0.5,
+                            path: drawGaussianShape({ x: 0, y: -10 }, baseWide + randomWide, baseHeight + randomHeight, baseCurve + randomCurve),
+                        },
+                        // must be assigned in G6 3.3 and later versions. it can be any value you want
+                        name: 'path-shape',
+                    });
+
+                    path.animate((ratio) => {
+                        const bratio = Math.sin(ratio * Math.PI)
+                        return {
+                            path: drawGaussianShape({ x: 0, y: -10 }, baseWide + randomWide * bratio, baseHeight + randomHeight * (1 - bratio), baseCurve + randomCurve * bratio),
+                        }
+                    }, { repeat: true, duration: 2000 + Math.random() * 1000, easing: 'easeCubic' })
+
+                    return path
+                }
             },
             'rect',
         );
@@ -304,11 +359,32 @@
         ); // Extend the built-in edge cubic
     }
     
-
-    
+    // Register custom nodes
+    registerInvisibleNode();
+    registerShapeNode();
+    registerFactorNode();
+    registerEqualityNode();
+    registerFactorEdge();
 
     const data = {
         nodes: [
+            // Shape nodes
+            { id: 'shape10', x: -110, y: 70, type: 'shape-node', color: '#17a2b8' },
+            { id: 'shape11', x: -100, y: 70, type: 'invisible-node', label: 'x_t' },
+            { id: 'shape12', x: -90, y: 70, type: 'shape-node', color: '#fd7e14' },
+
+            { id: 'shape20', x: 90, y: 70, type: 'shape-node', color: '#dc3545' },
+            { id: 'shape21', x: 100, y: 70, type: 'invisible-node', label: 'x_t' },
+            { id: 'shape22', x: 110, y: 70, type: 'shape-node', color: '#17a2b8'},
+
+            { id: 'shape30', x: 290, y: 70, type: 'shape-node', color: '#6f42c1'},
+            { id: 'shape31', x: 300, y: 70, type: 'invisible-node', label: 'x_t' },
+            { id: 'shape32', x: 310, y: 70, type: 'shape-node', color: '#007bff'},
+
+            { id: 'shape40', x: 490, y: 70, type: 'shape-node', color: '#28a745'},
+            { id: 'shape41', x: 500, y: 70, type: 'invisible-node', label: 'x_t' },
+            { id: 'shape42', x: 510, y: 70, type: 'shape-node', color: '#dc3545'},
+
             { id: 'z-e00', x: -1000, y: 100, type: 'invisible-node' },
             { id: 'z-e01', x: 1400, y: 100, type: 'invisible-node' },
 
@@ -436,12 +512,6 @@
             { source: 's-g3', target: 'b-i3', type: 'factor-edge' },
         ],
     };
-
-    // Register custom nodes
-    registerInvisibleNode();
-    registerFactorNode();
-    registerEqualityNode();
-    registerFactorEdge();
 
     const graph = new G6.Graph({ 
         container: 'landing-graph', 
