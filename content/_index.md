@@ -1,6 +1,7 @@
 ---
 ####################### Banner #########################
 banner:
+  logoimage: "images/rxinfer.svg"
   title : "RxInfer"
   image : "images/rxinfer_landing.png"
   content : "Automatic Bayesian Inference through **Reactive Message Passing**"
