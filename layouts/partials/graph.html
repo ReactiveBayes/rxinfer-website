@@ -53,17 +53,21 @@
             var lanchorx = startx + ldiff * curve.left;
             var lanchory = starty;
 
-            // Top anchor point
-            var tanchorx = topx - ldiff * curve.top;
-            var tanchory = topy;
+            // Top left anchor point
+            var tlanchorx = topx - ldiff * curve.top;
+            var tlanchory = topy;
 
-            C = `C ${lanchorx} ${lanchory}, ${tanchorx} ${tanchory}, ${topx} ${topy}`
+            C = `C ${lanchorx} ${lanchory}, ${tlanchorx} ${tlanchory}, ${topx} ${topy}`
+
+            // Top right anchor point
+            var tranchorx = topx + rdiff * curve.top;
+            var tranchory = topy;
 
             // Right anchor point
             var ranchorx = endx - rdiff * curve.right;
             var ranchory = endy;
 
-            S = `S ${ranchorx} ${ranchory}, ${endx} ${endy}`
+            S = `C ${tranchorx} ${tranchory}, ${ranchorx} ${ranchory}, ${endx} ${endy}`
 
             // Finish the shape to the end
             L = `L ${startx} ${starty}`
@@ -73,17 +77,18 @@
             return `${M} ${C} ${S} ${L}`
         }
 
+        // Javascript has no random choice function..........
+        function randomChoice(array) {
+            return array[ Math.floor(array.length * Math.random()) ];
+        }
+
         function generateRandomProperties() {
             return { 
-                base: { wide: 20, height: 20, middle: 0.5, curve: { left: 0.5, top: 0.25, right: 0.5, }},
+                base: { wide: 60, height: 40, middle: 0.5, curve: { left: 0.85, top: 0.20, right: 0.85, }},
                 wide: Math.random() * 40,
                 height: Math.random() * 40,
-                middle: Math.random() * 0.4,
-                curve: { 
-                    left:  Math.random() * 0.75,
-                    top:   Math.random() * 0.75,
-                    right: Math.random() * 0.75,
-                }
+                middle: Math.random() * 0.5,
+                animation: randomChoice([ 'easeLinear', 'easeCubicInOut', 'easePolyInOut', 'easeQuadInOut' ])
             }   
         }
 
@@ -98,34 +103,32 @@
                         stroke: color,
                         cursor: 'pointer',
                         opacity: 0.0,
-                        path: drawBezierCurve({ x: 0, y: 0 }, props.base.wide, props.base.height + props.height, props.base.middle, props.base.curve, true),
+                        path: drawBezierCurve({ x: 0, y: 0 }, props.base.wide, props.base.height + props.height, props.base.middle + props.middle * 1/2, props.base.curve, true),
                     },
                     name: 'path-shape',
                 });
 
-                var animationDelay = 2000 + Math.random() * 1000;
+                var animationDelay = 1000 + Math.random() * 1000;
 
                 // In the beginning shapes are not visible
-                path.animate((ratio) => ({ opacity: 0.4 * ratio }), { repeat: false, duration: animationDelay, easing: 'easeCubic' })
+                path.animate((ratio) => ({ opacity: 0.4 * ratio }), { repeat: false, duration: animationDelay, easing: props.animation })
 
                 path.animate((ratio) => {
-                    var bratio = Math.sin(ratio * Math.PI)
+                    var bratio = Math.sin(ratio * Math.PI);
                     var wide   = props.base.wide + props.wide * bratio;
                     var height = props.base.height + props.height * (1 - bratio);
                     var middle = props.base.middle + props.middle * (1/2 - bratio);
                     return {
                         path: drawBezierCurve({ x: 0, y: 0 }, wide, height, middle, props.base.curve, true),
                     }
-                }, { repeat: true, duration: 2000 + Math.random() * 1000, delay: Math.random() * 1000, easing: 'easeCubic' })
+                }, { repeat: true, duration: 4000 + Math.random() * 1000, delay: animationDelay / 2, easing: props.animation })
 
                 return path
             },
             setState(name, value, item) {
                 var shape = item.get('keyShape');
                 if (name === 'hover') {
-                    shape.animate((ratio) => ({ 
-                        opacity: 0.5 + 0.5 * (value ? ratio : (1 - ratio)) 
-                    }), { repeat: false, duration: 300, easing: 'easeCubic' });
+                    shape.animate((ratio) => ({ opacity: 0.5 + 0.3 * (value ? ratio : (1 - ratio))  }), { repeat: false, duration: 300, easing: 'easeCubic' });
                 }
             },
         }, 'rect');
@@ -158,250 +161,162 @@
         }, 'rect');
     }
 
+    // This function register a simple generic factor node
     function registerFactorNode() {
-        var fillColor   = '#f5f7f7';
-        var strokeColor = '#0aa8a7';
-        var gsize = 50;
+        var factorNodeDefaultFillColor    = '#f5f7f7';
+        var factorNodeDefaultStrokeColor  = '#0aa8a7';
+        var factorNodeDefaultSize         = 50;
+        var factorNodeDefaultShadowOffset = 10;
+        var factorNodeDefaultShadowBlur   = 50;
 
-        G6.registerNode(
-            'factor-node',
-            {
-                options: {
-                    labelCfg: { style: { opacity: 0.0, }, } // disable default label
-                },
-                drawShape: (cfg, group) => {
-                    var size        = (cfg.size !== undefined) ? cfg.size : gsize;
-                    var shape       = group.addShape('rect', {
-                        attrs:     {
-                            x:             -size / 2,
-                            y:             -size / 2,
-                            width:         size,
-                            height:        size,
-                            fill:          fillColor,
-                            stroke:        strokeColor,
-                            radius:        2,
-                            cursor:        'pointer',
-                            opacity:       1.0,
-                            shadowColor:   '#c2c2c2',
-                        },
-                        
-                        name:      'gnode-box',
-                        draggable: true
-                    });
+        G6.registerNode('factor-node', {
+            options: { labelCfg: { style: { opacity: 0.0, }, } },
+            drawShape: (cfg, group) => {
+                var size  = (cfg.size !== undefined) ? cfg.size : factorNodeDefaultSize;
+                var shape = group.addShape('rect', {
+                    attrs: {
+                        x:           -size / 2,
+                        y:           -size / 2,
+                        width:       size,
+                        height:      size,
+                        fill:        factorNodeDefaultFillColor,
+                        stroke:      factorNodeDefaultStrokeColor,
+                        radius:      2,
+                        cursor:      'pointer',
+                        opacity:     1.0,
+                        shadowColor: '#c2c2c2',
+                    },
+                    name: 'gnode-box',
+                });
 
-                    group.addShape('text', {
-                        attrs: {
-                            y:            0,
-                            x:            0,
-                            textAlign:    'center',
-                            textBaseline: 'middle',
-                            lineHeight:   10,
-                            text:         cfg.label,
-                            fill:         strokeColor,
-                            fontSize:     size / 2.5,
-                            fontWeight:   'bold'
-                        },
-                        name:  'gnode-type-text'
-                    });
+                group.addShape('text', {
+                    attrs: {
+                        y:            0,
+                        x:            0,
+                        textAlign:    'center',
+                        textBaseline: 'middle',
+                        lineHeight:   10,
+                        text:         cfg.label,
+                        fill:         factorNodeDefaultStrokeColor,
+                        fontSize:     size / 2.5,
+                        fontWeight:   'bold'
+                    },
+                    name: 'gnode-type-text'
+                });
 
-                    return shape
-                },
-                // Override setState
-                setState(name, value, item) {
-                    var shape = item.get('keyShape');
-                    var size  = (shape.cfg.attrs.width !== undefined) ? shape.cfg.attrs.width : gsize;
-                    var shadowOffset = 10;
-                    var shadowBlur = 50;
-                    // Response the running state
-                    if (name === 'hover') {
-                        // When the running state is turned to be true
-                        if (value) {
-                            shape.stopAnimate();
-                            shape.animate((ratio) => { 
-                                var newsize =  size + (size / 10) * ratio;
-                                return { 
-                                    height: newsize, 
-                                    width: newsize,
-                                    x: -newsize / 2,
-                                    y: -newsize / 2,
-                                    shadowOffsetX: shadowOffset * ratio,
-                                    shadowOffsetY: shadowOffset * ratio,
-                                    shadowBlur:    shadowBlur * ratio,
-                                }
-                            }, { repeat: false, duration: 300, easing: 'easeCubic' });
-                        } else {
-                            shape.stopAnimate();
-                            shape.animate((ratio) => { 
-                                var newsize =  size + (size / 10) * (1 - ratio);
-                                return { 
-                                    height: newsize, 
-                                    width: newsize,
-                                    x: -newsize / 2,
-                                    y: -newsize / 2,
-                                    shadowOffsetX: shadowOffset * (1 - ratio),
-                                    shadowOffsetY: shadowOffset * (1 - ratio),
-                                    shadowBlur:    shadowBlur * (1 - ratio),
-                                }
-                            }, { repeat: false, duration: 300, easing: 'easeCubic' });
-                        }
-                    }
-                },
-                getAnchorPoints(cfg) {
-                    return [
-                        [ 0.5, 0.5 ],
-                        [ 0.0, 0.5 ],
-                        [ 0.5, 1.0 ],
-                        [ 1.0, 0.5 ],
-                        [ 0.5, 0.0 ]
-                    ]
-                },
+                return shape
             },
-            
-            'rect',
-        );
+            setState(name, value, item) {
+                var shape = item.get('keyShape');
+                var size  = (shape.cfg.attrs.width !== undefined) ? shape.cfg.attrs.width : factorNodeDefaultSize;
+                
+                if (name === 'hover') {
+                    shape.animate((r) => { 
+                        var ratio   = value ? r : (1 - r);
+                        var newsize =  size + (size / 10) * ratio;
+                        return { 
+                            height: newsize, 
+                            width: newsize,
+                            x: -newsize / 2,
+                            y: -newsize / 2,
+                            shadowOffsetX: factorNodeDefaultShadowOffset * ratio,
+                            shadowOffsetY: factorNodeDefaultShadowOffset * ratio,
+                            shadowBlur:    factorNodeDefaultShadowBlur * ratio,
+                        }
+                    }, { repeat: false, duration: 300, easing: 'easeCubic' });
+                }
+            },
+            getAnchorPoints(cfg) {
+                return [ [ 0.5, 0.5 ], [ 0.0, 0.5 ], [ 0.5, 1.0 ], [ 1.0, 0.5 ], [ 0.5, 0.0 ] ]
+            },
+        }, 'rect');
     }
 
+    // This function register a simple equality factor node
     function registerEqualityNode() {
-        var fillColor   = '#ffffff';
-        var size        = 20;
-        var strokeColor = '#bababa';
-        var labelStrokeColor = '#bababa';
-        G6.registerNode(
-            'equality-node',
-            {
-                drawShape: (cfg, group) => {
-                    
-                    var shape       = group.addShape('rect', {
-                        attrs:     {
-                            x:             -size / 2,
-                            y:             -size / 2,
-                            width:         size,
-                            height:        size,
-                            fill:          fillColor,
-                            stroke:        strokeColor,
-                            radius:        3,
-                            cursor:        'pointer',
-                            opacity:       1.0
-                        },
-                        name:      'gnode-box',
-                        draggable: true
-                    });
+        var equalityNodeDefaultFillColor        = '#ffffff';
+        var equalityNodeDefaultSize             = 20;
+        var equalityNodeDefaultStrokeColor      = '#bababa';
+        var equalityNodeDefaultLabelStrokeColor = '#bababa';
+        G6.registerNode('equality-node', {
+            drawShape: (cfg, group) => {
+                var shape  = group.addShape('rect', {
+                    attrs: {
+                        x:       -equalityNodeDefaultSize / 2,
+                        y:       -equalityNodeDefaultSize / 2,
+                        width:   equalityNodeDefaultSize,
+                        height:  equalityNodeDefaultSize,
+                        fill:    equalityNodeDefaultFillColor,
+                        stroke:  equalityNodeDefaultStrokeColor,
+                        radius:  3,
+                        cursor:  'pointer',
+                        opacity: 1.0
+                    },
+                    name:      'gnode-box',
+                });
 
-                    group.addShape('text', {
-                        attrs: {
-                            y:            0,
-                            x:            0,
-                            textAlign:    'center',
-                            textBaseline: 'middle',
-                            lineHeight:   10,
-                            text:         "=",
-                            fill:         labelStrokeColor,
-                            fontSize:     size / 2.5,
-                            fontWeight:   'bold'
-                        },
-                        name:  'gnode-type-text'
-                    });
+                group.addShape('text', {
+                    attrs: {
+                        y:            0,
+                        x:            0,
+                        textAlign:    'center',
+                        textBaseline: 'middle',
+                        lineHeight:   10,
+                        text:         "=",
+                        fill:         equalityNodeDefaultLabelStrokeColor,
+                        fontSize:     equalityNodeDefaultSize / 2.5,
+                        fontWeight:   'bold'
+                    },
+                    name:  'gnode-type-text'
+                });
 
-                    return shape
-                },
-                // Override setState
-                setState(name, value, item) {
-                    var shape = item.get('keyShape');
-                    // Response the running state
-                    if (name === 'hover') {
-                        // When the running state is turned to be true
-                        if (value) {
-                            shape.stopAnimate();
-                            shape.animate((ratio) => { 
-                                var newsize =  size + (size / 10) * ratio;
-                                return { 
-                                    height: newsize, 
-                                    width: newsize,
-                                    x: -newsize / 2,
-                                    y: -newsize / 2,
-                                }
-                            }, { repeat: false, duration: 300, easing: 'easeCubic' });
-                        } else {
-                            shape.stopAnimate();
-                            shape.animate((ratio) => { 
-                                var newsize =  size + (size / 10) * (1 - ratio);
-                                return { 
-                                    height: newsize, 
-                                    width: newsize,
-                                    x: -newsize / 2,
-                                    y: -newsize / 2,
-                                }
-                            }, { repeat: false, duration: 300, easing: 'easeCubic' });
-                        }
-                    }
-                },
-                getAnchorPoints(cfg) {
-                    return [
-                        [ 0.5, 0.5 ],
-                        [ 0.0, 0.5 ],
-                        [ 0.5, 1.0 ],
-                        [ 1.0, 0.5 ],
-                        [ 0.5, 0.0 ]
-                    ]
-                },
+                return shape
             },
-            'rect',
-        );
+            setState(name, value, item) {
+                var shape = item.get('keyShape');
+                if (name === 'hover') {
+                    shape.animate((r) => { 
+                        var ratio   = value ? r : (1 - r);
+                        var newsize =  equalityNodeDefaultSize + (equalityNodeDefaultSize / 10) * ratio;
+                        return { height: newsize, width: newsize, x: -newsize / 2, y: -newsize / 2 }
+                    }, { repeat: false, duration: 300, easing: 'easeCubic' });
+                }
+            },
+            getAnchorPoints(cfg) {
+                return [ [ 0.5, 0.5 ], [ 0.0, 0.5 ], [ 0.5, 1.0 ], [ 1.0, 0.5 ], [ 0.5, 0.0 ] ]
+            },
+        }, 'rect');
     }
 
     function registerFactorEdge() {
         var animationCircleFillColor   = '#edf6f5';
         var animationCircleStrokeColor = '#0aa8a7';
-        G6.registerEdge(
-            'factor-edge',
-            {
-                afterDraw(cfg, group) {
-                    // Get the first graphics shape of this type of edge, which is the edge's path
-                    var shape = group.get('children')[0];
-                    // The start point of the edge's path
-                    var startPoint = shape.getPoint(0);
+        G6.registerEdge('factor-edge', {
+            afterDraw(cfg, group) {
+                var shape = group.get('children')[0];
+                var startPoint = shape.getPoint(0);
+                var circle = group.addShape('circle', {
+                    attrs: {
+                        x: startPoint.x,
+                        y: startPoint.y,
+                        fill: animationCircleFillColor,
+                        stroke: animationCircleStrokeColor,
+                        r: 3,
+                    },
+                    name: 'circle-shape',
+                });
 
-                    // Add a red circle shape
-                    var circle = group.addShape('circle', {
-                        attrs: {
-                            x: startPoint.x,
-                            y: startPoint.y,
-                            fill: animationCircleFillColor,
-                            stroke: animationCircleStrokeColor,
-                            r: 3,
-                        },
-                        // must be assigned in G6 3.3 and later versions. it can be any value you want
-                        name: 'circle-shape',
-                    });
-
-                    // Add the animation to the red circle
-                    circle.animate(
-                        (ratio) => {
-                            // Returns the properties for each frame. The input parameter ratio is a number that range from 0 to 1. The return value is an object that defines the properties for this frame
-                            // Get the position on the edge according to the ratio
-                            var tmpPoint = shape.getPoint(ratio);
-                            // Return the properties of this frame, x and y for this demo
-                            return {
-                                x: tmpPoint.x,
-                                y: tmpPoint.y,
-                                opacity: Math.sin(ratio * Math.PI),
-                                r: Math.sin(ratio * Math.PI) * 3
-                            };
-                        },
-                        {
-                            repeat: true, // Play the animation repeatly
-                            duration: (500 + 1000 * Math.random()), // The duration for one animation
-                        },
-                    );
-                },
+                circle.animate((ratio) => {
+                    var tmpPoint = shape.getPoint(ratio);
+                    return { x: tmpPoint.x, y: tmpPoint.y, opacity: Math.sin(ratio * Math.PI), r: Math.sin(ratio * Math.PI) * 3 };
+                }, { repeat: true, duration: (500 + 1000 * Math.random()), });
             },
-            'line',
-        ); // Extend the built-in edge cubic
+        }, 'line');
     }
     
-    // Register custom nodes
-    registerInvisibleNode();
+    // Register custom nodes and edges
     registerShapeNode();
+    registerInvisibleNode();
     registerFactorNode();
     registerEqualityNode();
     registerFactorEdge();
@@ -409,25 +324,26 @@
     var data = {
         nodes: [
             // Top shape nodes
-            { id: 'shape10', x: -110, y: 70, type: 'shape-node', color: '#17a2b8' },
-            { id: 'shape11', x: -100, y: 70, type: 'invisible-node', label: 'x_t' },
-            { id: 'shape12', x: -90, y: 70, type: 'shape-node', color: '#fd7e14' },
+            { id: 'shape10', x: -110, y: 80, type: 'shape-node', color: '#17a2b8' },
+            // { id: 'shape11', x: -100, y: 70, type: 'invisible-node', label: 'x_t' },
+            { id: 'shape12', x: -90, y: 80, type: 'shape-node', color: '#fd7e14' },
 
-            { id: 'shape20', x: 90, y: 70, type: 'shape-node', color: '#dc3545'  },
-            { id: 'shape21', x: 100, y: 70, type: 'invisible-node', label: 'x_t' },
-            { id: 'shape22', x: 110, y: 70, type: 'shape-node', color: '#17a2b8' },
+            { id: 'shape20', x: 90, y: 80, type: 'shape-node', color: '#dc3545'  },
+            // { id: 'shape21', x: 100, y: 70, type: 'invisible-node', label: 'x_t' },
+            { id: 'shape22', x: 110, y: 80, type: 'shape-node', color: '#17a2b8' },
 
-            { id: 'shape30', x: 290, y: 70, type: 'shape-node', color: '#6f42c1' },
-            { id: 'shape31', x: 300, y: 70, type: 'invisible-node', label: 'x_t' },
-            { id: 'shape32', x: 310, y: 70, type: 'shape-node', color: '#007bff' },
+            { id: 'shape30', x: 290, y: 80, type: 'shape-node', color: '#6f42c1' },
+            // { id: 'shape31', x: 300, y: 70, type: 'invisible-node', label: 'x_t' },
+            { id: 'shape32', x: 310, y: 80, type: 'shape-node', color: '#007bff' },
 
-            { id: 'shape40', x: 490, y: 70, type: 'shape-node', color: '#28a745' },
-            { id: 'shape41', x: 500, y: 70, type: 'invisible-node', label: 'x_t' },
-            { id: 'shape42', x: 510, y: 70, type: 'shape-node', color: '#dc3545' },
+            { id: 'shape40', x: 490, y: 80, type: 'shape-node', color: '#28a745' },
+            // { id: 'shape41', x: 500, y: 70, type: 'invisible-node', label: 'x_t' },
+            { id: 'shape42', x: 510, y: 80, type: 'shape-node', color: '#dc3545' },
 
             // Bottom shape nodes
-            { id: 'shape50', x: -150, y: 400, type: 'shape-node', color: '#17a2b8' },
-            // { id: 'shape51', x: -100, y: 370, type: 'invisible-node', label: 'x_t' },
+            { id: 'shape50', x: 0, y: 270, type: 'shape-node', color: '#28a745' },
+            { id: 'shape51', x: 200, y: 270, type: 'shape-node', color: '#6f42c1' },
+            { id: 'shape52', x: 400, y: 270, type: 'shape-node', color: '#dc3545' },
 
             // Top layer
             { id: 'z-e00', x: -1000, y: 100, type: 'invisible-node' },
@@ -557,21 +473,13 @@
         ],
     };
 
-    var graph = new G6.Graph({ 
-        container: 'landing-graph', 
-        fitCenter: true,
-        animate: true,
-        // modes: {
-        //     default: ['drag-node'],
-        // },
-    });
+    var graph = new G6.Graph({ container: 'landing-graph', fitCenter: true });
 
     window.addEventListener('resize', () => {
-        graph.changeSize(window.innerWidth, 400)
+        graph.changeSize(window.innerWidth, 600)
         graph.fitCenter();
-        graph.zoom(1.25, { x: window.innerWidth / 2, y: 300 }, true, {
-            duration: 2000, easing: 'easeCubic'
-        });
+        // On resize we zoom without animation, otherwise it looks weird
+        graph.zoom(1.25, { x: window.innerWidth / 2, y: 300 });
     })
 
     graph.on('node:mouseenter', (e) => graph.setItemState(e.item, 'hover', true));
@@ -581,9 +489,7 @@
     graph.render();
 
     window.setTimeout(() => {
-        graph.zoom(1.5, { x: window.innerWidth / 2, y: 300 }, true, {
-            duration: 2000, easing: 'easeCubic'
-        });
+        graph.zoom(1.5, { x: window.innerWidth / 2, y: 300 }, true, { duration: 2000, easing: 'easeCubic' });
     }, 100)
 })())
 
