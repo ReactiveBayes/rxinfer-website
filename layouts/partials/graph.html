@@ -88,14 +88,20 @@
                 wide: Math.random() * 40,
                 height: Math.random() * 40,
                 middle: Math.random() * 0.5,
-                animation: randomChoice([ 'easeLinear', 'easeCubicInOut', 'easePolyInOut', 'easeQuadInOut' ])
+                curve: { left: 0.3, top: 0.1, right: 0.3 },
+                animation: randomChoice([ 'easeCubicInOut', 'easePolyInOut', 'easeQuadInOut' ])
             }   
         }
 
         G6.registerNode('shape-node', {
             drawShape: (cfg, group) => {
                 var color = cfg.color ? cfg.color : '#0aa8a7';     
-                var props = generateRandomProperties()           
+                var props = generateRandomProperties()  
+                var curve = { 
+                    left: props.base.curve.left + props.curve.left / 2,
+                    top: props.base.curve.top - props.curve.top / 2,
+                    right: props.base.curve.right + props.curve.right / 2,
+                }         
 
                 var path = group.addShape('path', {
                     attrs: {
@@ -103,7 +109,7 @@
                         stroke: color,
                         cursor: 'pointer',
                         opacity: 0.0,
-                        path: drawBezierCurve({ x: 0, y: 0 }, props.base.wide, props.base.height + props.height, props.base.middle + props.middle * 1/2, props.base.curve, true),
+                        path: drawBezierCurve({ x: 0, y: 0 }, props.base.wide, props.base.height + props.height, props.base.middle + props.middle * 1/2, curve, true),
                     },
                     name: 'path-shape',
                 });
@@ -118,8 +124,12 @@
                     var wide   = props.base.wide + props.wide * bratio;
                     var height = props.base.height + props.height * (1 - bratio);
                     var middle = props.base.middle + props.middle * (1/2 - bratio);
+                    var cleft  = props.base.curve.left + props.curve.left * (1/2 - bratio);
+                    var ctop   = props.base.curve.top + props.curve.top * (bratio - 1/2);
+                    var cright = props.base.curve.right + props.curve.right * (1/2 - bratio);
+                    var curve  = { left: cleft, top: ctop, right: cright };
                     return {
-                        path: drawBezierCurve({ x: 0, y: 0 }, wide, height, middle, props.base.curve, true),
+                        path: drawBezierCurve({ x: 0, y: 0 }, wide, height, middle, curve, true),
                     }
                 }, { repeat: true, duration: 4000 + Math.random() * 1000, delay: animationDelay / 2, easing: props.animation })
 
@@ -349,19 +359,19 @@
             { id: 'z-e00', x: -1000, y: 100, type: 'invisible-node' },
             { id: 'z-e01', x: 1400, y: 100, type: 'invisible-node' },
 
-            { id: 'z-g0', x: -200, y: 100, type: 'factor-node', label: 'N' },
+            { id: 'z-g0', x: -200, y: 100, type: 'factor-node', label: '𝒩' },
             { id: 'z-g0-i', x: -200, y: 0, type: 'invisible-node' },
 
-            { id: 'z-g1', x: 0, y: 100, type: 'factor-node', label: 'N' },
+            { id: 'z-g1', x: 0, y: 100, type: 'factor-node', label: '𝒩' },
             { id: 'z-g1-i', x: 0, y: 0, type: 'invisible-node' },
 
-            { id: 'z-g2', x: 200, y: 100, type: 'factor-node', label: 'N' },
+            { id: 'z-g2', x: 200, y: 100, type: 'factor-node', label: '𝒩' },
             { id: 'z-g2-i', x: 200, y: 0, type: 'invisible-node' },
 
-            { id: 'z-g3', x: 400, y: 100, type: 'factor-node', label: 'N' },
+            { id: 'z-g3', x: 400, y: 100, type: 'factor-node', label: '𝒩' },
             { id: 'z-g3-i', x: 400, y: 0, type: 'invisible-node' },
 
-            { id: 'z-g4', x: 600, y: 100, type: 'factor-node', label: 'N' },
+            { id: 'z-g4', x: 600, y: 100, type: 'factor-node', label: '𝒩' },
             { id: 'z-g4-i', x: 600, y: 0, type: 'invisible-node' },
 
             { id: 'z-e0', x: -100, y: 100, type: 'equality-node' },
@@ -393,10 +403,10 @@
             { id: 'x-g2', x: 300, y: 225, type: 'factor-node', label: 'f' , size: 30 },
             { id: 'x-g3', x: 500, y: 225, type: 'factor-node', label: 'f' , size: 30 },
 
-            { id: 's-g0', x: -100, y: 290, type: 'factor-node', label: 'N' },
-            { id: 's-g1', x: 100, y: 290, type: 'factor-node', label: 'N' },
-            { id: 's-g2', x: 300, y: 290, type: 'factor-node', label: 'N' },
-            { id: 's-g3', x: 500, y: 290, type: 'factor-node', label: 'N' },
+            { id: 's-g0', x: -100, y: 290, type: 'factor-node', label: '𝒩' },
+            { id: 's-g1', x: 100, y: 290, type: 'factor-node', label: '𝒩' },
+            { id: 's-g2', x: 300, y: 290, type: 'factor-node', label: '𝒩' },
+            { id: 's-g3', x: 500, y: 290, type: 'factor-node', label: '𝒩' },
 
             // Bottom layer
             { id: 'b-i0', x: -100, y: 390, type: 'invisible-node' },
