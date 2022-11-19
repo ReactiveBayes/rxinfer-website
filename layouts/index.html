@@ -2,22 +2,24 @@
 
 <!-- banner -->
 {{ with .Params.banner }}
-<section class="banner">
+<section class="banner" style="padding-top: 10px;">
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mx-auto text-center">
-        <h1 class="mb-3">{{ .title | markdownify }}</h1>
+        <h1 class="mb-3">
+          {{with .logoimage}}<img src="{{ . | relURL }}" alt="" class="img-fluid mt-5" width="500px">{{end}}
+        </h1>
         <big class="mb-3">{{ .content | markdownify }}</big>
         {{ if .button.enable }}
         {{ with .button }}
         <div><a href="{{ .link | safeURL }}" title="{{ .label }}" class="btn btn-primary">{{ .label }}</a></div>
         {{ end }}
         {{ end }}
-
-        {{with .image}}<img src="{{ . | relURL }}" alt="" class="img-fluid mt-5" width="1000px">{{end}}
+        <!-- {{with .image}}<img src="{{ . | relURL }}" alt="" class="img-fluid mt-5" width="1000px">{{end}} -->
       </div>
     </div>
   </div>
+  {{ partial "graph.html" . }}
 </section>
 {{ end }}
 <!-- /banner -->
