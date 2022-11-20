@@ -1,6 +1,10 @@
 .feature-card {
-    height: 100%;
-  }
+  height: 100%;
+}
+
+.feature-card.shadowed:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+} 
 
 .ecosystem-card {
   border-radius: 10px;
@@ -52,3 +56,74 @@
 .hljs-built_in { color: #8432e9 }             /* functions and variables */
 .hljs-title { color: #8432e9 }                /* macro function */
 .hljs-type { color: #896e0d }                 /* types */
+
+/* Intersection transitions */
+@media(prefers-reduced-motion) {
+  .hidden {
+    transition: none;
+  }
+}
+
+.transition-100s {
+  transition: all 1.0s !important;
+}
+
+.transition-delay-100s {
+  transition-delay: 1s;
+}
+
+.transition-050s {
+  transition: all 0.5s !important;
+}
+
+.transition-delay-050s {
+  transition-delay: 0.5s;
+}
+
+.transition-025s {
+  transition: all 0.25s !important;
+}
+
+.transition-delay-025s {
+  transition-delay: 0.25s;
+}
+
+.hidden {
+  opacity: 0.0;
+}
+
+.hidden.show {
+  opacity: 1.0;
+}
+
+.hidden.blurred {
+  filter: blur(2px);
+}
+
+.hidden.blurred.show {
+  filter: blur(0px);
+}
+
+.hidden.bounce-from-bottom {
+  transform: translateY(100%);
+}
+
+.hidden.bounce-from-bottom.show {
+  transform: translateY(0%);
+}
+
+.hidden.bounce-from-left {
+  transform: translateX(-100%);
+}
+
+.hidden.bounce-from-left.show {
+  transform: translateX(0%);
+}
+
+.hidden.bounce-from-right {
+  transform: translateX(100%);
+}
+
+.hidden.bounce-from-right.show {
+  transform: translateX(0%);
+}

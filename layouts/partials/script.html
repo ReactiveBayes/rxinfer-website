@@ -28,6 +28,25 @@
 {{ $scripts := $scripts | resources.Concat "/js/script.js" | minify | fingerprint "sha512" }}
 <script crossorigin="anonymous" defer="defer" integrity="{{ $scripts.Data.Integrity }}" type="application/javascript">{{$scripts.Content | safeJS}}</script>
 
+<!-- Intersection animation-->
+<script>
+window.addEventListener('load', () => {
+  const hiddenElements = document.querySelectorAll('.hidden');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    })
+    hiddenElements.forEach((element) => observer.observe(element));
+  }  else {
+    hiddenElements.forEach((element) => element.classList.add('show'))
+  }
+})
+</script>
+
 <!-- cookie -->
 {{ with site.Params.cookies }}
 {{ if .enable }}
