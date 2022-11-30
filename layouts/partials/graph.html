@@ -25,6 +25,11 @@
 // Wrap everything to an anonymous function to avoid global names collision
 ((function() {
 
+    // Javascript has no random choice function..........
+    function randomChoice(array) {
+        return array[ Math.floor(array.length * Math.random()) ];
+    }
+
     // This function register a 'shape' node, which is not really a node, but 
     // a bezier curve attached to it (with some options to animate it)
     function registerShapeNode() {
@@ -75,11 +80,6 @@
             // I've spend more than 3 hours on this function
             // https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
             return `${M} ${C} ${S} ${L}`
-        }
-
-        // Javascript has no random choice function..........
-        function randomChoice(array) {
-            return array[ Math.floor(array.length * Math.random()) ];
         }
 
         function generateRandomProperties() {
@@ -262,7 +262,7 @@
                         radius:  3,
                         lineWidth: 1.5,
                         cursor:  'pointer',
-                        opacity: 0.5
+                        opacity: 0.7
                     },
                     name:      'gnode-box',
                 });
@@ -304,17 +304,21 @@
         var factorEdgeDefaultStrokeColor = '#0aa8a7';
         var animationCircleFillColor     = '#edf6f5';
         var animationCircleStrokeColor   = '#0aa8a7';
+        var animationCircleStrokeColors  = [ '#17a2b8', '#fd7e14', '#dc3545', '#6f42c1', '#007bff', '#28a745' ]
         G6.registerEdge('factor-edge', {
-            options: { style: { stroke: factorEdgeDefaultStrokeColor, opacity: 0.5, lineWidth: 1.2 } },
+            options: { style: { stroke: factorEdgeDefaultStrokeColor, opacity: 0.7, lineWidth: 1.2 } },
             afterDraw(cfg, group) {
                 var shape = group.get('children')[0];
                 var startPoint = shape.getPoint(0);
+                var stroke = randomChoice(animationCircleStrokeColors);
                 var circle = group.addShape('circle', {
                     attrs: {
                         x: startPoint.x,
                         y: startPoint.y,
                         fill: animationCircleFillColor,
-                        stroke: animationCircleStrokeColor,
+                        stroke: stroke,
+                        lineWidth: 1.5,
+                        opacity: 0.7,
                         r: 3,
                     },
                     name: 'circle-shape',
