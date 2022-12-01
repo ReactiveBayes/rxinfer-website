@@ -2937,7 +2937,7 @@ var hljs = (function () {
           // | and & (unless they are really || and && in disguise)
           {begin: '&(?!&)|\\|(?!\\|)'},
           // ! is an operator unless it is used in a variable
-          {begin: '(?<!' + VARIABLE_NAME_RE + ')!'}
+          // {begin: '(?<!' + VARIABLE_NAME_RE + ')!'}
         ]
       };
 
@@ -3022,7 +3022,7 @@ var hljs = (function () {
       // valid identifier/number just before; e.g. a:b, 1:b is not a symbol
       var SYMBOL = {
         className: 'symbol',
-        begin: '(?<!(' + VARIABLE_NAME_RE + '|[\\d\\.]+|[:<>]+)\\s*)(:' + VARIABLE_NAME_RE + ')',
+        begin: '((' + VARIABLE_NAME_RE + '|[\\d\\.]+|[:<>]+)\\s*)(:' + VARIABLE_NAME_RE + ')',
       };
 
       var MACROCALL = {
@@ -3079,7 +3079,7 @@ var hljs = (function () {
           FUNCTION_CALL,
           BUILTIN_OPERATORS,
           KEYWORDLIKE_OPERATORS,
-          {begin: '(?<!=\\s?)\\b' + VARIABLE_NAME_RE + '\\b', className: 'params'},
+          //{begin: '(?<!=\\s?)\\b' + VARIABLE_NAME_RE + '\\b', className: 'params'},
         ]
       };
 
