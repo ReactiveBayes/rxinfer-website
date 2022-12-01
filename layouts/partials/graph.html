@@ -310,7 +310,7 @@
             afterDraw(cfg, group) {
                 var shape = group.get('children')[0];
                 var startPoint = shape.getPoint(0);
-                var stroke = randomChoice(animationCircleStrokeColors);
+                var stroke = animationCircleStrokeColor; // randomChoice(animationCircleStrokeColors);
                 var circle = group.addShape('circle', {
                     attrs: {
                         x: startPoint.x,
@@ -359,9 +359,10 @@
             { id: 'shape42', x: 510, y: 80, type: 'shape-node', color: '#dc3545' },
 
             // Bottom shape nodes
-            { id: 'shape50', x: 0, y: 270, type: 'shape-node', color: '#28a745' },
-            { id: 'shape51', x: 200, y: 270, type: 'shape-node', color: '#6f42c1' },
-            { id: 'shape52', x: 400, y: 270, type: 'shape-node', color: '#dc3545' },
+            { id: 'shape50', x: -30, y: 270, type: 'shape-node', color: '#28a745' },
+            { id: 'shape51', x: 170, y: 270, type: 'shape-node', color: '#6f42c1' },
+            { id: 'shape52', x: 370, y: 270, type: 'shape-node', color: '#dc3545' },
+            { id: 'shape53', x: 570, y: 270, type: 'shape-node', color: '#007bff' },
 
             // Top layer
             { id: 'z-e00', x: -1000, y: 100, type: 'invisible-node' },
@@ -392,18 +393,18 @@
             { id: 'm-e01', x: 1400, y: 160, type: 'invisible-node' },
 
             { id: 'm-e0', x: -200, y: 160, type: 'equality-node' },
-            { id: 'm-e1', x: 0, y: 160, type: 'equality-node' },
-            { id: 'm-e2', x: 200, y: 160, type: 'equality-node' },
-            { id: 'm-e3', x: 400, y: 160, type: 'equality-node' },
-            { id: 'm-e4', x: 600, y: 160, type: 'equality-node' },
+            { id: 'm-e1', x: 30, y: 160, type: 'equality-node' },
+            { id: 'm-e2', x: 230, y: 160, type: 'equality-node' },
+            { id: 'm-e3', x: 430, y: 160, type: 'equality-node' },
+            { id: 'm-e4', x: 630, y: 160, type: 'equality-node' },
 
             { id: 'm-g00', x: -1000, y: 290, type: 'invisible-node' },
             { id: 'm-g01', x: 1400, y: 290, type: 'invisible-node' },
             { id: 'm-g0', x: -200, y: 290, type: 'factor-node', label: '✕', size: 30 },
-            { id: 'm-g1', x: 0,    y: 290, type: 'factor-node'   , label: '✕', size: 30 },
-            { id: 'm-g2', x: 200,  y: 290, type: 'factor-node' , label: '✕', size: 30 },
-            { id: 'm-g3', x: 400,  y: 290, type: 'factor-node' , label: '✕', size: 30 },
-            { id: 'm-g4', x: 600,  y: 290, type: 'factor-node' , label: '✕', size: 30 },
+            { id: 'm-g1', x: 30,    y: 290, type: 'factor-node'   , label: '✕', size: 30 },
+            { id: 'm-g2', x: 230,  y: 290, type: 'factor-node' , label: '✕', size: 30 },
+            { id: 'm-g3', x: 430,  y: 290, type: 'factor-node' , label: '✕', size: 30 },
+            { id: 'm-g4', x: 630,  y: 290, type: 'factor-node' , label: '✕', size: 30 },
 
             // Middle layer 
             { id: 'x-g0', x: -100, y: 225, type: 'factor-node', label: 'f', size: 30 },
@@ -416,11 +417,16 @@
             { id: 's-g2', x: 300, y: 290, type: 'factor-node', label: '𝒩' },
             { id: 's-g3', x: 500, y: 290, type: 'factor-node', label: '𝒩' },
 
+            { id: 's-e0', x: -30, y: 290, type: 'equality-node' },
+            { id: 's-e1', x: 170, y: 290, type: 'equality-node' },
+            { id: 's-e2', x: 370, y: 290, type: 'equality-node' },
+            { id: 's-e3', x: 570, y: 290, type: 'equality-node' },
+
             // Bottom layer
-            { id: 'b-i0', x: -100, y: 390, type: 'invisible-node' },
-            { id: 'b-i1', x: 100, y: 390, type: 'invisible-node' },
-            { id: 'b-i2', x: 300, y: 390, type: 'invisible-node' },
-            { id: 'b-i3', x: 500, y: 390, type: 'invisible-node' },
+            { id: 'b-i0', x: -30, y: 390, type: 'invisible-node' },
+            { id: 'b-i1', x: 170, y: 390, type: 'invisible-node' },
+            { id: 'b-i2', x: 370, y: 390, type: 'invisible-node' },
+            { id: 'b-i3', x: 570, y: 390, type: 'invisible-node' },
             
 
         ],
@@ -460,16 +466,20 @@
             { source: 'm-g4', target: 'm-g01', type: 'factor-edge' },
 
             { source: 'm-g0', target: 's-g0', type: 'factor-edge' },
-            { source: 's-g0', target: 'm-g1', type: 'factor-edge' },
+            { source: 's-g0', target: 's-e0', type: 'factor-edge' },
+            { source: 's-e0', target: 'm-g1', type: 'factor-edge' },
 
             { source: 'm-g1', target: 's-g1', type: 'factor-edge' },
-            { source: 's-g1', target: 'm-g2', type: 'factor-edge' },
+            { source: 's-g1', target: 's-e1', type: 'factor-edge' },
+            { source: 's-e1', target: 'm-g2', type: 'factor-edge' },
 
             { source: 'm-g2', target: 's-g2', type: 'factor-edge' },
-            { source: 's-g2', target: 'm-g3', type: 'factor-edge' },
+            { source: 's-g2', target: 's-e2', type: 'factor-edge' },
+            { source: 's-e2', target: 'm-g3', type: 'factor-edge' },
 
             { source: 'm-g3', target: 's-g3', type: 'factor-edge' },
-            { source: 's-g3', target: 'm-g4', type: 'factor-edge' },
+            { source: 's-g3', target: 's-e3', type: 'factor-edge' },
+            { source: 's-e3', target: 'm-g4', type: 'factor-edge' },
 
 
             // Middle layer
@@ -484,10 +494,10 @@
             { source: 'x-g3', target: 's-g3', type: 'factor-edge' },
             
             // Bottom layer
-            { source: 's-g0', target: 'b-i0', type: 'factor-edge' },
-            { source: 's-g1', target: 'b-i1', type: 'factor-edge' },
-            { source: 's-g2', target: 'b-i2', type: 'factor-edge' },
-            { source: 's-g3', target: 'b-i3', type: 'factor-edge' },
+            { source: 's-e0', target: 'b-i0', type: 'factor-edge' },
+            { source: 's-e1', target: 'b-i1', type: 'factor-edge' },
+            { source: 's-e2', target: 'b-i2', type: 'factor-edge' },
+            { source: 's-e3', target: 'b-i3', type: 'factor-edge' },
         ],
     };
 
