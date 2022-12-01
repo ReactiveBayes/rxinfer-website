@@ -25,7 +25,12 @@
 <link rel="stylesheet" href="css/rxinfer.css">
 <!-- Code highlighter -->
 <script src="{{ site.Params.jlhighlight | absURL }}"></script>
-<script>hljs.highlightAll();</script>
+<script>
+window.addEventListener('load', function () {
+  hljs.highlightAll();
+})
+
+</script>
 <!--Favicon-->
 <link rel="shortcut icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
 <link rel="icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
