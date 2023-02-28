@@ -13,11 +13,11 @@ contacts:
 
     - name : "Discourse"
       logo : "fas fa-comments"
-      url : "https://discourse.julialang.org/"
+      url : "https://discourse.julialang.org/tag/rxinfer"
 
     - name : "GitHub"
       logo : "fab fa-github"
-      url : "https://github.com/biaslab/RxInfer.jl"
+      url : "https://github.com/biaslab/RxInfer.jl/discussions"
 
 emailform:
   enable: false

@@ -11,7 +11,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     favicon = "images/favicon.svg"
     logo_width = 100
     author = "BIASlab"
-    copyright = "© BIASlab, 2022-2023"
+    copyright = "© BIASlab, 2022-2023, Powered by **[Hugo](https://github.com/biaslab/rxinfer-website/)**"
     footer_menu_left = "Ecosystem"
     footer_menu_middle = "Supported by"
     footer_content = "Follow Us"
@@ -86,11 +86,11 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     url = "https://biaslab.github.io/RxInfer.jl/stable/"
     weight = 2
 
-    [[menu.main]]
-    name = "Papers"
-    pre = ""
-    url = "https://biaslab.github.io/publication/"
-    weight = 4
+    # [[menu.main]]
+    # name = "Papers"
+    # pre = ""
+    # url = "https://biaslab.github.io/publication/"
+    # weight = 4
 
     [[menu.main]]
     name = "Examples"
@@ -102,6 +102,13 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     pre = ""
     weight = 5
     url = "https://biaslab.github.io/team/"
+    # url = "/team"
+
+    [[menu.main]]
+    name = "Discussions"
+    pre = ""
+    weight = 5
+    url = "https://github.com/biaslab/RxInfer.jl/discussions"
     # url = "/team"
 
     [[menu.main]]
