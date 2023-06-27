@@ -74,6 +74,12 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     url = "https://www.resound.com/nl-nl/"
     weight = 3
 
+    [[menu.footer_middle]]
+    name = "Lazy Dynamics"
+    pre = "images/lazydynamics_logo.png"
+    url = "https://www.lazydynamics.com/"
+    weight = 4
+
 
     [[menu.main]]
     name = "Get Started"
@@ -101,8 +107,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     name = "Team"
     pre = ""
     weight = 5
-    url = "https://biaslab.github.io/team/"
-    # url = "/team"
+    url = "https://github.com/biaslab/RxInfer.jl/graphs/contributors"
 
     [[menu.main]]
     name = "Discussions"
