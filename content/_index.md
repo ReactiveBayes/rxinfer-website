@@ -90,19 +90,26 @@ service:
     # service item loop
     - title : "RxInfer is fast"
       images:
-      - "images/lgssm_comparison.svg"
       - "images/lgssm_scaling.svg"
-      content : "RxInfer exploits the modularity of factor graphs to perform fast message passing-based probabilistic inference that scales linearly with the size of your model. We generally outperform state-of-the-art sampling-based packages by several orders of magnitude. RxInfer supports real-time processing of streaming data sources."
+      content : "RxInfer exploits the modularity of factor graphs to perform fast message passing-based probabilistic inference that scales linearly with the size of your model. We generally outperform state-of-the-art sampling-based packages by several orders of magnitude. The efficiency of RxInfer makes it easier to process streaming data sources in real time."
       button:
         enable : true
         label : "Check out some examples"
         link : "https://biaslab.github.io/RxInfer.jl/stable/examples/overview/"
         
     # service item loop
-    - title : "Solve complex problems"
-      images:
-      - "images/state_tracking.webp"
-      content : "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
+    - title: "Solve complex problems"
+      subservices:
+        - nonlinear:
+          title: "Continual inference in complex non-linear dynamical systems with infinite data streams"
+          image: images/nonlinear.gif
+        - collision:
+          title: "Smart navigation and collision avoidance"
+          image: images/collision.gif
+        - aif:
+          title: "Real-time reactive reasoning and decision making with Active Inference framework"
+          image: images/activeinference.gif
+      content: "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
       button:
         enable : true
         label : "Research supporting RxInfer"
@@ -118,14 +125,15 @@ screenshot:
 
 ##################### Call to action #####################
 call_to_action:
-  enable : false
-  title : "Ready to get started?"
-  image : "images/rxinfer.svg"
-  content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur."
+  enable : true
+  title : "Excited?"
+  # image : "images/rxinfer.svg"
+  youtube: "https://www.youtube.com/embed/qXrvDVm_fnE"
+  content : "RxInfer has been presented on the main Julia developers conference. Check out our video!"
   button:
     enable : true
-    label : "Contact Us"
-    link : "contact/"
+    label : "Watch our presentation on JuliaCon"
+    link : "https://youtu.be/qXrvDVm_fnE"
 
 ##################### Ecosystem ##########################
 ecosystem:
