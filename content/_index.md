@@ -108,7 +108,7 @@ service:
           image: images/collision.gif
         - aif:
           title: "Real-time reactive reasoning and decision making with Active Inference framework"
-          image: images/activeinference.gif
+          video: videos/aif.mov
       content: "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
       button:
         enable : true
