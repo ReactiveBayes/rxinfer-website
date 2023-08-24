@@ -90,23 +90,38 @@ service:
     # service item loop
     - title : "RxInfer is fast"
       images:
-      - "images/lgssm_comparison.svg"
       - "images/lgssm_scaling.svg"
-      content : "RxInfer exploits the modularity of factor graphs to perform fast message passing-based probabilistic inference that scales linearly with the size of your model. We generally outperform state-of-the-art sampling-based packages by several orders of magnitude. RxInfer supports real-time processing of streaming data sources."
+      content : "RxInfer exploits the modularity of factor graphs to perform fast message passing-based probabilistic inference that scales linearly with the size of your model. We generally outperform state-of-the-art sampling-based packages by several orders of magnitude. The efficiency of RxInfer makes it easier to process streaming data sources in real time."
       button:
         enable : true
         label : "Check out some examples"
         link : "https://biaslab.github.io/RxInfer.jl/stable/examples/overview/"
         
     # service item loop
-    - title : "Solve complex problems"
-      images:
-      - "images/state_tracking.webp"
-      content : "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
-      button:
-        enable : true
-        label : "Research supporting RxInfer"
-        link : "https://biaslab.github.io/publication/"
+    - title: "Solve complex problems"
+      center: true
+      subservices:
+        # - linear:
+        #   title: "Continual inference with infinite data streams"
+        #   content: "In a world where data never stops flowing, our toolbox stands as a beacon of cutting-edge technology. Whether it's real-time sensor readings, financial market fluctuations, or social media trends, our toolbox empowers you to extract meaningful insights and make informed decisions on the fly."
+        #   video: videos/lds.webm
+        - nonlinear:
+          title: "Track hidden states of a dynamic system in real-time"
+          content: "Unveil real-time insights into dynamic systems with our software's prowess in tracking hidden states. By providing continuous monitoring and analysis, our tool empowers you to gain a deeper understanding of complex processes, enabling informed decision-making and proactive responses."
+          video: videos/nlds.webm
+        - collision:
+          title: "Smart navigation and collision avoidance"
+          content: "Stay in control, prevent collisions, and streamline routes effortlessly with RxInfer. Streamline your navigation experience and enhance safety."
+          video: videos/collision.webm
+        - aif:
+          title: "Reactive reasoning and decision making with Active Inference framework"
+          content: "Enhance your decision-making process with the Active Inference framework. Designed to help you analyze incoming information in real-time, this tool enables you to make well-informed choices and adapt to changing situations effectively."
+          video: videos/aif.webm
+    #   content: "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
+    #   button:
+    #     enable : true
+    #     label : "Research supporting RxInfer"
+    #     link : "https://biaslab.github.io/publication/"
         
 ################### Screenshot ########################
 screenshot:
@@ -118,14 +133,25 @@ screenshot:
 
 ##################### Call to action #####################
 call_to_action:
-  enable : false
-  title : "Ready to get started?"
-  image : "images/rxinfer.svg"
-  content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur."
+  enable : true
+  title : "Watch our talk!"
+  # image : "images/rxinfer.svg"
+  youtube: "https://www.youtube.com/embed/qXrvDVm_fnE"
+  content : "RxInfer has been presented on the JuliaCon 2023, the biggest conference of Julia developers. Check out our video!"
   button:
     enable : true
-    label : "Contact Us"
-    link : "contact/"
+    label : "Watch our presentation on JuliaCon"
+    link : "https://youtu.be/qXrvDVm_fnE"
+  subvideos:
+    - video1:
+      youtube: "https://www.youtube.com/embed/_vVHWzK9NEI?si=n_JIbED8WfQRL0Ys"
+      content: "Intro to RxInfer by Doggo.jl"
+    - video2: 
+      youtube: "https://www.youtube.com/embed/qnj0PKc734g?si=A-v4irQEVzpXqHM4"
+      content: "Variational inference with RxInfer by Doggo.jl"
+    - video3:
+      youtube: "https://www.youtube.com/embed/PVeyvHSAwmk?si=Hkyn6bNSIwPIryUc&amp;start=5484"
+      content: "Active Inference Symposium"
 
 ##################### Ecosystem ##########################
 ecosystem:
