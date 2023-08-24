@@ -99,6 +99,7 @@ service:
         
     # service item loop
     - title: "Solve complex problems"
+      center: true
       subservices:
         # - linear:
         #   title: "Continual inference with infinite data streams"
