@@ -100,10 +100,10 @@ service:
     # service item loop
     - title: "Solve complex problems"
       subservices:
-        - linear:
-          title: "Continual inference with infinite data streams"
-          content: "In a world where data never stops flowing, our toolbox stands as a beacon of cutting-edge technology. Whether it's real-time sensor readings, financial market fluctuations, or social media trends, our toolbox empowers you to extract meaningful insights and make informed decisions on the fly."
-          video: videos/lds.webm
+        # - linear:
+        #   title: "Continual inference with infinite data streams"
+        #   content: "In a world where data never stops flowing, our toolbox stands as a beacon of cutting-edge technology. Whether it's real-time sensor readings, financial market fluctuations, or social media trends, our toolbox empowers you to extract meaningful insights and make informed decisions on the fly."
+        #   video: videos/lds.webm
         - nonlinear:
           title: "Track hidden states of a dynamic system in real-time"
           content: "Unveil real-time insights into dynamic systems with our software's prowess in tracking hidden states. By providing continuous monitoring and analysis, our tool empowers you to gain a deeper understanding of complex processes, enabling informed decision-making and proactive responses."
@@ -116,11 +116,11 @@ service:
           title: "Reactive reasoning and decision making with Active Inference framework"
           content: "Enhance your decision-making process with the Active Inference framework. Designed to help you analyze incoming information in real-time, this tool enables you to make well-informed choices and adapt to changing situations effectively."
           video: videos/aif.webm
-      content: "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
-      button:
-        enable : true
-        label : "Research supporting RxInfer"
-        link : "https://biaslab.github.io/publication/"
+    #   content: "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
+    #   button:
+    #     enable : true
+    #     label : "Research supporting RxInfer"
+    #     link : "https://biaslab.github.io/publication/"
         
 ################### Screenshot ########################
 screenshot:
