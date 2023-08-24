@@ -100,15 +100,22 @@ service:
     # service item loop
     - title: "Solve complex problems"
       subservices:
+        - linear:
+          title: "Continual inference with infinite data streams"
+          content: "In a world where data never stops flowing, our toolbox stands as a beacon of cutting-edge technology. Whether it's real-time sensor readings, financial market fluctuations, or social media trends, our toolbox empowers you to extract meaningful insights and make informed decisions on the fly."
+          video: videos/lds.webm
         - nonlinear:
-          title: "Continual inference in complex non-linear dynamical systems with infinite data streams"
-          image: images/nonlinear.gif
+          title: "Track hidden states of a dynamic system in real-time"
+          content: "Unveil real-time insights into dynamic systems with our software's prowess in tracking hidden states. By providing continuous monitoring and analysis, our tool empowers you to gain a deeper understanding of complex processes, enabling informed decision-making and proactive responses."
+          video: videos/nlds.webm
         - collision:
           title: "Smart navigation and collision avoidance"
-          image: images/collision.gif
+          content: "Stay in control, prevent collisions, and streamline routes effortlessly with RxInfer. Streamline your navigation experience and enhance safety."
+          video: videos/collision.webm
         - aif:
-          title: "Real-time reactive reasoning and decision making with Active Inference framework"
-          video: videos/aif.mov
+          title: "Reactive reasoning and decision making with Active Inference framework"
+          content: "Enhance your decision-making process with the Active Inference framework. Designed to help you analyze incoming information in real-time, this tool enables you to make well-informed choices and adapt to changing situations effectively."
+          video: videos/aif.webm
       content: "RxInfer solves complex problems through hybrid inference algorithms composed of  (loopy) belief propagation, (structured) variational message passing, expectation propagation, expectation maximization and conjugate-computation variational inference."
       button:
         enable : true
@@ -126,14 +133,24 @@ screenshot:
 ##################### Call to action #####################
 call_to_action:
   enable : true
-  title : "Excited?"
+  title : "Watch our talk!"
   # image : "images/rxinfer.svg"
   youtube: "https://www.youtube.com/embed/qXrvDVm_fnE"
-  content : "RxInfer has been presented on the main Julia developers conference. Check out our video!"
+  content : "RxInfer has been presented on the JuliaCon 2023, the biggest conference of Julia developers. Check out our video!"
   button:
     enable : true
     label : "Watch our presentation on JuliaCon"
     link : "https://youtu.be/qXrvDVm_fnE"
+  subvideos:
+    - video1:
+      youtube: "https://www.youtube.com/embed/_vVHWzK9NEI?si=n_JIbED8WfQRL0Ys"
+      content: "Intro to RxInfer by Doggo.jl"
+    - video2: 
+      youtube: "https://www.youtube.com/embed/qnj0PKc734g?si=A-v4irQEVzpXqHM4"
+      content: "Variational inference with RxInfer by Doggo.jl"
+    - video3:
+      youtube: "https://www.youtube.com/embed/PVeyvHSAwmk?si=Hkyn6bNSIwPIryUc&amp;start=5484"
+      content: "Active Inference Symposium"
 
 ##################### Ecosystem ##########################
 ecosystem:
