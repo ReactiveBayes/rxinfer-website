@@ -77,7 +77,7 @@ service:
                 observations = load_dataset()
                 \n
                 \n
-                result = inference(\n
+                result = infer(\n
                 \tmodel = SSM(length(observations), x0, A, B, Q, P), \n
                 \tdata  = (y = observations,)\n
                 )
