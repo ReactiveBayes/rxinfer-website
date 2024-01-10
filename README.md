@@ -1,6 +1,6 @@
 # RxInfer Website
 
-This repository contains all the content necessary for proper rendering of the [RxInfer](https://github.com/biaslab/RxInfer.jl) package website.
+This repository contains all the content necessary for proper rendering of the [RxInfer](https://github.com/reactivebayes/RxInfer.jl) package website.
 
 # Installation
 
@@ -14,7 +14,7 @@ Please install Hugo **v0.105.0+extended** or newer. Note also that the build req
 
 1. Clone this repository and step into the directory:
 
-        git clone git@github.com:biaslab/rxinfer-website.git 
+        git clone git@github.com:reactivebayes/rxinfer-website.git 
         cd ./rxinfer-website
 
 2. Initialise the theme git submodule:

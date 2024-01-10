@@ -85,7 +85,7 @@ service:
       button:
         enable : true
         label : "Get started now"
-        link : "https://biaslab.github.io/RxInfer.jl/stable/manuals/getting-started/"
+        link : "https://reactivebayes.github.io/RxInfer.jl/stable/manuals/getting-started/"
         
     # service item loop
     - title : "RxInfer is fast"
@@ -95,7 +95,7 @@ service:
       button:
         enable : true
         label : "Check out some examples"
-        link : "https://biaslab.github.io/RxInfer.jl/stable/examples/overview/"
+        link : "https://reactivebayes.github.io/RxInfer.jl/stable/examples/overview/"
         
     # service item loop
     - title: "Solve complex problems"
@@ -162,18 +162,18 @@ ecosystem:
     # ecosystem item loop
     - name : "Rocket.jl"
       icon : "fas fa-rocket"
-      link: "https://github.com/biaslab/Rocket.jl"
+      link: "https://github.com/reactivebayes/Rocket.jl"
       content : "Enables reactive programming in Julia for processing of asynchronous data streams."
       
     # ecosystem item loop
     - name : "ReactiveMP.jl"
       icon : "fas fa-envelope"
-      link: "https://github.com/biaslab/ReactiveMP.jl"
+      link: "https://github.com/reactivebayes/ReactiveMP.jl"
       content : "Efficient, easily extensible and schedule-free reactive message passing-based inference engine."
       
     # ecosystem item loop
     - name : "GraphPPL.jl"
       icon : "fas fa-diagram-project"
-      link: "https://github.com/biaslab/GraphPPL.jl"
+      link: "https://github.com/reactivebayes/GraphPPL.jl"
       content : "Powerful, user-friendly, graph-based specification of both model and inference constraints."
 ---

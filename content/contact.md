@@ -17,7 +17,7 @@ contacts:
 
     - name : "GitHub"
       logo : "fab fa-github"
-      url : "https://github.com/biaslab/RxInfer.jl/discussions"
+      url : "https://github.com/reactivebayes/RxInfer.jl/discussions"
 
 emailform:
   enable: false
