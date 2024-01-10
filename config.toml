@@ -1,5 +1,5 @@
 theme = "bigspring-light"
-baseURL = 'https://biaslab.github.io/rxinfer-website/'
+baseURL = 'https://reactivebayes.github.io/rxinfer-website/'
 languageCode = "en"
 languageName = "English"
 title = 'RxInfer.jl'
@@ -10,8 +10,8 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     logo = "images/rxinfer.svg"
     favicon = "images/favicon.svg"
     logo_width = 100
-    author = "BIASlab"
-    copyright = "© BIASlab, 2022-2023, Powered by **[Hugo](https://github.com/biaslab/rxinfer-website/)**"
+    author = "BIASlab, ReactiveBayes"
+    copyright = "© BIASlab, 2022-2024, ReactiveBayes 2024-present, Powered by **[Hugo](https://github.com/reactivebayes/rxinfer-website/)**"
     footer_menu_left = "Ecosystem"
     footer_menu_middle = "Supported by"
     footer_content = "Follow Us"
@@ -27,33 +27,33 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
     [[params.social]]
         icon = "fab fa-github"
-        link = "//github.com/biaslab/rxinfer.jl"
+        link = "//github.com/reactivebayes/rxinfer.jl"
 
 
     [[params.social]]
         icon = "fas fa-diagram-project"
-        link = "//biaslab.github.io/"
+        link = "//reactivebayes.github.io/"
 
 [author]
-  name = "BIASlab"
+  name = "ReactiveBayes"
   email = ""
-  link = "https://biaslab.github.io/"
+  link = "https://reactivebayes.github.io/"
 
 [menu]
     
     [[menu.footer_left]]
     name = "Rocket.jl"
-    url = "https://github.com/biaslab/Rocket.jl"
+    url = "https://github.com/reactivebayes/Rocket.jl"
     weight = 1
 
     [[menu.footer_left]]
     name = "ReactiveMP.jl"
-    url = "https://github.com/biaslab/ReactiveMP.jl"
+    url = "https://github.com/reactivebayes/ReactiveMP.jl"
     weight = 2
 
     [[menu.footer_left]]
     name = "GraphPPL.jl"
-    url = "https://github.com/biaslab/GraphPPL.jl"
+    url = "https://github.com/reactivebayes/GraphPPL.jl"
     weight = 3
 
     [[menu.footer_middle]]
@@ -83,13 +83,13 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
     [[menu.main]]
     name = "Get Started"
-    url = "https://biaslab.github.io/RxInfer.jl/stable/manuals/getting-started/"
+    url = "https://reactivebayes.github.io/RxInfer.jl/stable/manuals/getting-started/"
     weight = 1
 
     [[menu.main]]
     name = "Documentation"
     pre = ""
-    url = "https://biaslab.github.io/RxInfer.jl/stable/"
+    url = "https://reactivebayes.github.io/RxInfer.jl/stable/"
     weight = 2
 
     # [[menu.main]]
@@ -100,20 +100,20 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
     [[menu.main]]
     name = "Examples"
-    url = "https://biaslab.github.io/RxInfer.jl/stable/examples/overview/"
+    url = "https://reactivebayes.github.io/RxInfer.jl/stable/examples/overview/"
     weight = 3
 
     [[menu.main]]
     name = "Team"
     pre = ""
     weight = 5
-    url = "https://github.com/biaslab/RxInfer.jl/graphs/contributors"
+    url = "https://github.com/reactivebayes/RxInfer.jl/graphs/contributors"
 
     [[menu.main]]
     name = "Discussions"
     pre = ""
     weight = 5
-    url = "https://github.com/biaslab/RxInfer.jl/discussions"
+    url = "https://github.com/reactivebayes/RxInfer.jl/discussions"
     # url = "/team"
 
     [[menu.main]]
@@ -125,7 +125,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     [[menu.main]]
     name = "GitHub"
     pre = "fab fa-github"
-    url = "https://github.com/biaslab/RxInfer.jl"
+    url = "https://github.com/reactivebayes/RxInfer.jl"
     weight = 7
 
 [markup]
