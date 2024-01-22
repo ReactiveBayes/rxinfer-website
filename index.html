@@ -30,7 +30,7 @@
  
  observations = load_dataset() 
  
- result = inference(
+ result = infer(
  	model = SSM(length(observations), x0, A, B, Q, P), 
  	data  = (y = observations,)
  ) 
