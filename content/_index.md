@@ -53,21 +53,15 @@ service:
       - ""
       content : "RxInfer.jl is a Julia package that aims to automate inference in your probabilistic models. Specify your model, call the inference function, and the package takes care of the rest. Take a look how simple it is to specify a linear state space model and to run inference in it!"
       code: "{{< code >}}
-                \n@model function SSM(n, x0, A, B, Q, P) \n
-                    \n
-                    \t # x is a sequence of hidden states \n
-                    \t x = randomvar(n) \n
-                    \n
-                    \t # y is a sequence of clamped observations \n
-                    \t y = datavar(Vector{Float64}, n) \n
+                \n@model function SSM(x0, y, A, B, Q, P) \n
                     \n
                     \t # `~` expression creates a probabilistic relationship\n
                     \t # between random variables\n
-                    \t x_prior ~ MvNormal(μ = mean(x0), Σ = cov(x0)) \n 
+                    \t x_prior ~ x0 \n 
                     \t x_prev = x_prior \n
                     \n
                     \t # Build the state-space model \n
-                    \t for i in 1:n \n
+                    \t for i in eachindex(y) \n
                     \t\t   x[i] ~ MvNormal(μ = A * x_prev, Σ = Q) \n
                     \t\t   y[i] ~ MvNormal(μ = B * x[i], Σ = P) \n
                     \t\t   x_prev = x[i] \n
@@ -78,7 +72,7 @@ service:
                 \n
                 \n
                 result = infer(\n
-                \tmodel = SSM(length(observations), x0, A, B, Q, P), \n
+                \tmodel = SSM(x0 = prior_x, A = A, B = B, Q = Q, P = P), \n
                 \tdata  = (y = observations,)\n
                 )
                 {{< /code >}}"
