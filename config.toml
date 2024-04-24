@@ -77,7 +77,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     [[menu.footer_middle]]
     name = "Lazy Dynamics"
     pre = "images/lazydynamics_logo.png"
-    url = "https://www.lazydynamics.com/"
+    url = "https://lazydynamics.com/"
     weight = 4
 
 
