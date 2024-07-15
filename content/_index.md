@@ -138,12 +138,15 @@ call_to_action:
     link : "https://youtu.be/qXrvDVm_fnE"
   subvideos:
     - video1:
+      youtube: "https://www.youtube.com/embed/KuluqEzFtm8?si=RCZot84uJfCF35qF"
+      content: "Fast Bayesian Inference with RxInfer.jl"
+    - video2:
       youtube: "https://www.youtube.com/embed/_vVHWzK9NEI?si=n_JIbED8WfQRL0Ys"
       content: "Intro to RxInfer by Doggo.jl"
-    - video2: 
+    - video3: 
       youtube: "https://www.youtube.com/embed/qnj0PKc734g?si=A-v4irQEVzpXqHM4"
       content: "Variational inference with RxInfer by Doggo.jl"
-    - video3:
+    - video4:
       youtube: "https://www.youtube.com/embed/PVeyvHSAwmk?si=Hkyn6bNSIwPIryUc&amp;start=5484"
       content: "Active Inference Symposium"
 
