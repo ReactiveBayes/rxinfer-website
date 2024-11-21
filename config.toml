@@ -34,6 +34,10 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
         icon = "fas fa-diagram-project"
         link = "//reactivebayes.github.io/"
 
+    [[params.social]]
+        icon = "fa-brands fa-x-twitter"
+        link = "//x.com/reactivebayes"
+
 [author]
   name = "ReactiveBayes"
   email = ""
@@ -141,10 +145,10 @@ link = "plugins/bootstrap/bootstrap.min.css"
 [[params.plugins.css]]
 link = "plugins/slick/slick.css"
 [[params.plugins.css]]
-link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css"
 [[params.plugins.css]]
-link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css"
 [[params.plugins.css]]
-link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/solid.min.css"
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css"
 [[params.plugins.css]]
-link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/regular.min.css"
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/regular.min.css"
