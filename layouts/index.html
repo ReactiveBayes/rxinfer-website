@@ -263,6 +263,9 @@
         <h2 class="section-title">{{ .title | markdownify }}</h2>
         <p>{{ .content }}</p>
       </div>
+      <div class="col-12 text-center">
+        <img src="{{ .image }}" alt="" class="img-fluid" style="max-width: 80%;">
+      </div>
       {{ range .ecosystem_item }}
       <a href="{{ .link }}" class="col-md-4 col-sm-6 mb-4">
         <div class="ecosystem-card" style="display: flex; flex-direction: column;">

@@ -155,6 +155,7 @@ ecosystem:
   title: "Ecosystem"
   content: "The RxInfer ecosystem stacks several Julia packages for running efficient Bayesian inference."
   enable : true
+  image: "images/ecosystem.png"
   ecosystem_item:
     # ecosystem item loop
     - name : "Rocket.jl"
@@ -173,4 +174,16 @@ ecosystem:
       icon : "fas fa-diagram-project"
       link: "https://github.com/reactivebayes/GraphPPL.jl"
       content : "Powerful, user-friendly, graph-based specification of both model and inference constraints."
+
+    # ecosystem item loop
+    - name : "ExponentialFamily.jl"
+      icon : "fas fa-diagram-project"
+      link: "https://github.com/reactivebayes/ExponentialFamily.jl"
+      content : "A package that implements the rich family of probability distributions."
+
+    # ecosystem item loop
+    - name : "BayesBase.jl"
+      icon : "fas fa-diagram-project"
+      link: "https://github.com/reactivebayes/BayesBase.jl"
+      content : "A package that serves as an umbrella, defining methods essential for Bayesian statistics."
 ---

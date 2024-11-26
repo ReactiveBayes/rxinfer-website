@@ -5,7 +5,6 @@ languageName = "English"
 title = 'RxInfer.jl'
 copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethugothemes](https://gethugothemes.com/)"
 
-
 [params]
     logo = "images/rxinfer.svg"
     favicon = "images/favicon.svg"
@@ -18,17 +17,16 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
     image = "images/favicon.svg"
     jlhighlight = "js/julia.highlight.js"
     custom_js = []
-
+    title = 'RxInfer.jl'
+    description = 'Julia package for automated Bayesian inference on a factor graph with reactive message passing'
 
     [[params.social]]
         icon = "fab fa-youtube"
         link = "//youtube.com/channel/UCd1ftkOXIQ8MstIHosEDdaw"
 
-
     [[params.social]]
         icon = "fab fa-github"
         link = "//github.com/reactivebayes/rxinfer.jl"
-
 
     [[params.social]]
         icon = "fas fa-diagram-project"
