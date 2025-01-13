@@ -102,7 +102,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
     [[menu.main]]
     name = "Examples"
-    url = "https://reactivebayes.github.io/RxInfer.jl/stable/examples/overview/"
+    url = "https://reactivebayes.github.io/RxInferExamples.jl/dev/"
     weight = 3
 
     [[menu.main]]
