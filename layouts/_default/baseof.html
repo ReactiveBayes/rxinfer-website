@@ -40,6 +40,31 @@ AUTHOR WEBSITE: https://gethugothemes.com
 	{{ partial "footer.html" . }}
 	{{ partial "script.html" . }}
 	{{ end }}
+
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <df-messenger
+      project-id="synthetic-shape-442012-s9"
+      agent-id="94fb46c1-e089-404f-8e0f-4478927e5755"
+      language-code="en"
+      max-query-length="-1">
+      <df-messenger-chat-bubble
+       chat-title="RxInfer-Assistant">
+      </df-messenger-chat-bubble>
+    </df-messenger>
+    <style>
+      df-messenger {
+        z-index: 999;
+        position: fixed;
+        --df-messenger-font-color: #2A56C6;
+        --df-messenger-font-family: Roboto Mono;
+        --df-messenger-chat-background: #f3f6fc;
+        --df-messenger-message-user-background: #d3e3fd;
+        --df-messenger-message-bot-background: #fff;
+        bottom: 16px;
+        right: 16px;
+      }
+    </style>
 </body>
 
 </html>
