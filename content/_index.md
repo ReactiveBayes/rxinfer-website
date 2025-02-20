@@ -79,7 +79,7 @@ service:
       button:
         enable : true
         label : "Get started now"
-        link : "https://reactivebayes.github.io/RxInfer.jl/stable/manuals/getting-started/"
+        link : "https://docs.rxinfer.ml/stable/manuals/getting-started/"
         
     # service item loop
     - title : "RxInfer is fast"
@@ -89,7 +89,7 @@ service:
       button:
         enable : true
         label : "Check out some examples"
-        link : "https://reactivebayes.github.io/RxInfer.jl/stable/examples/overview/"
+        link : "https://examples.rxinfer.ml"
         
     # service item loop
     - title: "Solve complex problems"

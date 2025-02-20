@@ -30,7 +30,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
     [[params.social]]
         icon = "fas fa-diagram-project"
-        link = "//reactivebayes.github.io/"
+        link = "//github.com/ReactiveBayes"
 
     [[params.social]]
         icon = "fa-brands fa-x-twitter"
@@ -39,7 +39,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 [author]
   name = "ReactiveBayes"
   email = ""
-  link = "https://reactivebayes.github.io/"
+  link = "//github.com/ReactiveBayes"
 
 [menu]
     
@@ -85,13 +85,13 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
     [[menu.main]]
     name = "Get Started"
-    url = "https://reactivebayes.github.io/RxInfer.jl/stable/manuals/getting-started/"
+    url = "https://docs.rxinfer.ml/stable/manuals/getting-started/"
     weight = 1
 
     [[menu.main]]
     name = "Documentation"
     pre = ""
-    url = "https://reactivebayes.github.io/RxInfer.jl/stable/"
+    url = "https://docs.rxinfer.ml/"
     weight = 2
 
     # [[menu.main]]
@@ -102,7 +102,7 @@ copyright = "Design By [Themefisher](https://themefisher.com/) Develop By [Gethu
 
     [[menu.main]]
     name = "Examples"
-    url = "https://reactivebayes.github.io/RxInferExamples.jl/dev/"
+    url = "https://examples.rxinfer.ml"
     weight = 3
 
     [[menu.main]]
