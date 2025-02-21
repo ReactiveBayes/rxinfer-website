@@ -1,28 +1,23 @@
 # RxInfer Website
 
-This repository contains all the content necessary for proper rendering of the [RxInfer](https://github.com/reactivebayes/RxInfer.jl) package website.
+This is a implementation of the [RxInfer website](https://rxinfer.ml) using Next.js.
 
-# Installation
+## Site development
 
-## Prerequisites
+First, install dependencies:
 
-You need to have [Hugo](https://gohugo.io) static site generator installed and working. More information might be found at [Hugo Installation Guide](https://gohugo.io/overview/installing/).
+```bash
+pnpm install
+```
 
-Please install Hugo **v0.105.0+extended** or newer. Note also that the build requires the extended version of Hugo (important for Windows users).Otherwise certain sections of the website won't be generated.
+Then, run the development server:
 
-## Local build
+```bash
+pnpm dev
+```
 
-1. Clone this repository and step into the directory:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-        git clone git@github.com:reactivebayes/rxinfer-website.git 
-        cd ./rxinfer-website
+## Site deployment
 
-2. Initialise the theme git submodule:
-
-        git submodule update --init --recursive
-
-3. To build and server the interactive version of the website run:
-
-        hugo server
-
-More information on adding content can be found in the Hugo documentation in [Content](https://gohugo.io/content/organization/) and [Getting Started](https://gohugo.io/overview/quickstart/) sections.
+The site is deployed automatically when a PR is merged into `main`.
