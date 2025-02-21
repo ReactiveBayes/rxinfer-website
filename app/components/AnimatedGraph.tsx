@@ -12,7 +12,7 @@ export default function AnimatedGraph() {
         document.body.appendChild(script)
       }}
     />
-    <div className="w-full min-h-[600px] relative left-0 overflow-visible">
+    <div className="w-full min-h-[600px] relative left-0 overflow-hidden">
       <div id="landing-graph" className="landing-graph" style={{width: '100%', height: '100%', position: 'absolute', overflow: 'visible'}}></div>
     </div>
   </>

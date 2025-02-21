@@ -42,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lato.variable} antialiased`} style={{ color: '#343a40' }}>
+      <body className={`${lato.variable} bg-white antialiased`} style={{ color: '#343a40' }}>
         <NavBar />
         <main className="pt-24 mb-24">
           {children}
