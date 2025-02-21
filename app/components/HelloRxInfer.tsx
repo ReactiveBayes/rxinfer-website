@@ -68,7 +68,7 @@ end
     q(μ, τ) = q(μ)q(τ)
 end
 
-result = inference(
+result = infer(
     model = generative_model(),
     data = load_dataset(),
     constraints = mean_field(),

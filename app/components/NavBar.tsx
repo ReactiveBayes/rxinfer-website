@@ -4,8 +4,8 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-    BookOpen, // Documentation
-    Play, // Get Started
+    BookOpenText, // Documentation
+    NotebookPen, // Get Started
     Code2, // Examples
     MessageCircle, // Discussions
     Users, // Team
@@ -24,12 +24,12 @@ const navItems: NavItem[] = [
     {
         label: 'Get Started',
         href: 'https://docs.rxinfer.ml/stable/manuals/getting-started/',
-        icon: Play
+        icon: NotebookPen
     },
     {
         label: 'Documentation',
         href: 'https://docs.rxinfer.ml/stable/',
-        icon: BookOpen
+        icon: BookOpenText
     },
     {
         label: 'Examples',
