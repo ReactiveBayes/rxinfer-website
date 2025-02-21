@@ -23,27 +23,27 @@ interface NavItem {
 const navItems: NavItem[] = [
     {
         label: 'Get Started',
-        href: '/get-started',
+        href: 'https://docs.rxinfer.ml/stable/manuals/getting-started/',
         icon: Play
     },
     {
         label: 'Documentation',
-        href: '/docs',
+        href: 'https://docs.rxinfer.ml/stable/',
         icon: BookOpen
     },
     {
         label: 'Examples',
-        href: '/examples',
+        href: 'https://examples.rxinfer.ml',
         icon: Code2
     },
     {
         label: 'Discussions',
-        href: '/discussions',
+        href: 'https://github.com/reactivebayes/RxInfer.jl/discussions',
         icon: MessageCircle
     },
     {
         label: 'Team',
-        href: '/team',
+        href: 'https://github.com/reactivebayes/RxInfer.jl/graphs/contributors',
         icon: Users
     },
     {

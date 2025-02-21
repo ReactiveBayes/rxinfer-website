@@ -1,12 +1,13 @@
 {
   "name": "rxinfer-website",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "serve": "npx serve out"
   },
   "dependencies": {
     "@types/react-syntax-highlighter": "^15.5.13",
