@@ -13,6 +13,8 @@ import {
     Menu, // Hamburger menu icon
     X // Close icon
 } from 'lucide-react'
+import logoHeader from '@/public/images/rxinfer-header-logo.svg'
+
 
 interface NavItem {
     label: string
@@ -60,14 +62,15 @@ export function NavBar() {
         <nav className="fixed top-0 w-full bg-white border-b z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
-                    <div className="flex-shrink-0">
-                        <Link href="/" className="flex items-center">
+                    <div className="flex-shrink-0 h-full flex items-center">
+                        <Link href="/" className="h-full flex items-center">
                             <Image
-                                src="/images/rxinfer-header-logo.svg"
+                                src={logoHeader}
                                 alt="RxInfer Logo"
-                                width={100}
-                                height={100}
-                                className="mr-2"
+                                width={150}
+                                height={40}
+                                className="h-8 w-auto"
+                                priority
                             />
                         </Link>
                     </div>

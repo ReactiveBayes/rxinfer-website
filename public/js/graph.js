@@ -491,6 +491,20 @@
     graph.data(data);
     graph.render();
 
+    // Fade out the placeholder after graph is rendered
+    const placeholder = document.getElementById('landing-graph-placeholder');
+    if (placeholder) {
+        placeholder.style.transition = 'opacity 1s ease';
+        placeholder.style.opacity = '0';
+    }
+
+    // Fade in the graph after rendering
+    const graphElement = document.getElementById('landing-graph');
+    if (graphElement) {
+        graphElement.style.transition = 'opacity 1s ease';
+        graphElement.style.opacity = '1';
+    }
+
     window.setTimeout(() => {
         graph.zoom(1.5, { x: window.innerWidth / 2, y: 300 }, true, { duration: 2000, easing: 'easeCubic' });
     }, 100)

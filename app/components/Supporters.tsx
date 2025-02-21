@@ -1,40 +1,46 @@
 'use client'
 
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
 import BlockHeader from "./BlockHeader"
+import tueLogo from '@/public/images/TUe-logo-scarlet-S.png'
+import nwoLogo from '@/public/images/NWO.png'
+import gnLogo from '@/public/images/gn.png'
+import lazyLogo from '@/public/images/lazydynamics_logo.png'
+import actinfLogo from '@/public/images/actinf.png'
+
 
 interface Supporter {
     name: string
     href: string
-    logo: string
+    logo: StaticImageData
 }
 
 const supporters: Supporter[] = [
     {
         name: "Technical University of Eindhoven",
         href: "https://www.tue.nl/en/",
-        logo: "/images/TUe-logo-scarlet-S.png"
+        logo: tueLogo
     },
     {
         name: "NWO",
         href: "https://www.nwo.nl/en",
-        logo: "/images/NWO.png"
+        logo: nwoLogo
     },
     {
         name: "GN Hearing",
         href: "https://www.resound.com/nl-nl/",
-        logo: "/images/gn.png"
+        logo: gnLogo
     },
     {
         name: "Lazy Dynamics",
         href: "https://lazydynamics.com/",
-        logo: "/images/lazydynamics_logo.png"
+        logo: lazyLogo
     },
     {
         name: "Active Inference Institute",
         href: "https://www.activeinference.org/",
-        logo: "/images/actinf.png"
+        logo: actinfLogo
     }
 ]
 

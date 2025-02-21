@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css";
 import { NavBar } from './components/NavBar'
+import GoogleTag from "./components/GoogleTag";
 
 const lato = Lato({
   weight: ['400', '700'],
@@ -17,8 +18,6 @@ export const metadata: Metadata = {
     icon: [
       { url: '/images/favicon.svg' },  // SVG favicon
     ],
-    // Optional: Apple touch icon
-    apple: { url: '/images/apple-touch-icon.png' }
   },
   openGraph: {
     title: "RxInfer.jl - Fast and Flexible Bayesian Inference",
@@ -42,6 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTag />
       <body className={`${lato.variable} bg-white antialiased`} style={{ color: '#343a40' }}>
         <NavBar />
         <main className="pt-24 mb-24">
