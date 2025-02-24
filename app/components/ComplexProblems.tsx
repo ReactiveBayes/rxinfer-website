@@ -4,6 +4,7 @@ import BlockHeader from "./BlockHeader"
 import { useState } from "react"
 import { ArrowRight, ChevronRight } from "lucide-react"
 import Link from "next/link"
+import { VideoComponent } from "./LazyVideo"
 
 interface DemoCase {
     title: string
@@ -55,17 +56,7 @@ function DemoCard({ demo, align }: { demo: DemoCase, align: "left" | "right" }) 
                 </div>
             </div>
             <div className="w-full rounded-xl overflow-hidden bg-black">
-                <video
-                    className="w-full aspect-video object-cover"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    controls={false}
-                >
-                    <source src={demo.videoUrl} type="video/webm" />
-                    Your browser does not support the video tag.
-                </video>
+                <VideoComponent src={demo.videoUrl} />
             </div>
         </div>
     )
@@ -88,7 +79,7 @@ export default function ComplexProblems() {
                 <p className="text-lg text-gray-600 leading-relaxed text-center mb-4">
                     Discover more examples and see how RxInfer can help solve your inference problems.
                 </p>
-                <Link 
+                <Link
                     href="https://examples.rxinfer.ml"
                     className="inline-flex items-center gap-2 px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
