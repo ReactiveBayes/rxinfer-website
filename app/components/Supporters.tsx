@@ -18,7 +18,7 @@ interface Supporter {
 
 const supporters: Supporter[] = [
     {
-        name: "Technical University of Eindhoven",
+        name: "Eindhoven University of Technology",
         href: "https://www.tue.nl/en/",
         logo: tueLogo
     },
