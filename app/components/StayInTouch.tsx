@@ -50,8 +50,12 @@ const socialLinks = [
 
 export default function StayInTouch() {
     return (
-        <section className="w-full gap-12 pt-20">
-            <BlockHeader title="Let's stay in touch!" subtitle="Here are some of the ways you can follow us:" />
+        <section id="stay-in-touch" className="w-full gap-12 pt-20">
+            <BlockHeader
+                id="stay-in-touch"
+                title="Let's stay in touch!"
+                subtitle="Here are some of the ways you can follow us:"
+            />
             <div className="flex flex-col gap-4 max-w-6xl mx-auto pt-8">
                 <div className="flex flex-col gap-4">
                     <div className="grid grid-cols-3 lg:grid-cols-6 gap-8 justify-center">

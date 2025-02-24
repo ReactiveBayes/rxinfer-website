@@ -104,8 +104,9 @@ function CommunityCard() {
 
 export default function Ecosystem() {
     return (
-        <section className="w-full py-20">
+        <section id="ecosystem" className="w-full py-20">
             <BlockHeader
+                id="ecosystem"
                 title="Stable Ecosystem"
                 subtitle="Unleash the power of Bayesian inference with our robust ecosystem of Julia packages"
                 align="center"

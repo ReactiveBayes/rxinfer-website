@@ -64,8 +64,9 @@ function DemoCard({ demo, align }: { demo: DemoCase, align: "left" | "right" }) 
 
 export default function ComplexProblems() {
     return (
-        <section className="w-full py-20">
+        <section id="complex-problems" className="w-full py-20">
             <BlockHeader
+                id="complex-problems"
                 title="Solve Complex Problems"
                 subtitle="See RxInfer in action with real-world applications"
                 align="center"

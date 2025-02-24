@@ -77,8 +77,9 @@ result = infer(
 
 export default function HelloRxInfer() {
     return (
-        <section className="w-full gap-12 py-20">
+        <section id="hello-rxinfer" className="w-full gap-12 py-20">
             <BlockHeader
+                id="hello-rxinfer"
                 title="Hello World with RxInfer"
                 subtitle="Probabilistic programming made simple"
                 align="center"

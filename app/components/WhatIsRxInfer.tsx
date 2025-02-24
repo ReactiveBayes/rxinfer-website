@@ -4,7 +4,7 @@ import BlockHeader from './BlockHeader';
 
 export default function WhatIsRxInfer() {
     return (
-        <div>
+        <section id="what-is-rxinfer">
             <p className="text-xl text-center text-gray-700 leading-relaxed mt-8 mb-16">
                 Welcome to RxInfer.jl - a powerful Julia package for fast and flexible Bayesian inference. By combining message passing algorithms with model's graph structure, RxInfer makes probabilistic programming both efficient and accessible. Whether you're working on machine learning, signal processing, or complex statistical models, RxInfer provides the tools you need to solve real-world inference problems.
             </p>
@@ -32,6 +32,6 @@ export default function WhatIsRxInfer() {
                     </p>
                 </Link>
             </div>
-        </div>
+        </section>
     );
 }

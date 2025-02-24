@@ -64,8 +64,9 @@ const performanceData = [
 
 export default function RxInferIsFast() {
     return (
-        <section className="w-full gap-12 py-20">
+        <section id="rxinfer-is-fast" className="w-full gap-12 py-20">
             <BlockHeader
+                id="rxinfer-is-fast"
                 title="RxInfer is Fast"
                 subtitle="Optimized for performance and scalability"
                 align="center"

@@ -121,10 +121,11 @@ function Feature({ title, description, icon: Icon, colorIndex, align = 'left' }:
 
 export default function WhyRxInfer() {
     return (
-        <section className="flex flex-col gap-8 w-full py-20">
+        <section id="why-rxinfer" className="flex flex-col gap-8 w-full py-20">
             <BlockHeader
                 title="Why RxInfer?"
                 subtitle="Discover the power of reactive Bayesian inference"
+                id="why-rxinfer"
                 align="center"
             />
             <div className="">

@@ -94,8 +94,9 @@ function CommunityVideoCard({ video }: { video: YouTubeVideo }) {
 
 export default function YouTubeVideos() {
     return (
-        <section className="w-full flex flex-col gap-16 py-20">
+        <section id="videos" className="w-full flex flex-col gap-16 py-20">
             <BlockHeader
+                id="videos"
                 title="Watch JuliaCon Talk"
                 subtitle="Deep dive into RxInfer's architecture and capabilities"
                 align="center"

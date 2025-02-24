@@ -46,8 +46,9 @@ const supporters: Supporter[] = [
 
 export default function Supporters() {
     return (
-        <section className="w-full py-20">
+        <section id="supporters" className="w-full py-20">
             <BlockHeader
+                id="supporters"
                 title="Thanks to Our Supporters"
                 subtitle="We're grateful to these amazing organizations for their continued support and contributions"
                 align="center"
