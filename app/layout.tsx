@@ -16,8 +16,16 @@ export const metadata: Metadata = {
   description: "RxInfer.jl is a Julia package for fast and flexible Bayesian inference, combining message passing and automatic differentiation for efficient probabilistic programming.",
   icons: {
     icon: [
-      { url: '/images/favicon.svg' },  // SVG favicon
+      { url: '/favicon.svg' },  // SVG favicon
+      { url: '/favicon.ico' },  // ICO favicon
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' }, // 96x96 PNG favicon
     ],
+    apple: [
+      { url: '/apple-touch-icon.png' },  // Apple touch icon
+    ],
+    other: [
+      { url: '/site.webmanifest', rel: 'manifest' } // Web App Manifest
+    ]
   },
   openGraph: {
     title: "RxInfer.jl - Fast and Flexible Bayesian Inference",
