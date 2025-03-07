@@ -81,7 +81,7 @@ export default function ComplexProblems() {
                     Discover more examples and see how RxInfer can help solve your inference problems.
                 </p>
                 <Link
-                    href="https://examples.rxinfer.ml"
+                    href="https://examples.rxinfer.com"
                     className="inline-flex items-center gap-2 px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                     Explore More Examples

@@ -25,17 +25,17 @@ interface NavItem {
 const navItems: NavItem[] = [
     {
         label: 'Get Started',
-        href: 'https://docs.rxinfer.ml/stable/manuals/getting-started/',
+        href: 'https://docs.rxinfer.com/stable/manuals/getting-started/',
         icon: NotebookPen
     },
     {
         label: 'Documentation',
-        href: 'https://docs.rxinfer.ml/stable/',
+        href: 'https://docs.rxinfer.com/stable/',
         icon: BookOpenText
     },
     {
         label: 'Examples',
-        href: 'https://examples.rxinfer.ml',
+        href: 'https://examples.rxinfer.com',
         icon: Code2
     },
     {

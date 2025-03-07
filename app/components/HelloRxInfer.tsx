@@ -121,7 +121,7 @@ export default function HelloRxInfer() {
                         Explore more interactive examples and discover the full potential of reactive Bayesian inference.
                     </p>
                     <Link 
-                        href="https://examples.rxinfer.ml"
+                        href="https://examples.rxinfer.com"
                         className="inline-flex items-center gap-2 px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                         View Examples

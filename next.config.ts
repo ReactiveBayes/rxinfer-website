@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  assetPrefix: isProd ? 'https://rxinfer.ml' : '',
+  assetPrefix: isProd ? 'https://rxinfer.com' : '',
   basePath: '',
   trailingSlash: true,
 };

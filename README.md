@@ -1,6 +1,6 @@
 # RxInfer Website
 
-This is a implementation of the [RxInfer website](https://rxinfer.ml) using Next.js.
+This is a implementation of the [RxInfer website](https://rxinfer.com) using Next.js.
 
 ## Site development
 
