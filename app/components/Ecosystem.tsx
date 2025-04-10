@@ -2,7 +2,7 @@
 
 import BlockHeader from "./BlockHeader"
 import Link from "next/link"
-import { Rocket, Mail, GitBranch, Database, Box, Github, ArrowRight, Package } from 'lucide-react'
+import { Rocket, Mail, GitBranch, Database, Box, Github, ArrowRight, Package, Server } from 'lucide-react'
 
 interface EcosystemPackage {
     name: string
@@ -12,6 +12,18 @@ interface EcosystemPackage {
 }
 
 const packages: EcosystemPackage[] = [
+    {
+        name: "RxInferServer.jl",
+        description: "RESTful HTTP server for deploying RxInfer models as web services with OpenAPI support.",
+        icon: Server,
+        url: "https://github.com/lazydynamics/RxInferServer"
+    },
+    {
+        name: "RxInferClient.py",
+        description: "Python client for interacting with RxInferServer, providing a clean API for model deployment and inference.",
+        icon: Server,
+        url: "https://github.com/lazydynamics/RxInferClient.py"
+    },
     {
         name: "Rocket.jl",
         description: "Enables reactive programming in Julia for processing of asynchronous data streams.",

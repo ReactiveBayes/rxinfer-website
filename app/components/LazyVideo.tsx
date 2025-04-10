@@ -85,7 +85,7 @@ export const VideoComponent = ({
                     ...style,
                 }}
             >
-                <source src={src} type="video/mp4" />
+                <source src={src} type="video/webm" />
                 Your browser does not support the video tag. Please try viewing this
                 page in a modern browser.
             </video>

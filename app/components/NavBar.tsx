@@ -11,7 +11,8 @@ import {
     Users, // Team
     Github, // GitHub
     Menu, // Hamburger menu icon
-    X // Close icon
+    X, // Close icon
+    Server // Server icon
 } from 'lucide-react'
 import logoHeader from '@/public/images/rxinfer-header-logo.svg'
 
@@ -37,6 +38,11 @@ const navItems: NavItem[] = [
         label: 'Examples',
         href: 'https://examples.rxinfer.com',
         icon: Code2
+    },
+    {
+        label: 'Server',
+        href: 'https://server.rxinfer.com',
+        icon: Server
     },
     {
         label: 'Discussions',
