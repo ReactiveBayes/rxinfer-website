@@ -13,7 +13,7 @@ interface EcosystemPackage {
 
 const packages: EcosystemPackage[] = [
     {
-        name: "RxInferServer",
+        name: "RxInferServer.jl",
         description: "RESTful HTTP server for deploying RxInfer models as web services with OpenAPI support.",
         icon: Server,
         url: "https://github.com/lazydynamics/RxInferServer"
