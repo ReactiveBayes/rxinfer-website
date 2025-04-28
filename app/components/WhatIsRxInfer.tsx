@@ -41,7 +41,7 @@ export default function WhatIsRxInfer() {
                 <p className="text-gray-600 text-center mb-4">
                     Use RxInfer from your favorite programming language through our HTTP server
                 </p>
-                <div className="flex flex-row items-center justify-center gap-2 w-full">
+                <div className="flex flex-col md:flex-row items-center justify-center md:gap-8 w-full">
                     <Link
                         href="https://server.rxinfer.com"
                         className="flex items-center justify-center gap-2 p-2 rounded-lg hover:bg-purple-50 transition-colors"
@@ -55,6 +55,13 @@ export default function WhatIsRxInfer() {
                     >
                         <Code2 className="w-5 h-5 text-purple-600" />
                         <span className="text-purple-600 font-medium">Python SDK</span>
+                    </Link>
+                    <Link
+                        href="https://lazydynamics.github.io/RxInferClient.js/"
+                        className="flex items-center justify-center gap-2 p-2 rounded-lg hover:bg-purple-50 transition-colors"
+                    >
+                        <Code2 className="w-5 h-5 text-purple-600" />
+                        <span className="text-purple-600 font-medium">TypeScript SDK</span>
                     </Link>
                 </div>
             </div>

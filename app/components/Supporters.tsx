@@ -53,6 +53,22 @@ export default function Supporters() {
                 subtitle="We're grateful to these amazing organizations for their continued support and contributions"
                 align="center"
             />
+            <div className="mt-16 flex flex-col items-center">
+                <Link
+                    href="https://numfocus.org/"
+                    className="p-6 transition-all duration-300 group flex flex-col items-center w-full h-full gap-4 hover:-translate-y-1"
+                    target="_blank"
+                >
+                    <div className="relative w-full min-h-40">
+                        <Image
+                            src="/images/numfocus.png"
+                            alt="NumFOCUS"
+                            fill
+                            className="object-contain filter group-hover:brightness-110 transition-all"
+                        />
+                    </div>
+                </Link>
+            </div>
             <div className="grid md:grid-cols-5 grid-cols-2 gap-6 pt-16">
                 {supporters.map((supporter, index) => (
                     <Link
