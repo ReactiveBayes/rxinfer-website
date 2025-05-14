@@ -31,7 +31,13 @@ const demoCases: DemoCase[] = [
         description: "Enhance your decision-making process with the Active Inference framework. Designed to help you analyze incoming information in real-time, this tool enables you to make well-informed choices and adapt to changing situations effectively.",
         videoUrl: "/videos/aif.webm",
         tags: ["Active Inference", "Decision Making", "Adaptive"]
-    }
+    },
+    {
+        title: "Enhance Standard ML Techniques with Probabilistic Inference",
+        description: "Explore how RxInfer extends standard ML techniques with probabilistic inference, providing a more robust and flexible approach to handling complex problems that require uncertainty estimation.",
+        videoUrl: "/videos/posetracking.webm",
+        tags: ["Standard ML", "Probabilistic Inference", "Complex Problems"]
+    },
 ]
 
 function DemoCard({ demo, align }: { demo: DemoCase, align: "left" | "right" }) {
