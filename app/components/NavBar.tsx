@@ -21,6 +21,19 @@ interface NavItem {
     label: string
     href: string
     icon: React.ElementType
+    subText?: string
+}
+
+function DiscordIcon({ className }: { className?: string }) {
+    return (
+        <Image
+            src="/images/discord-icon.svg"
+            alt="Discord"
+            width={16}
+            height={16}
+            className={className}
+        />
+    )
 }
 
 const navItems: NavItem[] = [
@@ -53,6 +66,12 @@ const navItems: NavItem[] = [
         label: 'Team',
         href: 'https://github.com/reactivebayes/RxInfer.jl/graphs/contributors',
         icon: Users
+    },
+    {
+        label: 'Discord',
+        href: 'https://discord.gg/UvMhrbQh',
+        icon: DiscordIcon,
+        subText: 'managed by Lazy Dynamics'
     },
     {
         label: 'GitHub',
@@ -125,9 +144,14 @@ function NavLink({ item }: { item: NavItem }) {
             className="flex items-center px-3 py-2 text-gray-600 hover:text-blue-600 transition-all duration-200 ease-in-out relative group"
         >
             <item.icon className="w-4 h-4 mr-2 transform group-hover:scale-110 transition-transform duration-200 ease-in-out" />
-            <span className="relative">
-                {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300 ease-in-out"></span>
+            <span className="flex flex-col leading-tight">
+                <span className="relative">
+                    {item.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300 ease-in-out"></span>
+                </span>
+                {item.subText && (
+                    <span className="text-[10px] text-gray-400 -mt-0.5">{item.subText}</span>
+                )}
             </span>
         </Link>
     )
