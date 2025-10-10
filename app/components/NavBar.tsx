@@ -69,7 +69,7 @@ const navItems: NavItem[] = [
     },
     {
         label: 'Discord',
-        href: 'https://discord.gg/UvMhrbQh',
+        href: 'https://discord.com/invite/TtdStfnjNn',
         icon: DiscordIcon,
         subText: 'managed by Lazy Dynamics'
     },
