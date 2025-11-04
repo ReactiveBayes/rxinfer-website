@@ -42,6 +42,13 @@ const communityVideos: YouTubeVideo[] = [
         description: "Explore RxInfer's applications in Active Inference",
         videoId: "PVeyvHSAwmk",
         startTime: 5484
+    },
+    {
+        title: "Bayesian Methods in Engineering Applications with RxInfer",
+        description: "A practical guide to implementing Bayesian methods in engineering applications, demonstrating how to handle uncertainty using Kalman filters and modern tools.",
+        videoId: "w1EU-B5Gzoo",
+        author: "Victor Flores Terrazas",
+        tags: ["PyCon DE & PyData", "Bayesian Methods", "Engineering", "Kalman Filters"]
     }
 ]
 
