@@ -68,12 +68,6 @@ const navItems: NavItem[] = [
         icon: Users
     },
     {
-        label: 'Discord',
-        href: 'https://discord.com/invite/TtdStfnjNn',
-        icon: DiscordIcon,
-        subText: 'managed by Lazy Dynamics'
-    },
-    {
         label: 'GitHub',
         href: 'https://github.com/reactivebayes/RxInfer.jl',
         icon: Github
