@@ -8,6 +8,7 @@ import nwoLogo from '@/public/images/NWO.png'
 import gnLogo from '@/public/images/gn.png'
 import lazyLogo from '@/public/images/lazydynamics_logo.png'
 import actinfLogo from '@/public/images/actinf.png'
+import biaslabLogo from '@/public/images/biaslab.png'
 
 
 interface Supporter {
@@ -41,6 +42,11 @@ const supporters: Supporter[] = [
         name: "Active Inference Institute",
         href: "https://www.activeinference.org/",
         logo: actinfLogo
+    },
+    {
+        name: "BIASlab",
+        href: "https://biaslab.github.io/",
+        logo: biaslabLogo
     }
 ]
 
@@ -69,7 +75,7 @@ export default function Supporters() {
                     </div>
                 </Link>
             </div>
-            <div className="grid md:grid-cols-5 grid-cols-2 gap-6 pt-16">
+            <div className="grid md:grid-cols-6 grid-cols-2 gap-6 pt-16">
                 {supporters.map((supporter, index) => (
                     <Link
                         key={index}

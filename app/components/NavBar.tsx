@@ -12,7 +12,6 @@ import {
     Github, // GitHub
     Menu, // Hamburger menu icon
     X, // Close icon
-    Server // Server icon
 } from 'lucide-react'
 import logoHeader from '@/public/images/rxinfer-header-logo.svg'
 
@@ -53,11 +52,6 @@ const navItems: NavItem[] = [
         icon: Code2
     },
     {
-        label: 'Server',
-        href: 'https://server.rxinfer.com',
-        icon: Server
-    },
-    {
         label: 'Discussions',
         href: 'https://github.com/reactivebayes/RxInfer.jl/discussions',
         icon: MessageCircle
@@ -69,7 +63,7 @@ const navItems: NavItem[] = [
     },
     {
         label: 'GitHub',
-        href: 'https://github.com/reactivebayes/RxInfer.jl',
+        href: 'https://github.com/ReactiveBayes',
         icon: Github
     }
 ]

@@ -9,6 +9,7 @@ import YouTubeVideos from "./components/YouTubeVideos";
 import Ecosystem from "./components/Ecosystem";
 import StayInTouch from "./components/StayInTouch";
 import Supporters from "./components/Supporters";
+import Citations from "./components/Citations";
 import WhatIsRxInfer from "./components/WhatIsRxInfer";
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <YouTubeVideos />
         <Ecosystem />
         <Supporters />
+        <Citations />
         <StayInTouch />
       </div>
     </>

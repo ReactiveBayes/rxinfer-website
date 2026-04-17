@@ -49,6 +49,12 @@ const communityVideos: YouTubeVideo[] = [
         videoId: "w1EU-B5Gzoo",
         author: "Victor Flores Terrazas",
         tags: ["PyCon DE & PyData", "Bayesian Methods", "Engineering", "Kalman Filters"]
+    },
+    {
+        title: "Keep Calm and Trust AI",
+        description: "Instead of asking an LLM to guess facts, let it orchestrate real probabilistic inference. This talk shows how RxInfer and an MCP server connect a language interface to a Bayesian linear regression model, combining probabilistic programming with tool calling to produce AI systems that are transparent, verifiable, and reliable.",
+        videoId: "s4hwHTJ9SMU",
+        tags: ["PyData", "LLM", "MCP", "Bayesian Regression"]
     }
 ]
 
