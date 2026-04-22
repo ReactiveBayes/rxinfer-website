@@ -51,6 +51,13 @@ const communityVideos: YouTubeVideo[] = [
         tags: ["PyCon DE & PyData", "Bayesian Methods", "Engineering", "Kalman Filters"]
     },
     {
+        title: "User-friendly Inference with RxInfer's ProjectedTo Constraints",
+        description: "Traditional message passing-based Bayesian inference algorithms are fast but often struggle with real-world models that lack closed-form update rules, such as those with non-conjugate terms or any external code integrated into RxInfer: differential equation solvers, root finding, or even code outside of Julia. The Bayesian inference package RxInfer (from v3) introduces a powerful projection mechanism that overcomes this limitation, enabling modelers to maintain the speed of message passing while handling complex model components.",
+        videoId: "Jf3QfHFgfFE",
+        author: "Mykola Lukashchuk",
+        tags: ["JuliaCon", "Optimization"]
+    },
+    {
         title: "Keep Calm and Trust AI",
         description: "Instead of asking an LLM to guess facts, let it orchestrate real probabilistic inference. This talk shows how RxInfer and an MCP server connect a language interface to a Bayesian linear regression model, combining probabilistic programming with tool calling to produce AI systems that are transparent, verifiable, and reliable.",
         videoId: "s4hwHTJ9SMU",
