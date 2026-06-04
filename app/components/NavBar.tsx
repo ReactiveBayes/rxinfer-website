@@ -7,6 +7,7 @@ import {
     BookOpenText, // Documentation
     NotebookPen, // Get Started
     Code2, // Examples
+    Gauge, // Benchmarks
     MessageCircle, // Discussions
     Users, // Team
     Github, // GitHub
@@ -50,6 +51,11 @@ const navItems: NavItem[] = [
         label: 'Examples',
         href: 'https://examples.rxinfer.com',
         icon: Code2
+    },
+    {
+        label: 'Benchmarks',
+        href: 'https://benchmarks.rxinfer.com',
+        icon: Gauge
     },
     {
         label: 'Discussions',
