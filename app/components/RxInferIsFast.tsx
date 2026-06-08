@@ -135,6 +135,13 @@ export default function RxInferIsFast() {
                         >
                             View benchmark details
                         </Link>
+                        <Link
+                            href="https://benchmarks.rxinfer.com"
+                            target="_blank"
+                            className="text-sm font-medium border border-gray-200 hover:border-blue-300 text-gray-400 hover:text-blue-800 flex items-center gap-2 px-3 py-1 rounded-full hover:bg-blue-100 transition-colors duration-200"
+                        >
+                            View live benchmarks dashboard
+                        </Link>
                     </div>
                 </div>
             </div>
