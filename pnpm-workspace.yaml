@@ -1,0 +1,6 @@
+# pnpm >=10 moved dependency build-approval here (the `pnpm` field in package.json is ignored).
+# Approve the two native postinstall scripts so `pnpm install` / `pnpm run build` don't trip the
+# `ERR_PNPM_IGNORED_BUILDS` supply-chain gate on pnpm 10/11 (`allowBuilds` is the pnpm 10.16+/11 key).
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
