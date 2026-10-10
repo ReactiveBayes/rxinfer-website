@@ -1,6 +1,6 @@
 import Image from "next/image";
 import MainLogo from "./components/MainLogo";
-import AnimatedGraph from "./components/AnimatedGraph";
+import StoryHero from "./components/storyGraph/StoryHero";
 import WhyRxInfer from "./components/WhyRxInfer";
 import HelloRxInfer from "./components/HelloRxInfer";
 import RxInferIsFast from "./components/RxInferIsFast";
@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <MainLogo />
-      <AnimatedGraph />
+      <StoryHero />
       <div className="flex flex-col items-center justify-center max-w-6xl mx-auto px-8">
         <WhatIsRxInfer />
         <WhyRxInfer />
