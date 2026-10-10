@@ -50,13 +50,14 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
     const termRefs = useRef<(HTMLSpanElement | null)[]>([]);
     const labelRefs = useRef<Record<string, HTMLSpanElement | null>>({});
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-    const underlineRef = useRef<HTMLSpanElement>(null);
+    const thumbRef = useRef<HTMLSpanElement>(null);
     const { isVisible, targetRef } = useIsVisible({ rootMargin: '100px' });
 
     // Mutable animation state; the render loop never goes through React.
     const st = useRef({
         p: 1, target: DEFAULT_STEP, speed: 1, introT: 0, idle2: 0, idle3: 0, last: 0, time: 0,
         hoverNode: null as string | null, hoverShown: null as string | null, hoverK: 0,
+        thumbX: -1, thumbW: 0, dt: 0,
         k: 1, dpr: 1, homes: null as Rect[] | null, font: 'Lato, Arial, sans-serif', reduced: false,
         L, S, labelEdges,
     });
@@ -171,13 +172,14 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
             el.style.opacity = String(edgeLabelAlpha(S, F, s.labelEdges[i]));
         });
 
-        // underline follows the story position continuously
-        const ul = underlineRef.current, tabs = tabRefs.current;
-        if (ul && tabs.every(Boolean)) {
-            const i0 = Math.min(3, Math.floor(s.p)), i1 = Math.min(3, i0 + 1), f = s.p - i0;
-            const a = tabs[i0]!, b = tabs[i1]!;
-            ul.style.transform = `translateX(${lerp(a.offsetLeft, b.offsetLeft, f) + 8}px)`;
-            ul.style.width = `${lerp(a.offsetWidth, b.offsetWidth, f) - 16}px`;
+        // the step bar's thumb glides quickly to the selected step, independent of the scene
+        const thumb = thumbRef.current, tab = tabRefs.current[s.target];
+        if (thumb && tab) {
+            const k = s.thumbX < 0 || s.reduced ? 1 : 1 - Math.exp(-s.dt * 16);
+            s.thumbX = s.thumbX < 0 ? tab.offsetLeft : lerp(s.thumbX, tab.offsetLeft, k);
+            s.thumbW = lerp(s.thumbW, tab.offsetWidth, k);
+            thumb.style.transform = `translateX(${s.thumbX}px)`;
+            thumb.style.width = `${s.thumbW}px`;
         }
     }, []);
 
@@ -188,6 +190,7 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
         if (!r.active) return;
         const dt = s.last ? Math.min(0.05, (now - s.last) / 1000) : 0;
         s.last = now;
+        s.dt = dt;
         if (s.introT < s.S.intro.dur) {
             s.introT += dt;
         } else if (s.p !== s.target) {
@@ -267,8 +270,8 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
     };
 
     return (
-        <section ref={el => { targetRef.current = el; }} className="mx-auto w-full max-w-7xl px-1 md:px-6">
-            <StepBar target={target} onSelect={goTo} tabRefs={tabRefs} underlineRef={underlineRef} />
+        <section ref={el => { targetRef.current = el; }} className="mx-auto mt-10 w-full max-w-7xl px-1 md:mt-14 md:px-6">
+            <StepBar target={target} onSelect={goTo} tabRefs={tabRefs} thumbRef={thumbRef} />
             <div
                 id="story-scene"
                 ref={sceneRef}
