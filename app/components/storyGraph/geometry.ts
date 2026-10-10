@@ -29,6 +29,10 @@ export interface Layout {
 
 export const T = 4;
 
+// Variables whose belief is drawn as a distribution (u beliefs only in active inference).
+export const STATE_VARS = ['th', ...Array.from({ length: T }, (_, i) => `x${i + 1}`)];
+export const OBS_NODES = Array.from({ length: T }, (_, i) => `Y${i + 1}`);
+
 // Factor terms of the generative model, in the order they appear in the equation.
 export const TERMS: { node: string; tex: string }[] = [
     { node: 'Pth', tex: 'p(\\theta)' },
@@ -50,16 +54,18 @@ for (let t = 1; t <= T; t++) {
 }
 
 const DESKTOP = {
-    XF0: 330, DX: 400, DE: 190, XP: 150, XEND: 1880, sMax: 1920,
-    dTh: 235, dX: 580, dGU: 770, dY: 905, dWorld: 1000, dMax: 1040,
-    region: [175, 940] as [number, number],
+    XF0: 290, DX: 380, DE: 180, XP: 140, XEND: 1790, sMax: 1830,
+    dTh: 250, dX: 470, dGU: 620, dY: 740, dWorld: 820, dMax: 850,
+    region: [165, 790] as [number, number],
+    view0: 120, uHw: 40,
     U: 1,
 };
 
 const MOBILE = {
-    XF0: 300, DX: 330, DE: 160, XP: 130, XEND: 1640, sMax: 1700,
-    dTh: 200, dX: 480, dGU: 650, dY: 770, dWorld: 850, dMax: 900,
-    region: [90, 830] as [number, number],
+    XF0: 230, DX: 270, DE: 135, XP: 90, XEND: 1300, sMax: 1350,
+    dTh: 130, dX: 360, dGU: 510, dY: 620, dWorld: 690, dMax: 730,
+    region: [70, 660] as [number, number],
+    view0: 40, uHw: 30,
     U: 1.2,
 };
 
@@ -75,19 +81,19 @@ export function buildLayout(mobile: boolean): Layout {
     }
 
     const nodes: Record<string, GNode> = {};
-    const add = (name: string, s: number, d: number, kind: Kind, size = 60, glyph?: string) => {
+    const add = (name: string, s: number, d: number, kind: Kind, size = 72, glyph?: string) => {
         const [x, y] = map(s, d);
         nodes[name] = { name, x, y, kind, size: size * C.U, glyph };
     };
     const N = '\u{1D4A9}';    // script N, a Gaussian factor
-    add('Pth', C.XP, C.dTh, 'factor', 60, N);
-    add('Px0', C.XP, C.dX, 'factor', 60, N);
+    add('Pth', C.XP, C.dTh, 'factor', 72, N);
+    add('Px0', C.XP, C.dX, 'factor', 72, N);
     for (let t = 1; t <= T; t++) {
-        add(`T${t}`, XF[t], C.dTh, 'equal', 30);
-        add(`F${t}`, XF[t], C.dX, 'factor', 60, 'f');
-        add(`U${t}`, XF[t], C.dGU, 'factor', 60, N);
-        add(`E${t}`, XE[t], C.dX, 'equal', 30);
-        add(`G${t}`, XE[t], C.dGU, 'factor', 60, N);
+        add(`T${t}`, XF[t], C.dTh, 'equal', 34);
+        add(`F${t}`, XF[t], C.dX, 'factor', 72, 'f');
+        add(`U${t}`, XF[t], C.dGU, 'factor', 72, N);
+        add(`E${t}`, XE[t], C.dX, 'equal', 34);
+        add(`G${t}`, XE[t], C.dGU, 'factor', 72, N);
         add(`Y${t}`, XE[t], C.dY, 'terminal', 46);
     }
     add('Xend', C.XEND, C.dX, 'end', 0);
@@ -119,11 +125,12 @@ export function buildLayout(mobile: boolean): Layout {
     const label = (key: string, edge: [string, string], x: number, y: number, align: GLabel['align']) =>
         labels.push({ key, edge, x, y, align });
     if (!mobile) {
-        label('th', ['Pth', 'T1'], 240, C.dTh - 30, 'center');
-        label('x0', ['Px0', 'F1'], 240, C.dX + 38, 'center');
+        const mid = (C.XP + XF[1]) / 2;
+        label('th', ['Pth', 'T1'], mid, C.dTh - 30, 'center');
+        label('x0', ['Px0', 'F1'], mid, C.dX + 38, 'center');
         for (let t = 1; t <= T; t++) {
-            label(`u${t}`, [`U${t}`, `F${t}`], XF[t] - 22, C.dX + 105, 'right');
-            label(`y${t}`, [`G${t}`, `Y${t}`], XE[t] + 22, C.dGU + 72, 'left');
+            label(`u${t}`, [`U${t}`, `F${t}`], XF[t] - 22, (C.dX + C.dGU) / 2 + 12, 'right');
+            label(`y${t}`, [`G${t}`, `Y${t}`], XE[t] + 22, (C.dGU + C.dY) / 2 + 4, 'left');
             label(`x${t}`, t < T ? [`E${t}`, `F${t + 1}`] : [`E${t}`, 'Xend'], XE[t] + 62, C.dX + 38, 'center');
         }
     } else {
@@ -132,7 +139,7 @@ export function buildLayout(mobile: boolean): Layout {
         label('x0', ['Px0', 'F1'], C.dX + 26, mid, 'left');
         for (let t = 1; t <= T; t++) {
             label(`u${t}`, [`U${t}`, `F${t}`], (C.dX + C.dGU) / 2, XF[t] + 28, 'center');
-            label(`y${t}`, [`G${t}`, `Y${t}`], (C.dGU + C.dY) / 2 + 8, XE[t] - 28, 'center');
+            label(`y${t}`, [`G${t}`, `Y${t}`], (C.dGU + C.dY) / 2 + 22, XE[t] - 30, 'center');
             label(`x${t}`, t < T ? [`E${t}`, `F${t + 1}`] : [`E${t}`, 'Xend'], C.dX + 26, XE[t] + 70, 'left');
         }
     }
@@ -147,11 +154,13 @@ export function buildLayout(mobile: boolean): Layout {
     };
     for (let t = 1; t <= T; t++) {
         anchors[`x${t}`] = at(XE[t], C.dX, 66, 'story', mobile ? [-1, 0] : [0, -1]);
-        anchors[`u${t}`] = at(XF[t], (C.dX + C.dGU) / 2 + (mobile ? 10 : 0), 46, 'depth', mobile ? [0, -1] : [1, 0]);
+        anchors[`u${t}`] = at(XF[t], (C.dX + C.dGU) / 2, C.uHw, 'depth', mobile ? [0, -1] : [1, 0]);
     }
     anchors.th = at((XF[1] + XF[2]) / 2, C.dTh, 66, 'story', mobile ? [-1, 0] : [0, -1]);
 
-    const v0 = mobile ? { x0: 0, y0: 50, w: C.dMax, h: C.sMax - 50 } : { x0: 0, y0: 130, w: C.sMax, h: C.dMax - 130 };
+    const v0 = mobile
+        ? { x0: 0, y0: C.view0, w: C.dMax, h: C.sMax - C.view0 }
+        : { x0: 0, y0: C.view0, w: C.sMax, h: C.dMax - C.view0 };
 
     return {
         mobile, U: C.U, view: v0, XF, XE, sMax: C.sMax,

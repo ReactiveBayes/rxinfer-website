@@ -3,7 +3,10 @@
 import 'katex/dist/katex.min.css';
 import { Fragment, PointerEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useIsVisible } from '../../hooks/useIsVisible';
-import { buildLayout, TERMS } from './geometry';
+import { buildLayout } from './geometry';
+import { InfoCard } from './explain';
+import { Hit, hitTest } from './hit';
+import { Info } from 'lucide-react';
 import { SEG12, SEG23, activeInference, introBuild, messagePassing, modelToGraph } from './choreography';
 import { Frame, Rect, Scheds, drawScene, edgeLabelAlpha, equationAlpha, idleWeight, termFlight } from './draw';
 import { lerp } from './engine';
@@ -35,7 +38,7 @@ function travelTime(S: Scheds, p: number, q: number) {
 export default function StoryHeroClient({ terms, lhs, times, posterior, labels }: Props) {
     const [target, setTarget] = useState(DEFAULT_STEP);
     const [mobile, setMobile] = useState(false);
-    const [hover, setHover] = useState<{ i: number; x: number; y: number } | null>(null);
+    const [tip, setTip] = useState<{ hit: Hit; left: number; top: number; below: boolean } | null>(null);
 
     const L = useMemo(() => buildLayout(mobile), [mobile]);
     const S = useMemo<Scheds>(() => ({
@@ -76,6 +79,8 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
         if (s.reduced) speed = Math.max(nominal / 0.4, 1);
         s.speed = speed;
         s.target = i;
+        s.hoverNode = null;
+        setTip(null);
         setTarget(i);
     }, []);
 
@@ -237,23 +242,39 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
     // --------------------------------------------------------------- interaction
     const swipe = useRef<{ x: number; y: number } | null>(null);
 
+    // --- explanation cards: hover on desktop, tap on touch screens
+    const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const keepTip = () => { if (closeTimer.current) clearTimeout(closeTimer.current); closeTimer.current = null; };
+    const closeTip = (delay = 250) => {
+        keepTip();
+        closeTimer.current = setTimeout(() => { st.current.hoverNode = null; setTip(null); }, delay);
+    };
+    const hitAt = (clientX: number, clientY: number) => {
+        const s = st.current, scene = sceneRef.current!;
+        const rect = scene.getBoundingClientRect();
+        return hitTest(s.L, s.p, (clientX - rect.left) / s.k + s.L.view.x0, (clientY - rect.top) / s.k + s.L.view.y0);
+    };
+    const showTip = (hit: Hit) => {
+        const s = st.current, scene = sceneRef.current!;
+        keepTip();
+        s.hoverNode = hit.kind === 'edge' || hit.kind === 'belief' ? null : hit.id;
+        const w = scene.clientWidth, half = Math.min(152, w / 2);
+        const x = (hit.x - s.L.view.x0) * s.k, y = (hit.y - s.L.view.y0) * s.k;
+        const below = y < 210;
+        setTip(t => (t?.hit.id === hit.id ? t : {
+            hit, below,
+            left: Math.min(Math.max(x, half + 4), w - half - 4),
+            top: below ? y + 44 * s.k * s.L.U + 10 : y - 10,
+        }));
+    };
+
     const onPointerMove = (e: PointerEvent) => {
-        const s = st.current, scene = sceneRef.current;
+        const scene = sceneRef.current;
         if (!scene || e.pointerType !== 'mouse') return;
-        let found: { i: number; x: number; y: number } | null = null;
-        if (s.p > 0.99) {
-            const rect = scene.getBoundingClientRect();
-            const vx = (e.clientX - rect.left) / s.k + L.view.x0;
-            const vy = (e.clientY - rect.top) / s.k + L.view.y0;
-            for (let i = 0; i < TERMS.length; i++) {
-                const n = L.nodes[TERMS[i].node];
-                if (Math.abs(vx - n.x) < n.size * 0.7 && Math.abs(vy - n.y) < n.size * 0.7) {
-                    found = { i, x: (n.x - L.view.x0) * s.k, y: (n.y - n.size / 2 - L.view.y0) * s.k };
-                }
-            }
-        }
-        s.hoverNode = found ? TERMS[found.i].node : null;
-        setHover(h => (h?.i === found?.i ? h : found));
+        if ((e.target as Element).closest('[role=tooltip]')) return;
+        const hit = hitAt(e.clientX, e.clientY);
+        scene.style.cursor = hit ? 'pointer' : '';
+        if (hit) showTip(hit); else if (!closeTimer.current) closeTip();
     };
 
     const onPointerDown = (e: PointerEvent) => {
@@ -264,6 +285,11 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
         swipe.current = null;
         if (!s0) return;
         const dx = e.clientX - s0.x, dy = e.clientY - s0.y;
+        if (Math.hypot(dx, dy) < 10 && !(e.target as Element).closest('[role=tooltip]')) {
+            const hit = hitAt(e.clientX, e.clientY);
+            if (hit) showTip(hit); else closeTip(0);
+            return;
+        }
         if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) {
             goTo(Math.max(0, Math.min(3, st.current.target + (dx < 0 ? 1 : -1))));
         }
@@ -277,9 +303,9 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
                 ref={sceneRef}
                 role="img"
                 aria-label={`Animation: ${STEPS[target].title}. ${STEPS[target].caption}`}
-                className="relative mt-2 aspect-[900/1650] w-full touch-pan-y select-none md:aspect-[1920/910]"
+                className="relative mt-2 aspect-[730/1310] w-full touch-pan-y select-none md:aspect-[1830/730]"
                 onPointerMove={onPointerMove}
-                onPointerLeave={() => { st.current.hoverNode = null; setHover(null); }}
+                onPointerLeave={e => { if (e.pointerType === 'mouse') closeTip(); }}
                 onPointerDown={onPointerDown}
                 onPointerUp={onPointerUp}
                 onPointerCancel={() => { swipe.current = null; }}
@@ -317,13 +343,15 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
                     ))}
                 </div>
 
-                {hover && (
-                    <div aria-hidden
-                        className="sg-fade-in pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-full rounded-lg border border-[#0aa8a7]/30 bg-white/95 px-3 py-1.5 text-[#163a4a] shadow-lg"
-                        style={{ left: hover.x, top: hover.y - 8 }}
-                        dangerouslySetInnerHTML={{ __html: terms[hover.i] }} />
+                {tip && (
+                    <InfoCard {...tip} labels={labels} terms={terms}
+                        onEnter={keepTip} onLeave={() => closeTip()} />
                 )}
             </div>
+            <p className={`mt-3 flex items-center justify-center gap-1.5 px-4 text-center text-xs text-slate-500 transition-opacity duration-500 md:text-sm ${target > 0 ? 'opacity-100' : 'opacity-0'}`}>
+                <Info aria-hidden className="h-4 w-4 shrink-0 text-[#0aa8a7]" />
+                <span><span className="hidden md:inline">Hover over</span><span className="md:hidden">Tap</span> nodes, edges and distributions to learn what they mean</span>
+            </p>
         </section>
     );
 }

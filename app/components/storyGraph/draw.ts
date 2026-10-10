@@ -26,7 +26,7 @@ export interface Frame {
     homes: Rect[] | null;        // home boxes of the equation terms, in scene coordinates
 }
 
-const EDGE_LW = 2.4;
+const EDGE_LW = 2.6;
 const MATH_FONT = "'Cambria Math', 'STIX Two Math', 'Latin Modern Math', 'Times New Roman', serif";
 
 type Ctx = CanvasRenderingContext2D;
@@ -339,7 +339,7 @@ function drawIO(ctx: Ctx, L: Layout, S: Scheds, F: Frame, w2: number, w3: number
             const y1 = lerp(y0, L.dWorld - 6, easeOut(clip01(d / (L.dWorld - 6 - y0))));
             arrow(ctx, L.map(s, y0), L.map(s, y1), GOAL, al, L.U);
             if (d < L.dWorld + 20 - y0) messageDot(ctx, L.map(s, y0 + d), 7 * L.U, GOAL, w3);
-            if (ac.label) ioLabel(ctx, L, F, ac.label, s, -1, mix(GOAL, '#101073', 0.3), al * prog(lt, ac.t0 + 0.1, 0.4));
+            if (ac.label) ioLabel(ctx, L, F, ac.label, s, L.mobile ? -1 : 1, mix(GOAL, '#101073', 0.3), al * prog(lt, ac.t0 + 0.1, 0.4));
         }
     }
 }
