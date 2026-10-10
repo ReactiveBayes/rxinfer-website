@@ -55,7 +55,8 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
 
     // Mutable animation state; the render loop never goes through React.
     const st = useRef({
-        p: 1, target: DEFAULT_STEP, speed: 1, introT: 0, idle2: 0, idle3: 0, last: 0,
+        p: 1, target: DEFAULT_STEP, speed: 1, introT: 0, idle2: 0, idle3: 0, last: 0, time: 0,
+        hoverNode: null as string | null, hoverShown: null as string | null, hoverK: 0,
         k: 1, dpr: 1, homes: null as Rect[] | null, font: 'Lato, Arial, sans-serif', reduced: false,
         L, S, labelEdges,
     });
@@ -126,7 +127,10 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
         const ctx = canvas?.getContext('2d');
         if (!canvas || !ctx) return;
         const { L, S } = s;
-        const F: Frame = { p: s.p, introT: s.introT, idle2: s.idle2, idle3: s.idle3, font: s.font, homes: s.homes };
+        const F: Frame = {
+            p: s.p, introT: s.introT, idle2: s.idle2, idle3: s.idle3, time: s.time, font: s.font,
+            dpr: s.dpr, hover: s.hoverShown ? { name: s.hoverShown, k: s.hoverK } : null, homes: s.homes,
+        };
         const sc = s.dpr * s.k;
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -196,6 +200,14 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
         const w2 = idleWeight(s.p, 2), w3 = idleWeight(s.p, 3);
         s.idle2 = s.reduced ? s.S.mp.settle : w2 > 0 ? s.idle2 + dt : 0;
         s.idle3 = s.reduced ? s.S.ai.settle : w3 > 0 ? s.idle3 + dt : 0;
+        if (!s.reduced) s.time += dt;
+        // hovered factor nodes grow and cast a soft shadow, like on the old landing graph
+        if (s.hoverNode && s.hoverNode !== s.hoverShown) {
+            if (s.hoverK <= 0.05) s.hoverShown = s.hoverNode;
+            s.hoverK = Math.max(0, s.hoverK - dt / 0.2);
+        } else {
+            s.hoverK = Math.min(1, Math.max(0, s.hoverK + (s.hoverNode ? 1 : -1) * dt / 0.2));
+        }
         render();
         r.raf = requestAnimationFrame(tick);
     }, [render]);
@@ -237,6 +249,7 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
                 }
             }
         }
+        s.hoverNode = found ? TERMS[found.i].node : null;
         setHover(h => (h?.i === found?.i ? h : found));
     };
 
@@ -263,7 +276,7 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
                 aria-label={`Animation: ${STEPS[target].title}. ${STEPS[target].caption}`}
                 className="relative mt-2 aspect-[940/1650] w-full touch-pan-y select-none md:aspect-[1920/950]"
                 onPointerMove={onPointerMove}
-                onPointerLeave={() => setHover(null)}
+                onPointerLeave={() => { st.current.hoverNode = null; setHover(null); }}
                 onPointerDown={onPointerDown}
                 onPointerUp={onPointerUp}
                 onPointerCancel={() => { swipe.current = null; }}

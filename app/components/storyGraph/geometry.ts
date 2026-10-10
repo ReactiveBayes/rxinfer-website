@@ -4,10 +4,11 @@
 
 export type Kind = 'factor' | 'equal' | 'terminal' | 'end';
 
-export interface GNode { name: string; x: number; y: number; kind: Kind; size: number }
+export interface GNode { name: string; x: number; y: number; kind: Kind; size: number; glyph?: string }
 export interface GEdge { a: string; b: string; L: number; dangling: boolean }
 export interface GLabel { key: string; edge: [string, string]; x: number; y: number; align: 'left' | 'center' | 'right' }
-export interface Anchor { x: number; y: number; hw: number }
+// A belief density sits on an edge: centred at (x, y), spread along `along`, bulging towards `up`.
+export interface Anchor { x: number; y: number; hw: number; along: [number, number]; up: [number, number] }
 
 export interface Layout {
     mobile: boolean;
@@ -74,18 +75,19 @@ export function buildLayout(mobile: boolean): Layout {
     }
 
     const nodes: Record<string, GNode> = {};
-    const add = (name: string, s: number, d: number, kind: Kind, size = 56) => {
+    const add = (name: string, s: number, d: number, kind: Kind, size = 60, glyph?: string) => {
         const [x, y] = map(s, d);
-        nodes[name] = { name, x, y, kind, size: size * C.U };
+        nodes[name] = { name, x, y, kind, size: size * C.U, glyph };
     };
-    add('Pth', C.XP, C.dTh, 'factor');
-    add('Px0', C.XP, C.dX, 'factor');
+    const N = '\u{1D4A9}';    // script N, a Gaussian factor
+    add('Pth', C.XP, C.dTh, 'factor', 60, N);
+    add('Px0', C.XP, C.dX, 'factor', 60, N);
     for (let t = 1; t <= T; t++) {
-        add(`T${t}`, XF[t], C.dTh, 'equal', 40);
-        add(`F${t}`, XF[t], C.dX, 'factor');
-        add(`U${t}`, XF[t], C.dGU, 'factor');
-        add(`E${t}`, XE[t], C.dX, 'equal', 40);
-        add(`G${t}`, XE[t], C.dGU, 'factor');
+        add(`T${t}`, XF[t], C.dTh, 'equal', 30);
+        add(`F${t}`, XF[t], C.dX, 'factor', 60, 'f');
+        add(`U${t}`, XF[t], C.dGU, 'factor', 60, N);
+        add(`E${t}`, XE[t], C.dX, 'equal', 30);
+        add(`G${t}`, XE[t], C.dGU, 'factor', 60, N);
         add(`Y${t}`, XE[t], C.dY, 'terminal', 46);
     }
     add('Xend', C.XEND, C.dX, 'end', 0);
@@ -129,25 +131,25 @@ export function buildLayout(mobile: boolean): Layout {
         label('th', ['Pth', 'T1'], C.dTh - 26, mid, 'right');
         label('x0', ['Px0', 'F1'], C.dX + 26, mid, 'left');
         for (let t = 1; t <= T; t++) {
-            label(`u${t}`, [`U${t}`, `F${t}`], (C.dX + C.dGU) / 2, XF[t] - 26, 'center');
+            label(`u${t}`, [`U${t}`, `F${t}`], (C.dX + C.dGU) / 2, XF[t] + 28, 'center');
             label(`y${t}`, [`G${t}`, `Y${t}`], (C.dGU + C.dY) / 2 + 8, XE[t] - 28, 'center');
             label(`x${t}`, t < T ? [`E${t}`, `F${t + 1}`] : [`E${t}`, 'Xend'], C.dX + 26, XE[t] + 70, 'left');
         }
     }
 
-    // Where belief densities are drawn (screen coordinates of the baseline centre).
+    // Where belief densities are drawn: on the edge of their variable, bulging away from it.
     const anchors: Record<string, Anchor> = {};
+    const H: [number, number] = [1, 0], V: [number, number] = [0, 1];
+    const at = (s: number, d: number, hw: number, along: 'story' | 'depth', bulge: [number, number]): Anchor => {
+        const [x, y] = map(s, d);
+        const dir = along === 'story' ? (mobile ? V : H) : (mobile ? H : V);
+        return { x, y, hw, along: dir, up: bulge };
+    };
     for (let t = 1; t <= T; t++) {
-        anchors[`x${t}`] = mobile
-            ? { x: C.dX - 140, y: XE[t] + 30, hw: 62 }
-            : { x: XE[t], y: C.dX - 32, hw: 70 };
-        anchors[`u${t}`] = mobile
-            ? { x: C.dGU, y: XF[t] + 112, hw: 48 }
-            : { x: XF[t] + 88, y: C.dGU - 66, hw: 55 };
+        anchors[`x${t}`] = at(XE[t], C.dX, 66, 'story', mobile ? [-1, 0] : [0, -1]);
+        anchors[`u${t}`] = at(XF[t], (C.dX + C.dGU) / 2 + (mobile ? 10 : 0), 46, 'depth', mobile ? [0, -1] : [1, 0]);
     }
-    anchors.th = mobile
-        ? { x: C.dTh - 108, y: XE[1] + 30, hw: 58 }
-        : { x: (XF[1] + XF[2]) / 2, y: C.dTh - 30, hw: 70 };
+    anchors.th = at((XF[1] + XF[2]) / 2, C.dTh, 66, 'story', mobile ? [-1, 0] : [0, -1]);
 
     const v0 = mobile ? { x0: 0, y0: 50, w: C.dMax, h: C.sMax - 50 } : { x0: 0, y0: 130, w: C.sMax, h: C.dMax - 130 };
 

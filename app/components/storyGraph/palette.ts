@@ -1,11 +1,17 @@
-// Colors of the landing story animation. Ink is the RxInfer brand teal, the accents keep
-// the semantic roles of the original BIASlab animation (messages, beliefs, goals/actions).
+// Colors of the landing story animation, in the style of the original RxInfer landing graph.
 export const BG = '#ffffff';
 export const INK = '#0aa8a7';
 export const INK_DARK = '#087f7e';
-export const MSG = '#dc3545';
-export const BELIEF = '#2f6fde';
+export const FACTOR_FILL = '#f5f7f7';
+export const MSG = '#6f42c1';
 export const GOAL = '#fd7e14';
+export const DATA = '#0b6e6d';
+
+// Every variable gets its own colour for its belief, like the distributions on the old landing graph.
+export const BELIEF_COLORS: Record<string, string> = {
+    th: '#6f42c1', x1: '#17a2b8', x2: '#dc3545', x3: '#007bff', x4: '#28a745',
+    u1: '#fd7e14', u2: '#fd7e14', u3: '#fd7e14', u4: '#fd7e14',
+};
 export const MUTED = '#6b7b8c';
 export const FAINT = '#c9d6da';
 export const WORLD = '#eef5f5';
