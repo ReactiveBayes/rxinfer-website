@@ -19,3 +19,25 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Landing story animation */
+.sg-no-scrollbar {
+  scrollbar-width: none;
+}
+
+.sg-no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes sg-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+.sg-fade-in {
+  animation: sg-fade-in 0.45s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sg-fade-in { animation: none; }
+}
