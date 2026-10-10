@@ -1,0 +1,5 @@
+# pnpm >= 10.26 fails the install on unreviewed dependency build scripts. Neither is needed for
+# the static export: sharp ships prebuilt binaries and unrs-resolver is only used by ESLint.
+allowBuilds:
+  sharp: false
+  unrs-resolver: false
