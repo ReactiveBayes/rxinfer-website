@@ -14,8 +14,6 @@ export const VAR_COLORS: Record<string, string> = {
     y1: '#0b6e6d', y2: '#0b6e6d', y3: '#0b6e6d', y4: '#0b6e6d',
 };
 export const MUTED = '#6b7b8c';
-export const FAINT = '#c9d6da';
-export const WORLD = '#eef5f5';
 export const WHITE = '#ffffff';
 
 function rgb(hex: string): [number, number, number] {

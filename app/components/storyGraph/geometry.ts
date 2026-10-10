@@ -51,14 +51,14 @@ for (let t = 1; t <= T; t++) {
 
 const DESKTOP = {
     XF0: 330, DX: 400, DE: 190, XP: 150, XEND: 1880, sMax: 1920,
-    dTh: 235, dX: 580, dGU: 770, dY: 905, dWorld: 1000, dMax: 1080,
+    dTh: 235, dX: 580, dGU: 770, dY: 905, dWorld: 1000, dMax: 1040,
     region: [175, 940] as [number, number],
     U: 1,
 };
 
 const MOBILE = {
     XF0: 300, DX: 330, DE: 160, XP: 130, XEND: 1640, sMax: 1700,
-    dTh: 200, dX: 480, dGU: 650, dY: 770, dWorld: 850, dMax: 940,
+    dTh: 200, dX: 480, dGU: 650, dY: 770, dWorld: 850, dMax: 900,
     region: [90, 830] as [number, number],
     U: 1.2,
 };

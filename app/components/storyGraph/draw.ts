@@ -8,7 +8,7 @@ import {
     AI, GraphSched, MP, SEG12, SEG23, SETTLED, VAGUE, Track, BState,
     beliefAt, nowPosition,
 } from './choreography';
-import { VAR_COLORS, DATA, FACTOR_FILL, FAINT, GOAL, INK, MUTED, WHITE, WORLD, mix } from './palette';
+import { VAR_COLORS, DATA, FACTOR_FILL, GOAL, INK, MUTED, WHITE, mix } from './palette';
 
 export interface Scheds { seg01: GraphSched; intro: GraphSched; mp: MP; ai: AI }
 
@@ -176,22 +176,6 @@ function flashLevel(name: string, L: Layout, S: Scheds, F: Frame, w2: number, w3
 }
 
 // ------------------------------------------------------------------ scene parts
-function drawWorld(ctx: Ctx, L: Layout, F: Frame) {
-    const a = F.p <= 1 ? 0 : F.p >= 2 ? 1 : ease(prog((F.p - 1) * SEG12.dur, 0, 0.6));
-    if (a <= 0) return;
-    const off = (1 - a) * 50;
-    const [x0, y0] = L.map(-200, L.dWorld + off);
-    const [x1, y1] = L.map(L.sMax + 200, L.dMax + 200);
-    ctx.globalAlpha = a;
-    ctx.fillStyle = WORLD;
-    ctx.fillRect(Math.min(x0, x1), Math.min(y0, y1), Math.abs(x1 - x0), Math.abs(y1 - y0));
-    ctx.globalAlpha = 1;
-    line(ctx, L.map(-200, L.dWorld + off), L.map(L.sMax + 200, L.dWorld + off), FAINT, 1.5 * L.U, a);
-    const mid = (L.dWorld + L.dMax) / 2 + off;
-    text(ctx, 'world', L.mobile ? L.map(L.sMax - 90, mid) : L.map(L.sMax - 40, mid),
-        { size: 24 * L.U, color: MUTED, alpha: a, font: F.font, italic: true, align: L.mobile ? 'center' : 'right', rotate: L.mobile });
-}
-
 function drawNow(ctx: Ctx, L: Layout, S: Scheds, F: Frame, w3: number) {
     if (F.p <= 2) return;
     const t23 = (F.p - 2) * SEG23.dur;
@@ -306,7 +290,7 @@ function drawAmbient(ctx: Ctx, L: Layout, S: Scheds, F: Frame, w1: number) {
 
 function riserDot(ctx: Ctx, L: Layout, s: number, k: number, alpha: number) {
     if (k <= 0 || k >= 1 || alpha <= 0) return;
-    const p = L.map(s, lerp(L.dWorld + 50, L.dY + 12, ease(k)));
+    const p = L.map(s, lerp(L.dWorld + 20, L.dY + 12, ease(k)));
     dot(ctx, p, 16 * L.U, DATA, 0.12 * alpha);
     dot(ctx, p, 8 * L.U, DATA, alpha);
 }
@@ -354,7 +338,7 @@ function drawIO(ctx: Ctx, L: Layout, S: Scheds, F: Frame, w2: number, w3: number
             const al = (0.95 - 0.4 * prog(lt, ac.t0 + 2.0, 1.0)) * gone * w3;
             const y1 = lerp(y0, L.dWorld - 6, easeOut(clip01(d / (L.dWorld - 6 - y0))));
             arrow(ctx, L.map(s, y0), L.map(s, y1), GOAL, al, L.U);
-            if (d < L.dWorld + 60 - y0) messageDot(ctx, L.map(s, y0 + d), 7 * L.U, GOAL, w3);
+            if (d < L.dWorld + 20 - y0) messageDot(ctx, L.map(s, y0 + d), 7 * L.U, GOAL, w3);
             if (ac.label) ioLabel(ctx, L, F, ac.label, s, -1, mix(GOAL, '#101073', 0.3), al * prog(lt, ac.t0 + 0.1, 0.4));
         }
     }
@@ -511,7 +495,6 @@ function drawFlights(ctx: Ctx, L: Layout, S: Scheds, F: Frame) {
 
 export function drawScene(ctx: Ctx, L: Layout, S: Scheds, F: Frame) {
     const w1 = idleWeight(F.p, 1), w2 = idleWeight(F.p, 2), w3 = idleWeight(F.p, 3);
-    drawWorld(ctx, L, F);
     drawNow(ctx, L, S, F, w3);
     drawEdges(ctx, L, S, F);
     drawAmbient(ctx, L, S, F, w1);

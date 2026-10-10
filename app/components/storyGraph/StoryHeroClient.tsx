@@ -274,7 +274,7 @@ export default function StoryHeroClient({ terms, lhs, times, posterior, labels }
                 ref={sceneRef}
                 role="img"
                 aria-label={`Animation: ${STEPS[target].title}. ${STEPS[target].caption}`}
-                className="relative mt-2 aspect-[940/1650] w-full touch-pan-y select-none md:aspect-[1920/950]"
+                className="relative mt-2 aspect-[900/1650] w-full touch-pan-y select-none md:aspect-[1920/910]"
                 onPointerMove={onPointerMove}
                 onPointerLeave={() => { st.current.hoverNode = null; setHover(null); }}
                 onPointerDown={onPointerDown}
