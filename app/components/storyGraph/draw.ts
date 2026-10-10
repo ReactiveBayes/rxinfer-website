@@ -8,7 +8,7 @@ import {
     AI, GraphSched, MP, SEG12, SEG23, SETTLED, VAGUE, Track, BState,
     beliefAt, nowPosition,
 } from './choreography';
-import { BELIEF_COLORS, DATA, FACTOR_FILL, FAINT, GOAL, INK, MUTED, WHITE, WORLD, mix } from './palette';
+import { VAR_COLORS, DATA, FACTOR_FILL, FAINT, GOAL, INK, MUTED, WHITE, WORLD, mix } from './palette';
 
 export interface Scheds { seg01: GraphSched; intro: GraphSched; mp: MP; ai: AI }
 
@@ -300,7 +300,7 @@ function drawAmbient(ctx: Ctx, L: Layout, S: Scheds, F: Frame, w1: number) {
         const a = L.nodes[e.a], b = L.nodes[e.b];
         const p: Pt = [lerp(a.x, b.x, r), lerp(a.y, b.y, r)];
         const k = Math.sin(r * Math.PI);
-        messageDot(ctx, p, 5 * L.U * k, INK, 0.7 * k * w1);
+        messageDot(ctx, p, 5 * L.U * k, VAR_COLORS[e.v], 0.7 * k * w1);
     });
 }
 
@@ -375,7 +375,7 @@ function mixState(a: BState, b: BState, w: number): BState {
 function drawBelief(ctx: Ctx, L: Layout, F: Frame, name: string, st: BState, a: number, salt: number) {
     if (a <= 0) return;
     const an = L.anchors[name];
-    const color = BELIEF_COLORS[name];
+    const color = VAR_COLORS[name];
     // gentle breathing, like the shapes on the old landing graph
     const sig = st.sig * (1 + 0.06 * Math.sin(F.time * 1.3 + salt * 1.9));
     const mu = st.mu + 0.05 * Math.sin(F.time * 0.9 + salt * 2.7);

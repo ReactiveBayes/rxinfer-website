@@ -5,7 +5,7 @@
 export type Kind = 'factor' | 'equal' | 'terminal' | 'end';
 
 export interface GNode { name: string; x: number; y: number; kind: Kind; size: number; glyph?: string }
-export interface GEdge { a: string; b: string; L: number; dangling: boolean }
+export interface GEdge { a: string; b: string; v: string; L: number; dangling: boolean }
 export interface GLabel { key: string; edge: [string, string]; x: number; y: number; align: 'left' | 'center' | 'right' }
 // A belief density sits on an edge: centred at (x, y), spread along `along`, bulging towards `up`.
 export interface Anchor { x: number; y: number; hw: number; along: [number, number]; up: [number, number] }
@@ -94,25 +94,25 @@ export function buildLayout(mobile: boolean): Layout {
     add('Thend', C.XEND, C.dTh, 'end', 0);
 
     const edges: GEdge[] = [];
-    const edge = (a: string, b: string, dangling = false) => {
+    const edge = (a: string, b: string, v: string, dangling = false) => {
         const L = Math.hypot(nodes[b].x - nodes[a].x, nodes[b].y - nodes[a].y);
-        edges.push({ a, b, L, dangling });
+        edges.push({ a, b, v, L, dangling });
     };
-    edge('Pth', 'T1');
-    edge('Px0', 'F1');
+    edge('Pth', 'T1', 'th');
+    edge('Px0', 'F1', 'x0');
     for (let t = 1; t <= T; t++) {
-        edge(`T${t}`, `F${t}`);
-        edge(`U${t}`, `F${t}`);
-        edge(`F${t}`, `E${t}`);
-        edge(`E${t}`, `G${t}`);
-        edge(`G${t}`, `Y${t}`);
+        edge(`T${t}`, `F${t}`, 'th');
+        edge(`U${t}`, `F${t}`, `u${t}`);
+        edge(`F${t}`, `E${t}`, `x${t}`);
+        edge(`E${t}`, `G${t}`, `x${t}`);
+        edge(`G${t}`, `Y${t}`, `y${t}`);
         if (t < T) {
-            edge(`E${t}`, `F${t + 1}`);
-            edge(`T${t}`, `T${t + 1}`);
+            edge(`E${t}`, `F${t + 1}`, `x${t}`);
+            edge(`T${t}`, `T${t + 1}`, 'th');
         }
     }
-    edge(`E${T}`, 'Xend', true);
-    edge(`T${T}`, 'Thend', true);
+    edge(`E${T}`, 'Xend', `x${T}`, true);
+    edge(`T${T}`, 'Thend', 'th', true);
 
     // Edge labels, positioned in screen coordinates for each orientation.
     const labels: GLabel[] = [];

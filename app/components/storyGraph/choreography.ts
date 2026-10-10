@@ -5,7 +5,7 @@
 
 import { ease, prog, lerp } from './engine';
 import { Layout, TERMS, T, findEdge } from './geometry';
-import { MSG, GOAL, INK } from './palette';
+import { INK, VAR_COLORS } from './palette';
 
 export interface Msg { a: string; b: string; t0: number; v: number; color: string; L: number; fade: boolean }
 export interface Flash { t: number; color: string; repeat?: boolean }
@@ -40,12 +40,14 @@ export class Track {
         (this.flashes[node] ??= []).push({ t, color, repeat });
     }
 
-    // Message chain along consecutive nodes; returns the arrival time per node.
-    send(seq: string[], t0: number, color = MSG, speed = 650, gap = 0.06) {
+    // Message chain along consecutive nodes; returns the arrival time per node. Each message is
+    // coloured like the variable on its edge.
+    send(seq: string[], t0: number, speed = 650, gap = 0.06) {
         const arr: Record<string, number> = {};
         let t = t0;
         for (let i = 0; i + 1 < seq.length; i++) {
             const e = findEdge(this.L, seq[i], seq[i + 1]);
+            const color = VAR_COLORS[e.v];
             this.msgs.push({ a: seq[i], b: seq[i + 1], t0: t, v: speed, color, L: e.L, fade: e.dangling });
             t += e.L / speed;
             this.flash(seq[i + 1], t, color);
@@ -142,33 +144,33 @@ export function messagePassing(L: Layout) {
     tr.send(['U2', 'F2'], at(1.1));
     tr.send(['Y1', 'G1', 'E1'], at(1.0));
     tr.send(['Y2', 'G2', 'E2'], at(1.3));
-    const fw = tr.send(['F1', 'E1', 'F2', 'E2', 'F3', 'E3', 'F4', 'E4', 'Xend'], at(1.6), MSG, 600);
+    const fw = tr.send(['F1', 'E1', 'F2', 'E2', 'F3', 'E3', 'F4', 'E4', 'Xend'], at(1.6), 600);
     tr.update('x1', fw.E1, 0.35, 0.70);
     tr.update('x2', fw.E2, -0.45, 0.60);
     tr.update('x3', fw.E3, -0.1, 1.15);
     tr.update('x4', fw.E4, 0.2, 1.45);
 
-    const bw = tr.send(['E2', 'F2', 'E1', 'F1', 'Px0'], at(4.0), MSG, 600);
+    const bw = tr.send(['E2', 'F2', 'E1', 'F1', 'Px0'], at(4.0), 600);
     tr.update('x1', bw.E1, 0.1, 0.50);
-    const lt = tr.send(['F2', 'T2', 'T1'], bw.F2 + 0.05, MSG, 600);
-    tr.send(['F1', 'T1'], bw.F1 + 0.05, MSG, 600);
+    const lt = tr.send(['F2', 'T2', 'T1'], bw.F2 + 0.05, 600);
+    tr.send(['F1', 'T1'], bw.F1 + 0.05, 600);
     tr.update('th', lt.T1, 0.5, 0.80);
 
     // second sweep: faster, everything sharpens
     const t2 = at(6.2);
-    tr.send(['T1', 'T2', 'T3', 'T4', 'Thend'], t2, MSG, 1100, 0.03);
-    tr.send(['T3', 'F3'], t2 + 0.45, MSG, 1100);
-    tr.send(['T4', 'F4'], t2 + 0.80, MSG, 1100);
-    tr.send(['Y1', 'G1', 'E1'], t2, MSG, 1100);
-    tr.send(['Y2', 'G2', 'E2'], t2 + 0.1, MSG, 1100);
-    const fw2 = tr.send(['F1', 'E1', 'F2', 'E2', 'F3', 'E3', 'F4', 'E4', 'Xend'], t2 + 0.3, MSG, 1100, 0.03);
+    tr.send(['T1', 'T2', 'T3', 'T4', 'Thend'], t2, 1100, 0.03);
+    tr.send(['T3', 'F3'], t2 + 0.45, 1100);
+    tr.send(['T4', 'F4'], t2 + 0.80, 1100);
+    tr.send(['Y1', 'G1', 'E1'], t2, 1100);
+    tr.send(['Y2', 'G2', 'E2'], t2 + 0.1, 1100);
+    const fw2 = tr.send(['F1', 'E1', 'F2', 'E2', 'F3', 'E3', 'F4', 'E4', 'Xend'], t2 + 0.3, 1100, 0.03);
     tr.update('x1', fw2.E1, 0.15, 0.36);
     tr.update('x2', fw2.E2, -0.35, 0.32);
     tr.update('x3', fw2.E3, -0.05, 0.85);
     tr.update('x4', fw2.E4, 0.15, 1.10);
-    const bw2 = tr.send(['E2', 'F2', 'E1', 'F1'], t2 + 1.7, MSG, 1100, 0.03);
-    tr.send(['F2', 'T2', 'T1'], bw2.F2 + 0.03, MSG, 1100);
-    const lt2 = tr.send(['F1', 'T1'], bw2.F1 + 0.03, MSG, 1100);
+    const bw2 = tr.send(['E2', 'F2', 'E1', 'F1'], t2 + 1.7, 1100, 0.03);
+    tr.send(['F2', 'T2', 'T1'], bw2.F2 + 0.03, 1100);
+    const lt2 = tr.send(['F1', 'T1'], bw2.F1 + 0.03, 1100);
     tr.update('x1', bw2.E1, 0.1, 0.30);
     tr.update('th', lt2.T1, 0.6, 0.45);
 
@@ -188,9 +190,9 @@ export function activeInference(L: Layout) {
     const tr = new Track(L);
     const at = (x: number) => x - 0.7;            // original script time (relative to T_D)
 
-    const p4 = tr.send(['Y4', 'G4', 'E4', 'F4', 'U4'], at(1.2), GOAL, 620);
-    const p3 = tr.send(['Y3', 'G3', 'E3', 'F3', 'U3'], at(1.4), GOAL, 620);
-    const p43 = tr.send(['F4', 'E3'], p4.F4 + 0.05, GOAL, 620);
+    const p4 = tr.send(['Y4', 'G4', 'E4', 'F4', 'U4'], at(1.2), 620);
+    const p3 = tr.send(['Y3', 'G3', 'E3', 'F3', 'U3'], at(1.4), 620);
+    const p43 = tr.send(['F4', 'E3'], p4.F4 + 0.05, 620);
     tr.update('x4', p4.E4, 0.8, 0.95);
     tr.update('x3', p3.E3, 0.45, 0.80);
     tr.update('x3', p43.E3, 0.6, 0.70);
@@ -205,11 +207,11 @@ export function activeInference(L: Layout) {
     const nowMove = obsArrive + 0.35;               // "now" slides over [nowMove, nowMove + 0.8]
 
     const t3 = obs1 + 1.9;
-    const o3 = tr.send(['Y3', 'G3', 'E3'], t3, MSG, 700);
+    const o3 = tr.send(['Y3', 'G3', 'E3'], t3, 700);
     tr.update('x3', o3.E3, 0.75, 0.38);
-    const f3 = tr.send(['F3', 'E3', 'F4', 'E4', 'Xend'], t3 + 0.2, MSG, 700);
+    const f3 = tr.send(['F3', 'E3', 'F4', 'E4', 'Xend'], t3 + 0.2, 700);
     tr.update('x4', f3.E4, 0.85, 0.70);
-    const p4b = tr.send(['Y4', 'G4', 'E4', 'F4', 'U4'], f3.E4 + 0.1, GOAL, 700);
+    const p4b = tr.send(['Y4', 'G4', 'E4', 'F4', 'U4'], f3.E4 + 0.1, 700);
     tr.update('x4', p4b.E4, 1.0, 0.50);
     tr.update('u4', p4b.U4, -0.4, 0.38);
     const act2 = p4b.U4 + 0.6;

@@ -3,14 +3,15 @@ export const BG = '#ffffff';
 export const INK = '#0aa8a7';
 export const INK_DARK = '#087f7e';
 export const FACTOR_FILL = '#f5f7f7';
-export const MSG = '#6f42c1';
 export const GOAL = '#fd7e14';
 export const DATA = '#0b6e6d';
 
-// Every variable gets its own colour for its belief, like the distributions on the old landing graph.
-export const BELIEF_COLORS: Record<string, string> = {
-    th: '#6f42c1', x1: '#17a2b8', x2: '#dc3545', x3: '#007bff', x4: '#28a745',
+// Every variable gets its own colour, like the distributions on the old landing graph. Its belief
+// and the messages travelling over its edges share that colour.
+export const VAR_COLORS: Record<string, string> = {
+    th: '#6f42c1', x0: '#e83e8c', x1: '#17a2b8', x2: '#dc3545', x3: '#007bff', x4: '#28a745',
     u1: '#fd7e14', u2: '#fd7e14', u3: '#fd7e14', u4: '#fd7e14',
+    y1: '#0b6e6d', y2: '#0b6e6d', y3: '#0b6e6d', y4: '#0b6e6d',
 };
 export const MUTED = '#6b7b8c';
 export const FAINT = '#c9d6da';
