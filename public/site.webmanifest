@@ -1,6 +1,7 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "RxInfer",
+  "short_name": "RxInfer",
+  "description": "Fast and flexible Bayesian inference in Julia",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
