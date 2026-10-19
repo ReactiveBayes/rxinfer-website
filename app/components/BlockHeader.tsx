@@ -69,11 +69,19 @@ export default function BlockHeader({
                 className={`text-5xl font-bold bg-gradient-to-r from-green-600 to-blue-500 bg-clip-text text-transparent
                     transform transition-all duration-700 ease-out
                     opacity-0 translate-y-8 motion-reduce:translate-y-0
-                    cursor-pointer
                     ${isVisible ? '!opacity-100 !translate-y-0' : ''}`}
-                onClick={handleClick}
             >
-                {title}
+                {id ? (
+                    // A button inside the heading, so keyboards and screen readers reach the link copy
+                    <button
+                        type="button"
+                        onClick={handleClick}
+                        aria-label={`${title}: copy a link to this section`}
+                        className="cursor-pointer rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green-600"
+                    >
+                        {title}
+                    </button>
+                ) : title}
             </h2>
             {subtitle && (
                 <div className={`flex flex-col gap-2 relative ${align === 'center' ? 'items-center' :
@@ -82,6 +90,7 @@ export default function BlockHeader({
                     }`}>
                     <div className="relative">
                         <div
+                            role="status"
                             className={`absolute -top-4 left-1/2 -translate-x-1/2 w-full bg-white/80 z-10 text-green-700 px-3 py-1 rounded-md
                                 transform transition-all duration-300 ease-out font-semibold
                                 ${showCopied ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
