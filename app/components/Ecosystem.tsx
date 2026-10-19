@@ -2,7 +2,7 @@
 
 import BlockHeader from "./BlockHeader"
 import Link from "next/link"
-import { Rocket, Mail, GitBranch, Database, Box, Github, ArrowRight, Package } from 'lucide-react'
+import { Rocket, Mail, GitBranch, Database, Box, Github, ArrowRight, Package, Blocks } from 'lucide-react'
 
 interface EcosystemPackage {
     name: string
@@ -20,9 +20,15 @@ const packages: EcosystemPackage[] = [
     },
     {
         name: "ReactiveMP.jl",
-        description: "Efficient, easily extensible and schedule-free reactive message passing-based inference engine.",
+        description: "Efficient and schedule-free reactive message passing-based inference engine, running the rules of the rule packages.",
         icon: Mail,
         url: "https://github.com/reactivebayes/ReactiveMP.jl"
+    },
+    {
+        name: "MessagePassingRulesBase.jl",
+        description: "The rule system: nodes and message passing rules are declared with it and live in registered rule packages, one per node.",
+        icon: Blocks,
+        url: "https://github.com/reactivebayes/MessagePassingRulesBase.jl"
     },
     {
         name: "GraphPPL.jl",

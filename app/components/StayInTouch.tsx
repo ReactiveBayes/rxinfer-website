@@ -28,11 +28,6 @@ const supporters: Supporter[] = [
         logo: "/images/gn.png"
     },
     {
-        name: "Lazy Dynamics",
-        href: "https://lazydynamics.com/",
-        logo: "/images/lazydynamics_logo.png"
-    },
-    {
         name: "Active Inference Institute",
         href: "https://www.activeinference.org/",
         logo: "/images/actinf.png"

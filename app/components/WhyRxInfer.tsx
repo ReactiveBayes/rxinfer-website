@@ -8,7 +8,8 @@ import {
     GitMerge, // Hybrid
     Scale, // Scalable
     Puzzle, // Extensible
-    Users // Community Driven
+    Users, // Community Driven
+    Cpu // Compiled
 } from 'lucide-react'
 
 // Julia colors
@@ -161,7 +162,7 @@ export default function WhyRxInfer() {
                     <Feature
                         icon={Puzzle}
                         title="Extensible"
-                        description="Designed to be extended with custom operations."
+                        description="Designed to be extended with custom nodes and message passing rules, in packages of their own."
                         colorIndex={4}
                         align="left"
                     />
@@ -170,6 +171,13 @@ export default function WhyRxInfer() {
                         title="Community Driven"
                         description="Join our vibrant community of developers and researchers."
                         colorIndex={5}
+                        align="left"
+                    />
+                    <Feature
+                        icon={Cpu}
+                        title="Compiled Inference"
+                        description="Compile inference into a single XLA program with Reactant.jl, for CPUs and GPUs (partial support)."
+                        colorIndex={0}
                         align="left"
                     />
                 </div>

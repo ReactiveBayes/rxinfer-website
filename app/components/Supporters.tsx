@@ -6,7 +6,6 @@ import BlockHeader from "./BlockHeader"
 import tueLogo from '@/public/images/TUe-logo-scarlet-S.png'
 import nwoLogo from '@/public/images/NWO.png'
 import gnLogo from '@/public/images/gn.png'
-import lazyLogo from '@/public/images/lazydynamics_logo.png'
 import actinfLogo from '@/public/images/actinf.png'
 import biaslabLogo from '@/public/images/biaslab.png'
 
@@ -32,11 +31,6 @@ const supporters: Supporter[] = [
         name: "GN Hearing",
         href: "https://www.resound.com/nl-nl/",
         logo: gnLogo
-    },
-    {
-        name: "Lazy Dynamics",
-        href: "https://lazydynamics.com/",
-        logo: lazyLogo
     },
     {
         name: "Active Inference Institute",
